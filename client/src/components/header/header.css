@@ -9,6 +9,9 @@
 	display: flex;
 }
 
+.header-title {
+}
+
 .header-login {
 	padding-right: 1rem;
 }

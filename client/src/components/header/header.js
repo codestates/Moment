@@ -6,8 +6,8 @@ import './header.css';
 export default function Header() {
 	return (
 		<div className="header">
-			<Link to="/" className="header-title">
-				Moment
+			<Link className="header-title" to="/">
+				<h1>Moment</h1>
 			</Link>
 			<div className="option">
 				<div className="header-login">Login</div>
