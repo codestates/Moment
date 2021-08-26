@@ -6,7 +6,7 @@ import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
 
 function App() {
-    return <HomePage />;
+	return <HomePage />;
 }
 
 export default App;
