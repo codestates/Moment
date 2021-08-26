@@ -10,7 +10,7 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
     const [passwordIsValid, setPasswordIsValid] = useState(true)
-    const [confirmPassword, setConfirmPassword] = useState(false)
+    const [confirmPassword, setConfirmPassword] = useState(true)
     const [enteredNickname, setEnteredNickname] = useState('')
     const [nicknameIsValid, setNicknameIsValid] = useState(true)
 
@@ -49,6 +49,7 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
         event.preventDefault();
         axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: setEnteredNickname})
         .then(res => {
+            signUpModalHandler()
             //로그인 상태 수정이 필요할듯...?
             //모달창 닫아주는게 필요.
         })
@@ -63,19 +64,11 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
                 <h1>M.</h1>
                 <h2>Sign Up</h2>
             </div>
-            <div>
                 <Input className={emailIsValid ? '' : `${classes.invalid}`} input={{placeholder:"E-mail", type:"text",  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
-            </div>
-            <div>
                 <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, value: enteredPassword}} />
-            </div>
-            <div>
                 <Input className={confirmPassword ? '' : `${classes.invalid}`} input={{placeholder:"Confirm Password ", type:"password", onChange: confirmPasswordHandler}} />
-            </div>
-            <div>
-            <Input className={nicknameIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Nickname", type:"text", onChange: nickNameInputHandler, value: enteredNickname}} />
-            </div>
-            <Button className={classes.signup} btn={{type:"submit"}}>Sign Up</Button>
+                <Input className={nicknameIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Nickname", type:"text", onChange: nickNameInputHandler, value: enteredNickname}} />
+                <Button className={classes.signup} btn={{type:"submit"}}>Sign Up</Button>
         </form>
         </div>
     </Modal>

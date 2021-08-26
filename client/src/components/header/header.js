@@ -9,11 +9,9 @@ export default function Header() {
 	const [loginOn, setLoginOn] = useState(false)
 	const [signUpON, setSignUpOn] = useState(false)
 	const loginModalHandler = () => {
-		console.log(1)
 		setLoginOn(!loginOn)
 	}
 	const signUpModalHandler = () => {
-		console.log(2)
 		setSignUpOn(!signUpON)
 	}
 

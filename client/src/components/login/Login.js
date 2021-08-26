@@ -38,6 +38,7 @@ const Login = ({loginModalHandler, loginOn}) => {
         .then(res => {
             const {data: userData} = res.data;
             setUserInfo(userData);
+            loginModalHandler()
             //모달창 닫아주는게 필요.
         })
     }
@@ -48,22 +49,12 @@ const Login = ({loginModalHandler, loginOn}) => {
             <form className={classes.form} onSubmit={loginHandler}>
                 <div className={classes.title}>
                     <h1>M.</h1>
-                <h2>Log in</h2>
-                <div>
-                    <Input className={emailIsValid ? '' : `${classes.invalid}`} input={{placeholder:"E-mail",  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
-                    {/* <input placeholder="E-mail" className={emailIsValid ? '' : classes.invalid}  onChange={emailInputHandler} onBlur={validateEmailHandler} value={enteredEmail}></input> */}
-                </div>
-                <div>
+                    <h2>Log in</h2>
+                    <Input className={emailIsValid ? '' : `${classes.invalid}`} input={{placeholder:"E-mail", type:"text",  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
                     <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, onBlur: validatePasswordHandler, value: enteredPassword}} />
-                    {/* <input placeholder="Password" className={passwordIsValid ? '' : classes.invalid}  onChange={passwordInputHandler} onBlur={validatePasswordHandler} value={enteredPassword}></input> */}
-                </div>
-                <div>
                     <Button > Facebook</Button>
-                    
-
                 {/* <GoogleLoginBtn/> */}
-                </div>
-                <Button className={classes.login} btn={{type: "submit"}}> Login</Button>
+                <Button className={classes.login} btn={{type: "submit"}}>Login</Button>
                 </div>
             </form>
             </>
