@@ -5,6 +5,7 @@ import classes from './Login.module.css'
 import Modal from '../UI/Modal'
 import Button from '../UI/Button'
 import Input from '../UI/Input'
+import Google from '../../assets/googleBtn.svg'
 
 const Login = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -56,6 +57,7 @@ const Login = () => {
                     <button>Facebook</button>
                     <button>Google</button>
                 </div>
+                <Google/>
                 <Button btn={{type: "submit"}}>Login</Button>
                 </div>
             </form>
