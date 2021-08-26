@@ -1,4 +1,5 @@
 const { Users } = require('../../models');
+const { isAuthorized } = require('../../lib/index');
 
 module.exports = async (req, res) => {
   const accessToken = req.headers.cookie.accessToken;
