@@ -2,9 +2,9 @@ import React, {useState} from 'react'
 import axios from 'axios'
 
 import classes from './Login.module.css'
-import Modal from './UI/Modal'
-import Button from './UI/Button'
-import Input from './UI/Input'
+import Modal from '../UI/Modal'
+import Button from '../UI/Button'
+import Input from '../UI/Input'
 
 const Login = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -32,7 +32,7 @@ const Login = () => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.post('https://api.m0ment.be/users/login')
+        axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword})
         .then(res => {
             const {data: userData} = res.data;
             setUserInfo(userData)
