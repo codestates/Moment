@@ -1,5 +1,3 @@
 const { Posts } = require('../../models');
 
-module.exports = {
-	submit: async (req, res) => {},
-};
+module.exports = async (req, res) => {};

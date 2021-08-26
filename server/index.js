@@ -3,6 +3,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const cookie_parser = require('cookie-parser');
 const PORT = process.env.PORT || 8080;
+const userRoute = require('./routes/users');
+const logsRoute = require('./routes/logs');
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(
 app.use(cookie_parser());
 app.use(express.json());
 
+app.use('/users', userRoute);
+app.use('/log', logsRoute);
 app.get('/', (_, res) => res.send('Hello World?'));
 
 app.listen(PORT, () => console.log(`Server is Running ${PORT}`));
