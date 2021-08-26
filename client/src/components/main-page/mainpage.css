@@ -1,0 +1,51 @@
+.body {
+	margin: 0;
+}
+
+.mainpage {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.mainpage-title {
+	position: absolute;
+	letter-spacing: 0.2rem;
+	left: 50%;
+	margin-top: 8%;
+	transform: translate(-50%);
+}
+
+.mainpage-recent-list {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 15rem;
+}
+
+.mainpage-recent-card1,
+.mainpage-recent-card2,
+.mainpage-recent-card3,
+.mainpage-recent-card4 {
+	width: 18rem;
+	height: 30rem;
+	background-color: aqua;
+	line-height: 100px;
+	text-align: center;
+	display: inline-block;
+	margin: 0 1rem;
+	margin-top: 0.1rem;
+}
+
+.background-image {
+	width: 18rem;
+	height: 15rem;
+	background-size: cover;
+	background-position: center;
+	transition: transform 0.5s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+}
+
+.background-image:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}

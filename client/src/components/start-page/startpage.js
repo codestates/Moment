@@ -13,7 +13,7 @@ export default function StartPage() {
 			<div></div>
 			<h1 className="startpage-title">Remember your moment in Moments forever.</h1>
 			<a
-				href="/"
+				href="/main"
 				className="startpage-btn
 						   startpage-btn-color
 						   startpage-btn-animation"
