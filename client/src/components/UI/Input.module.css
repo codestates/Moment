@@ -1,3 +1,12 @@
 .input {
     border: none;
+    margin: 1rem;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 7px;
    } 
+
+.invalid{
+    color: red;
+    opacity: 60%;
+}

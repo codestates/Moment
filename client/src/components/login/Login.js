@@ -5,7 +5,7 @@ import classes from './Login.module.css'
 import Modal from '../UI/Modal'
 import Button from '../UI/Button'
 import Input from '../UI/Input'
-import Google from '../../assets/googleBtn.svg'
+import GoogleLoginBtn from './GoogleLoginBtn'
 
 const Login = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -40,25 +40,29 @@ const Login = () => {
         })
     }
 
+    // const InputClass = emailIsValid ? `${classes.input}` : `${classes.input} ${classes.invalid}`
+
     return (
         <Modal>
             <>
             <form className={classes.form} onSubmit={submitHandler}>
+                <div className={classes.title}>
+                <h2>Log in</h2>
                 <div>
-                <h2>회원가입</h2>
-                <div>
-                    <Input input={{placeholder:"E-mail", className: emailIsValid || classes.invalid,  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
+                    <Input className={emailIsValid ? '' : `${classes.invalid}`} input={{placeholder:"E-mail",  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
                     {/* <input placeholder="E-mail" className={emailIsValid ? '' : classes.invalid}  onChange={emailInputHandler} onBlur={validateEmailHandler} value={enteredEmail}></input> */}
                 </div>
                 <div>
-                    <input placeholder="Password" className={passwordIsValid ? '' : classes.invalid}  onChange={passwordInputHandler} onBlur={validatePasswordHandler} value={enteredPassword}></input>
+                    <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, onBlur: validatePasswordHandler, value: enteredPassword}} />
+                    {/* <input placeholder="Password" className={passwordIsValid ? '' : classes.invalid}  onChange={passwordInputHandler} onBlur={validatePasswordHandler} value={enteredPassword}></input> */}
                 </div>
                 <div>
-                    <button>Facebook</button>
-                    <button>Google</button>
+                    <Button > Facebook</Button>
+                    
+
+                <GoogleLoginBtn/>
                 </div>
-                <Google/>
-                <Button btn={{type: "submit"}}>Login</Button>
+                <Button className={classes.login} btn={{type: "submit"}}> Login</Button>
                 </div>
             </form>
             </>
