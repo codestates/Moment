@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import './startpage.css';
 // import { dummyData } from '../../static/dummyData';
 
-import { ReactComponent as Logo } from '../../assets/svg/LovingDoodle.svg';
+import { ReactComponent as Logo } from '../../assets/svg/13.svg';
 export default function StartPage() {
-	// const [section, setSection] = useState(dummyData);
-	// console.log(section);
 	return (
 		<div className="startpage">
 			{/* {section.map(({ id, imageUrl }) => (
