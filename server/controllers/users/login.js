@@ -1,5 +1,4 @@
 const { Users } = require('../../models');
-const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
   const userInfo = await Users.findOne({
@@ -9,9 +8,9 @@ module.exports = async (req, res) => {
   if (!userInfo) {
     res.status(401).json({ isLogin: false, data: null });
   } else {
-    // const { id, avator, email, nickname, password, secret, created_at, updqted_at } = userInfo;
-    // const accessToken = generateAccessToken({ id, avator, email, nickname, password, secret, created_at, updqted_at });
-    // const refreshToken = generateRefreshToken({ id, avator, email, nickname, password, secret, created_at, updqted_at });
+    // const { email, nickname } = userInfo;
+    // const accessToken = generateAccessToken({ email, nickname });
+    // const refreshToken = generateRefreshToken({ email, nickname });
 
     // res.cookie('accessToken', accessToken, {
     //   sameSite: 'none',
@@ -19,7 +18,7 @@ module.exports = async (req, res) => {
     //   httpOnly: true
     // });
 
-    // res.set({ 'refreshToken': refreshToken })
+    // res.set({ 'refreshToken': refreshToken }).send()
     res.status(200).json({ isLogin: true, data: { email: email, nickname: nickname } });
   }
 }
