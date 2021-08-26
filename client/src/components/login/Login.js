@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 import classes from './Login.module.css'
 import Modal from '../UI/Modal'
@@ -7,7 +8,7 @@ import Button from '../UI/Button'
 import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
-const Login = () => {
+const Login = ({loginModalHandler, loginOn}) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
@@ -42,7 +43,7 @@ const Login = () => {
     }
 
     return (
-        <Modal>
+        <Modal loginModalHandler={loginModalHandler} loginOn={loginOn}>
             <>
             <form className={classes.form} onSubmit={loginHandler}>
                 <div className={classes.title}>
@@ -70,4 +71,8 @@ const Login = () => {
     )
 }
 
+Login.propTypes = {
+    loginModalHandler: PropTypes.any,
+    loginOn: PropTypes.any
+}
 export default Login
