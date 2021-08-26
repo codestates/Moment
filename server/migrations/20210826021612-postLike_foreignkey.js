@@ -14,7 +14,7 @@ module.exports = {
 			type: 'foreign key',
 			name: 'post_fk_postLike',
 			references: {
-				table: 'posts',
+				table: 'Posts',
 				field: 'id',
 			},
 			onDelete: 'cascade',
