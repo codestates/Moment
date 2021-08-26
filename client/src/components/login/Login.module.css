@@ -1,0 +1,9 @@
+.invalid{
+    background-color: red;
+    opacity: 60%;
+}
+
+.form{
+    display: flex;
+    margin-bottom: 0.5rem;
+} 
