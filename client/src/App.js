@@ -7,7 +7,16 @@ import Header from '../src/components/header/header';
 import Login from './components/login/Login'
 
 function App() {
-	return <HomePage />;
+	return (
+		<div>
+			<Header />
+			<Switch>
+				<Route>
+					<HomePage />
+				</Route>
+			</Switch>
+		</div>
+	);
 }
 
 export default App;
