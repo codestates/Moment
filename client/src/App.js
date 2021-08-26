@@ -4,7 +4,9 @@ import React from 'react';
 function App() {
 
 	return (
-		<div>is it working?</div>
+		<div>
+			is it working?
+		</div>
 )
 
 }
