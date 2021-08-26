@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './header.css';
 
 export default function Header() {
 	return (
 		<div className="header">
-			<h1 className="header-title">Moment.</h1>
+			<Link to="/" className="header-title">
+				Moment
+			</Link>
 			<div className="option">
 				<div className="header-login">Login</div>
 				<div className="header-signup">Sign Up</div>

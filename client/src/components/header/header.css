@@ -8,3 +8,7 @@
 .option {
 	display: flex;
 }
+
+.header-login {
+	padding-right: 1rem;
+}
