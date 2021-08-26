@@ -7,18 +7,19 @@ module.exports = async (req, res) => {
   });
 
   if (!userInfo) {
-    res.status(401).json({ data: null });
+    res.status(401).json({ isLogin: false, data: null });
   } else {
-    const { id, avator, email, nickname, password, secret, created_at, updqted_at } = userInfo;
+    // const { id, avator, email, nickname, password, secret, created_at, updqted_at } = userInfo;
     // const accessToken = generateAccessToken({ id, avator, email, nickname, password, secret, created_at, updqted_at });
     // const refreshToken = generateRefreshToken({ id, avator, email, nickname, password, secret, created_at, updqted_at });
 
-    // res.cookie('refreshToken', refreshToken, {
+    // res.cookie('accessToken', accessToken, {
     //   sameSite: 'none',
     //   secure: true,
     //   httpOnly: true
     // });
-    //accessToken은 어디에...
-    res.status(200).json({ data: { email: email, nickname: nickname } });
+
+    // res.set({ 'refreshToken': refreshToken })
+    res.status(200).json({ isLogin: true, data: { email: email, nickname: nickname } });
   }
 }
