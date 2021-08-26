@@ -6,8 +6,16 @@ const PORT = process.env.PORT || 8080;
 
 const app = express();
 
-app.use(cors());
+app.use(
+	cors({
+		origin: true,
+		credentials: true,
+		methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+	}),
+);
 app.use(cookie_parser());
 app.use(express.json());
 
-app.listen(PORT, (req, res) => console.log(res));
+app.get('/', (_, res) => res.send('Hello World?'));
+
+app.listen(PORT, () => console.log(`Server is Running ${PORT}`));
