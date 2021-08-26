@@ -6,7 +6,16 @@ import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
 
 function App() {
-	return <HomePage />;
+	return (
+		<div>
+			<Header />
+			<Switch>
+				<Route>
+					<HomePage />
+				</Route>
+			</Switch>
+		</div>
+	);
 }
 
 export default App;

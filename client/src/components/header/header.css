@@ -1,0 +1,10 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 2rem;
+	padding: 0 4rem;
+}
+
+.option {
+	display: flex;
+}
