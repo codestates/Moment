@@ -1,14 +1,5 @@
 .button:link,
-.button:visited {
-	text-decoration: none;
-	margin-top: 3rem;
-	padding: 1rem 3rem;
-	display: inline-block;
-	border-radius: 10rem;
-	transition: all 0.2s;
-	position: relative;
-	font-size: 1rem;
-}
+
 
 .button:hover {
 	background-color: #37458a;
@@ -20,9 +11,14 @@
 }
 
 .button{
+	display: inline-flex;
+	align-items: center;
 	background-color: #2d3d8b;
 	color: #fff;
 	/* width: 50px; */
     padding: 0.5rem 2rem;
-	margin: 0.5rem
+	margin: 0.5rem;
+	border-radius: 2px;
+	border: 1px solid transparent;
+	box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 2px 0px;
 }

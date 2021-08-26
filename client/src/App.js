@@ -12,7 +12,6 @@ function App() {
 			<Header />
 			<Switch>
 				<Route>
-					<Login />
 					<HomePage />
 				</Route>
 			</Switch>

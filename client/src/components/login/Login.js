@@ -5,7 +5,7 @@ import classes from './Login.module.css'
 import Modal from '../UI/Modal'
 import Button from '../UI/Button'
 import Input from '../UI/Input'
-import GoogleLoginBtn from './GoogleLoginBtn'
+// import GoogleLoginBtn from './GoogleLoginBtn'
 
 const Login = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
@@ -31,22 +31,22 @@ const Login = () => {
         else setPasswordIsValid(true);
     }
 
-    const submitHandler = (event) => {
+    const loginHandler = (event) => {
         event.preventDefault();
         axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword})
         .then(res => {
             const {data: userData} = res.data;
-            setUserInfo(userData)
+            setUserInfo(userData);
+            //모달창 닫아주는게 필요.
         })
     }
-
-    // const InputClass = emailIsValid ? `${classes.input}` : `${classes.input} ${classes.invalid}`
 
     return (
         <Modal>
             <>
-            <form className={classes.form} onSubmit={submitHandler}>
+            <form className={classes.form} onSubmit={loginHandler}>
                 <div className={classes.title}>
+                    <h1>M.</h1>
                 <h2>Log in</h2>
                 <div>
                     <Input className={emailIsValid ? '' : `${classes.invalid}`} input={{placeholder:"E-mail",  onChange: emailInputHandler, onBlur:validateEmailHandler, value:enteredEmail}}/>
@@ -60,7 +60,7 @@ const Login = () => {
                     <Button > Facebook</Button>
                     
 
-                <GoogleLoginBtn/>
+                {/* <GoogleLoginBtn/> */}
                 </div>
                 <Button className={classes.login} btn={{type: "submit"}}> Login</Button>
                 </div>
