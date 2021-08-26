@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
   if (userInfo) {
     res.status(400).json({ isSignup: false });
   } else {
-    const newUserInfo = await Users.create({
+    await Users.create({
       email: req.body.email,
       password: req.body.password,
       nickname: req.body.nickname,
