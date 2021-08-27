@@ -5,7 +5,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
 import Login from './components/login/Login';
-import MainPage from './components/main-page/mainpage';
+import Log from './components/log/Log';
+import Mypage from './components/mypage/Mypage';
+import MypageDetail from './components/mypage/MypageDetail';
 
 function App() {
 	return (
@@ -15,8 +17,14 @@ function App() {
 				<Route exact path="/">
 					<HomePage />
 				</Route>
-				<Route exact path="/main">
-					<MainPage />
+				<Route path="/log">
+					<Log />
+				</Route>
+				<Route path="/myprofile">
+					<Mypage />
+				</Route>
+				<Route path="/fixprofile">
+					<MypageDetail />
 				</Route>
 			</Switch>
 		</div>
