@@ -8,7 +8,7 @@ import Button from '../UI/Button'
 import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
-const Login = ({loginModalHandler, loginOn}) => {
+const Login = ({loginModalHandler, loginOn, isLoggedInHandler}) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
@@ -39,9 +39,8 @@ const Login = ({loginModalHandler, loginOn}) => {
             console.log(res)
             const {data: userData} = res.data;
             setUserInfo(userData);
-            loginModalHandler()
-            //모달창 닫아주는게 필요.
-            //accessToken따로 저장은 필요 없음(쿠키로 받음)
+            //로그인상태관리함수
+            isLoggedInHandler();
         })
     }
 
@@ -66,6 +65,7 @@ const Login = ({loginModalHandler, loginOn}) => {
 
 Login.propTypes = {
     loginModalHandler: PropTypes.any,
-    loginOn: PropTypes.any
+    loginOn: PropTypes.any,
+    isLoggedInHandler:PropTypes.func
 }
 export default Login
