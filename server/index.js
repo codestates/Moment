@@ -14,6 +14,7 @@ app.use(
 		origin: true,
 		credentials: true,
 		methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+		exposedHeaders: ['refreshToken'],
 	}),
 );
 app.use(cookie_parser());
