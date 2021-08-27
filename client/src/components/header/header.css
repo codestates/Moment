@@ -16,8 +16,16 @@
 
 .header-login {
 	padding-right: 2.8rem;
+	cursor: pointer;
 }
+/* .header-login:hover {
+	border-bottom: 1px solid #2d3d8b;
+} */
 
 .header-signup {
 	padding-right: 3rem;
+	cursor: pointer;
 }
+/* .header-signup:hover {
+	border-bottom: 1px solid #2d3d8b;
+} */

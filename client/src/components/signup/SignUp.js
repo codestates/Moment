@@ -47,11 +47,10 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: setEnteredNickname})
+        signUpModalHandler()
+        axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: enteredNickname})
         .then(res => {
             signUpModalHandler()
-            //로그인 상태 수정이 필요할듯...?
-            //모달창 닫아주는게 필요.
         })
     }
 
