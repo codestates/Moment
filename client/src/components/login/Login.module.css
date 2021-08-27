@@ -23,3 +23,14 @@
 .login{
     padding: 2rem, 4rem;
 }
+
+.btnInvalid{
+    background-color: whitesmoke;   
+    color: #2d3d8b;
+}
+
+.btnInvalid:hover {
+	background-color: #37458a;
+	color: #fff;
+	cursor: pointer;
+}
