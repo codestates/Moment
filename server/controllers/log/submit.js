@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
 				});
 				console.log(searchUser);
 				const user_id = searchUser.id;
+				console.log('find user_id: ' + user_id);
 				await Posts.create({
 					user_id,
 					title,
