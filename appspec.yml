@@ -1,14 +1,14 @@
 version: 0.0
 os: linux
 files:
-    - source: /
-      destination: /home/ubuntu/Moment
+    - source: /home/ubuntu/Moment/server
+      destination: /home/ubuntu/Moment/server
 
 hooks:
     ApplicationStop:
         - location: scripts/stop.sh
           runas: root
-    Afterinstall:
+    AfterInstall:
         - location: scripts/initialize.sh
           runas: root
     ApplicationStart:
