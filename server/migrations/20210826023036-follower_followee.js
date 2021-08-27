@@ -14,7 +14,7 @@ module.exports = {
 			type: 'foreign key',
 			name: 'fk_follower',
 			references: {
-				table: 'users',
+				table: 'Users',
 				field: 'id',
 			},
 			onDelete: 'cascade',
@@ -26,7 +26,7 @@ module.exports = {
 			type: 'foreign key',
 			name: 'fk_followee',
 			references: {
-				table: 'users',
+				table: 'Users',
 				field: 'id',
 			},
 			onDelete: 'cascade',
