@@ -8,28 +8,38 @@
 	position: absolute;
 	letter-spacing: 0.2rem;
 	left: 50%;
-	margin-top: 8%;
+	margin-top: 6%;
 	transform: translate(-50%);
 }
 
 .mainpage-recent-container {
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width: 80rem;
 	height: 40rem;
 	margin: 0 auto;
-	margin-top: 200px;
+	margin-top: 180px;
 
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
-.mainpage-recent-size {
+.mainpage-recent-item {
 	margin: 10px;
-	width: 100px;
-	height: 100px;
-	border: 4px solid wheat;
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: 0;
+	width: 20%;
+	height: 600px;
+	/* border: 1px solid grey;
+	border-radius: 10px; */
+	position: relative;
+}
+
+.mainpage-recent-item:hover {
+	cursor: pointer;
+}
+
+.mainpage-recent-image {
+	position: absolute;
+	padding: 10px;
+	width: 250px;
 }
