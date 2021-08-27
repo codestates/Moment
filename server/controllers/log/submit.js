@@ -4,10 +4,12 @@ const { Posts, Users } = require('../../models');
 module.exports = async (req, res) => {
 	const { title, content, secret } = req.body;
 	const accessToken = req.cookies.accessToken;
+	console.log(accessToken);
 	if (!accessToken) {
 		res.status(401).send({ isSubmit: false });
 	} else {
 		const checkUser = isAuthorized(accessToken);
+		console.log(checkUser);
 		if (!checkUser) {
 			res.status(400).send({ isSubmit: false });
 		} else {
@@ -17,6 +19,7 @@ module.exports = async (req, res) => {
 						email: checkUser.email,
 					},
 				});
+				console.log(searchUser);
 				const user_id = searchUser.id;
 				await Posts.create({
 					user_id,
