@@ -8,16 +8,15 @@
 	position: absolute;
 	letter-spacing: 0.2rem;
 	left: 50%;
-	margin-top: 6%;
+	margin-top: 4%;
 	transform: translate(-50%);
 }
 
 .mainpage-recent-container {
 	/* border: 1px solid black; */
-	width: 80rem;
-	height: 40rem;
+
 	margin: 0 auto;
-	margin-top: 180px;
+	margin-top: 150px;
 
 	display: flex;
 	justify-content: center;

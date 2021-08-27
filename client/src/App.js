@@ -9,6 +9,7 @@ import Log from './components/log/Log';
 import Mypage from './components/mypage/Mypage';
 import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
+import Footer from '../src/components/footer/footer';
 
 function App() {
 	return (
