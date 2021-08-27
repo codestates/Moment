@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
 const cookie_parser = require('cookie-parser');
 const PORT = process.env.PORT || 8080;
 const userRoute = require('./routes/users');
@@ -17,6 +18,7 @@ app.use(
 );
 app.use(cookie_parser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/users', userRoute);
 app.use('/log', logsRoute);
