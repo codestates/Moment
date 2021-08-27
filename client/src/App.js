@@ -2,14 +2,15 @@ import './App.css';
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-
 import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
 import Login from './components/login/Login';
-import Log from './components/log/Log'
-import Mypage from './components/mypage/Mypage'
-import MypageDetail from './components/mypage/MypageDetail'
-
+import Log from './components/log/Log';
+import Mypage from './components/mypage/Mypage';
+import MypageDetail from './components/mypage/MypageDetail';
+import MainPage from '../src/components/main-page/mainpage';
+import Footer from '../src/components/footer/footer';
+import Spinner from '../src/components/spinner/spinner';
 
 function App() {
 	return (
@@ -18,6 +19,9 @@ function App() {
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
+				</Route>
+				<Route exact path="/main">
+					<MainPage />
 				</Route>
 				<Route path="/log">
 					<Log />
