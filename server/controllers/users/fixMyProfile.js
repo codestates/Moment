@@ -15,10 +15,18 @@ module.exports = async (req, res) => {
 					nickname: checkUser.nickname,
 				},
 			});
-			await Users.update({
-				nickname: nickname ? nickname : origin.nickname,
-				password: password ? password : origin.password,
-			});
+			await Users.update(
+				{
+					nickname: nickname ? nickname : origin.nickname,
+					password: password ? password : origin.password,
+					updatedAt: new Date(),
+				},
+				{
+					where: {
+						id: origin.id,
+					},
+				},
+			);
 			res.status(200).send({ profileFix: true });
 		}
 	}
