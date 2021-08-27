@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import classes from './LogView.module.css'
 
 const LogView = ({post}) => {
 
     return (
-        <div>
+        <div style={{backgroundImage: `url(${"https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"})`}}>
             <div>{post.title}</div>
             <div>
                 <span>{post.author} {post.updated}</span>

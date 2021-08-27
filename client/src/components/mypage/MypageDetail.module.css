@@ -20,6 +20,7 @@
 
 .ipt{
     width: 15rem;
+    height: 3rem;
     margin-top: 5rem;
 }
 .invalid:not(:focus) {
@@ -37,4 +38,13 @@
     /* display: flex;
     justify-content: center; */
 }
+.err{
+    margin-top: 7rem;
+    color: red;
+    width: 100%;
+}
 
+.errNone{
+    display: none;
+}
+    
