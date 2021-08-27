@@ -1,4 +1,4 @@
 module.exports = {
 	userController: require('./users'),
-	postController: require('./post'),
+	logController: require('./log'),
 };

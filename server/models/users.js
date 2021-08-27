@@ -9,14 +9,15 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
+			models.Users.hasMany(models.Posts);
 		}
 	}
 	Users.init(
 		{
+			avatar: DataTypes.BLOB,
 			email: DataTypes.STRING,
 			nickname: DataTypes.STRING,
 			password: DataTypes.STRING,
-			avatar: DataTypes.BLOB,
 		},
 		{
 			sequelize,
