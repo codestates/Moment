@@ -10,6 +10,7 @@ import Mypage from './components/mypage/Mypage';
 import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 import Footer from '../src/components/footer/footer';
+import Spinner from '../src/components/spinner/spinner';
 
 function App() {
 	return (
