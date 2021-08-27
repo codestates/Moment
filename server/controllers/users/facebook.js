@@ -1,15 +1,17 @@
 const axios = require('axios');
 const { generateAccessToken, generateRefreshToken } = require('../../lib');
 const { Users } = require('../../models');
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = async (req, res) => {
 	const data = await axios({
 		url: 'https://graph.facebook.com/v11.0/oauth/access_token',
 		method: 'get',
 		params: {
-			client_id: '894017107879361',
+			client_id: process.env.FB_CLIENT_ID,
 			redirect_uri: 'https://m0ment.be/',
-			client_secret: '81efb86f8bbe11dc27b9b4b4f2d4c568',
+			client_secret: process.env.FB_CLIENT_SECRET,
 			code: req.query.code,
 		},
 	});
