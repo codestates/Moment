@@ -12,8 +12,8 @@ const SignUp = () => {
         event.preventDefault();
         axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: setEnteredNickname})
         .then(res => {
-            const {data: userData} = res.data;
-            setUserInfo(userData)
+            //로그인 상태 수정이 필요할듯...?
+            //모달창 닫아주는게 필요.
         })
     }
 
