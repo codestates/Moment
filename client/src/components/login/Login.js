@@ -15,6 +15,11 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
     const [passwordIsValid, setPasswordIsValid] = useState(true)
     const [userInfo, setUserInfo] = useState({email:'', nickname:''})
     const [formIsValid, setFormIsValid] = useState(false)
+    useEffect(() => {
+        if(emailIsValid && passwordIsValid && enteredEmail.length !==0) setFormIsValid(true);
+        else setFormIsValid(false)
+    }, [emailIsValid, passwordIsValid])
+
 
     const emailInputHandler = (e) => {
         setEnteredEmail(e.target.value)
@@ -40,7 +45,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
         .then(res => {
             console.log(JSON.stringify(res.headers))
             const refreshToken = JSON.stringify(res.headers.refreshtoken)
-            const {data: userData} = res.data;
+            const {data: userData} = res;
             setUserInfo(userData);
             //로그인상태관리함수
             isLoggedInHandler();
@@ -51,7 +56,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
             alert("please check your email or password again")
         })
     }
-
+    const btnValid = !formIsValid
     return (
         <Modal loginModalHandler={loginModalHandler} loginOn={loginOn}>
             <>
@@ -63,7 +68,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
                     <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, onBlur: validatePasswordHandler, value: enteredPassword}} />
                     <Button > Facebook</Button>
                 {/* <GoogleLoginBtn/> */}
-                <Button className={classes.login} btn={{type: "submit", }}>Login</Button>
+                <Button className={formIsValid ? '' : `${classes.btnInvalid}`} btn={{type: "submit", disabled: btnValid}}>Login</Button>
                 </div>
             </form>
             </>

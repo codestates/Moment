@@ -17,6 +17,7 @@ export default function Header() {
 	}
 	const isLoggedInHandler = () => {
 		setIsLoggedIn(true);
+		console.log(`login state: ${isLoggedIn}`)
 	}
 	const logoutHandler = () => {
 		let header = {refreshToken: `${refreshToken}`}

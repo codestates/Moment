@@ -5,10 +5,6 @@ files:
       destination: /home/ubuntu/Moment/
 
 hooks:
-    BeforeInstall:
-        - location: scripts/beforeInstall.sh
-          runas: ubuntu
-          timeout: 300
     ApplicationStop:
         - location: scripts/stop.sh
           runas: ubuntu
