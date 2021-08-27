@@ -2,6 +2,7 @@ const { Posts, Users, post_like } = require('../../models');
 const { isAuthorized } = require('../../lib/index');
 
 module.exports = async (req, res) => {
+  // d
   const post_id = req.params.id;
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
