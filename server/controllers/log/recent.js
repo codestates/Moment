@@ -2,9 +2,7 @@ const { Posts, Users, post_like } = require('../../models');
 
 module.exports = async (req, res) => {
   const num = req.params.id;
-  //이건 어디에 어떻게 사용하지?
   const posts = await Posts.findAll();
-  // 이게 배열로 나오나? 형태를 잘 모르겠네
   const recentPosts = [];
   const recentUserInfo = [];
   const recentLikes = [];
