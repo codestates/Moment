@@ -1,4 +1,5 @@
-const { Posts } = require('../../models');
+const { isAuthorized } = require('../../lib');
+const { Posts, Users } = require('../../models');
 
 module.exports = async (req, res) => {
 	const { title, content, secret } = req.body;
@@ -6,14 +7,19 @@ module.exports = async (req, res) => {
 	if (!accessToken) {
 		res.status(401).send({ isSubmit: false });
 	} else {
-		// token verify
-		// const userid = tokenverify(accessToken)
-		if (!userid) {
+		const checkUser = isAuthorized(accessToken);
+		if (!checkUser) {
 			res.status(400).send({ isSubmit: false });
 		} else {
 			try {
+				const searchUser = await Users.findOne({
+					where: {
+						email: checkUser.email,
+					},
+				});
+				const user_id = searchUser.id;
 				await Posts.create({
-					// user_id,
+					user_id,
 					title,
 					content,
 					secret,
