@@ -1,4 +1,6 @@
+const { isAuthorized } = require('../../lib');
 const { Posts } = require('../../models');
+const { Users } = require('../../models');
 
 module.exports = async (req, res) => {
 	const post_id = req.params.id;
@@ -9,21 +11,33 @@ module.exports = async (req, res) => {
 	if (!accessToken) {
 		res.status(401).send({ isFixed: false });
 	} else {
-		// token verify
-		// const userid = tokenverify(accessToken)
-		// if (!userid) {
-		// 	res.status(400).send({ isFixed: false });
-		// } else {
-		try {
-			const origin = await Posts.findOne({ where: { user_id: userid, id: post_id } });
-			await Posts.update({
-				title: title ? title : origin.title,
-				content: content ? content : origin.content,
-			});
-			res.status(200).send({ isFixed: true });
-		} catch (err) {
-			console.log(err);
+		const checkUser = isAuthorized(accessToken);
+		if (!checkUser) {
+			res.status(400).send({ isFixed: false });
+		} else {
+			try {
+				const searchUser = await Users.findOne({ where: { email: checkUser.email } });
+				const user_id = searchUser.id;
+				const origin = await Posts.findOne({ where: { user_id, id: post_id } });
+				if (origin) {
+					await Posts.update(
+						{
+							title: title ? title : origin.title,
+							content: content ? content : origin.content,
+							updatedAt: new Date(),
+						},
+						{
+							where: {
+								user_id,
+								id: post_id,
+							},
+						},
+					);
+					res.status(200).send({ isFixed: true });
+				} else res.status(404).send({ isFixed: false });
+			} catch (err) {
+				console.log(err);
+			}
 		}
-		// }
 	}
 };
