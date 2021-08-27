@@ -18,8 +18,7 @@ module.exports = async (req, res) => {
       secure: true,
       httpOnly: true
     });
-
-    res.set({ 'refreshToken': refreshToken }).send()
+    res.set({ 'refreshToken': refreshToken })
     res.status(200).json({ isLogin: true, data: { email: email, nickname: nickname } });
   }
 }
