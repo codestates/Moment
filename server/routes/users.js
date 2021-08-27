@@ -8,5 +8,6 @@ router.put('/signup', userController.signup);
 router.post('/login', userController.login);
 router.get('/logout', userController.logout);
 router.get('/profile', userController.profile);
+router.put('/fixprofile', userController.fixProfile);
 
 module.exports = router;
