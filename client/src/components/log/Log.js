@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
-
+import axios from 'axios'
 import Card from '../UI/Card'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
-import classes from './Write.module.css'
+import classes from './Log.module.css'
 
-const Write = () => {
+const Log = () => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const titleHandler = (e) => {
@@ -15,11 +15,16 @@ const Write = () => {
     const contentHandler = (e) => {
         setContent(e.target.value)
     }
+    const submitHandler = (event) => {
+        event.preventDefault();
+        axios.post("https://api.m0ment.be/log/submit", {conetent: content, title: title}, {withCredentials: true})
+        .then(res => console.log(res))
+    }
 
 
     return (
         <Card>
-            <form className={classes.formContainer}>
+            <form className={classes.formContainer} onSubmit={submitHandler}>
                 <div className={classes.container}>
                     <Input className={classes.cardInput} input={{type: "text", placeholder: "title", onChange:titleHandler}} />
                     <textarea className={classes.textarea} placeholder="Remember your moment in Moments forever." onChange={contentHandler} />
@@ -32,4 +37,4 @@ const Write = () => {
     )
 }
 
-export default Write
+export default Log

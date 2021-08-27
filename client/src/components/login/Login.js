@@ -34,12 +34,13 @@ const Login = ({loginModalHandler, loginOn}) => {
 
     const loginHandler = (event) => {
         event.preventDefault();
-        axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword})
+        axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword}, { withCredentials: true })
         .then(res => {
             const {data: userData} = res.data;
             setUserInfo(userData);
             loginModalHandler()
             //모달창 닫아주는게 필요.
+            //accessToken따로 저장은 필요 없음(쿠키로 받음)
         })
     }
 
