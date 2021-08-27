@@ -8,6 +8,7 @@ export default function Header() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loginOn, setLoginOn] = useState(false);
 	const [signUpON, setSignUpOn] = useState(false);
+	const [refreshToken, setRefreshToken] = useState('')
 	const loginModalHandler = () => {
 		setLoginOn(!loginOn)
 	}
@@ -17,18 +18,23 @@ export default function Header() {
 	const isLoggedInHandler = () => {
 		setIsLoggedIn(true);
 	}
-	const signOutHandler = () => {
-		console.log(1)
-		setIsLoggedIn(false)
-		// axios.get('https://api.m0ment.be/users/logout', {withCredentials: true})
-		// .then(res => {
-		// 	setIsLoggedIn(false)
-		// })
+	const logoutHandler = () => {
+		let header = {refreshToken: `${refreshToken}`}
+		//헤더에 리프레쉬 심어서 요청보내기
+		axios.get('https://api.m0ment.be/users/logout', {withCredentials: true, headers: header})
+		.then(res => {
+			//로그인상태 변경
+			setIsLoggedIn(false)
+			console.log(res)
+		})
+	}
+	const refreshTokenHandler = (token) => {
+		setRefreshToken(token)
 	}
 
 	return (
 		<div className="header">
-			{loginOn && <Login loginModalHandler={loginModalHandler} isLoggedInHandler={isLoggedInHandler} loginOn={loginOn}/>}
+			{loginOn && <Login loginModalHandler={loginModalHandler} isLoggedInHandler={isLoggedInHandler} refreshTokenHandler={refreshTokenHandler} loginOn={loginOn}/>}
 			{signUpON && <SignUp signUpModalHandler={signUpModalHandler} signUpON={signUpON}/>}
 			<Link className="header-title" to="/">
 				<h1>Moment</h1>
@@ -41,7 +47,7 @@ export default function Header() {
 			{isLoggedIn && 
 				<div className="option">
 				<Link to="/myprofile"><div className="header-login" >My Page</div></Link>
-				<div className="header-signup" onClick={signOutHandler}>Sign Out</div>
+				<div className="header-signup" onClick={logoutHandler}>Sign Out</div>
 			</div>}
 		</div>
 	);
