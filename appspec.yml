@@ -2,9 +2,13 @@ version: 0.0
 os: linux
 files:
     - source: /
-      destination: /home/ubuntu/Moment/server
+      destination: /home/ubuntu/Moment/
 
 hooks:
+    BeforeInstall:
+        - location: scripts/beforeInstall.sh
+          runas: root
+          timeout: 300
     ApplicationStop:
         - location: scripts/stop.sh
           runas: root
