@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
@@ -8,12 +8,13 @@ import Button from '../UI/Button'
 import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
-const Login = ({loginModalHandler, loginOn, isLoggedInHandler}) => {
+const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
     const [passwordIsValid, setPasswordIsValid] = useState(true)
     const [userInfo, setUserInfo] = useState({email:'', nickname:''})
+    const [formIsValid, setFormIsValid] = useState(false)
 
     const emailInputHandler = (e) => {
         setEnteredEmail(e.target.value)
@@ -31,16 +32,23 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler}) => {
         if(!reg_pw.test(e.target.value)) setPasswordIsValid(false);
         else setPasswordIsValid(true);
     }
+    
 
     const loginHandler = (event) => {
         event.preventDefault();
         axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword}, { withCredentials: true })
         .then(res => {
-            console.log(res)
+            console.log(JSON.stringify(res.headers))
+            const refreshToken = JSON.stringify(res.headers.refreshtoken)
             const {data: userData} = res.data;
             setUserInfo(userData);
             //로그인상태관리함수
             isLoggedInHandler();
+            //refreshToken저장
+            refreshTokenHandler(refreshToken)
+        })
+        .catch(err => {
+            alert("please check your email or password again")
         })
     }
 
@@ -55,7 +63,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler}) => {
                     <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, onBlur: validatePasswordHandler, value: enteredPassword}} />
                     <Button > Facebook</Button>
                 {/* <GoogleLoginBtn/> */}
-                <Button className={classes.login} btn={{type: "submit"}}>Login</Button>
+                <Button className={classes.login} btn={{type: "submit", }}>Login</Button>
                 </div>
             </form>
             </>
@@ -66,6 +74,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler}) => {
 Login.propTypes = {
     loginModalHandler: PropTypes.any,
     loginOn: PropTypes.any,
-    isLoggedInHandler:PropTypes.func
+    isLoggedInHandler:PropTypes.func,
+    refreshTokenHandler:PropTypes.func
 }
 export default Login
