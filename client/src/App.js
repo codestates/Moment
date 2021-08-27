@@ -11,10 +11,11 @@ import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 
 function App() {
-    const [userInfo, setUserInfo] = useState(initialState)
+    const [userInfo, setUserInfo] = useState('')
 
-    const getUserInfo = () => {
-
+    const getUserInfo = (data) => {
+        setUserInfo(data)
+        console.log("userInfo at App :", userInfo)
     }
 	return (
 		<div>
