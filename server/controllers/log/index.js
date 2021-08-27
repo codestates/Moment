@@ -2,4 +2,7 @@ module.exports = {
 	submit: require('./submit'),
 	fix: require('./fix'),
 	delete: require('./delete'),
+	detail: require('./detail'),
+	like: require('./like'),
+	recent: require('./recent')
 };
