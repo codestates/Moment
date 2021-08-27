@@ -32,7 +32,7 @@ export default function MainPage() {
 	return (
 		<>
 			<div className="mainpage">
-				<h1 className="mainpage-title">Make your moments forever.</h1>
+				<button className="mainpage-btn"></button>
 			</div>
 			<div className="mainpage-recent-container">
 				<RecentCard title={title} body={body} />
