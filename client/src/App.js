@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from '../src/components/pages/homepage';
@@ -11,9 +11,15 @@ import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 
 function App() {
+    const [userInfo, setUserInfo] = useState('')
+
+    const getUserInfo = (data) => {
+        setUserInfo(data)
+        console.log("userInfo at App :", userInfo)
+    }
 	return (
 		<div>
-			<Header />
+			<Header getUserInfo={getUserInfo}/>
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
