@@ -8,7 +8,7 @@ import Button from '../UI/Button'
 import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
-const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
+const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
@@ -46,7 +46,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
             console.log(JSON.stringify(res.headers))
             const refreshToken = JSON.stringify(res.headers.refreshtoken)
             const {data: userData} = res;
-            setUserInfo(userData);
+            getUserInfo(userData);
             //로그인상태관리함수
             isLoggedInHandler();
             //refreshToken저장
@@ -80,6 +80,7 @@ Login.propTypes = {
     loginModalHandler: PropTypes.any,
     loginOn: PropTypes.any,
     isLoggedInHandler:PropTypes.func,
-    refreshTokenHandler:PropTypes.func
+    refreshTokenHandler:PropTypes.func,
+    getUserInfo:PropTypes.func
 }
 export default Login
