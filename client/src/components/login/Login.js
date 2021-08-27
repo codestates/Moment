@@ -36,6 +36,7 @@ const Login = ({loginModalHandler, loginOn}) => {
         event.preventDefault();
         axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword}, { withCredentials: true })
         .then(res => {
+            console.log(res)
             const {data: userData} = res.data;
             setUserInfo(userData);
             loginModalHandler()

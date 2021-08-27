@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import RecentCard from '../recent-card/recent';
+import Spinner from '../spinner/spinner';
 
 import './mainpage.css';
 
-import image1 from '../../static/images/composition-10.png';
-import image2 from '../../static/images/composition-11.png';
-import image3 from '../../static/images/composition-21.png';
-import image4 from '../../static/images/composition-22.png';
-
 export default function MainPage() {
-	// const [recent, setRecent] = useState('');
+	const [title, setTitle] = useState('dummy');
+	const [body, setBody] = useState(
+		'Thank you. Thank you so much. I am so thrilled to be recieving this award today. But on the other hand, it`s a little bit bittersweet. It`s a pitty that the musical arts are evaluated and ranked like this. Yes. I know that this is too wonderful and glorious for me. I don`t want to denigrate this position or award. Thank you again for giving my this award.',
+	);
+
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		if (!isLoading) {
+			setTimeout(() => {
+				setIsLoading(true);
+			}, 3000);
+		}
+	}, [isLoading]);
+
+	if (!isLoading) return <Spinner />;
+
 	// useEffect(() => {
-	// 	axios.get(`https://api.m0ment.be/log/recent/page/${num}`).then(res => console.log(res));
-	// }, []);
+	// 	axios.get(`https://api.m0ment.be/log/recent/page/${num}`);
+	// });
 
 	return (
 		<>
@@ -20,21 +33,7 @@ export default function MainPage() {
 				<h1 className="mainpage-title">Make your moments forever.</h1>
 			</div>
 			<div className="mainpage-recent-container">
-				<div className="mainpage-recent-item">
-					<img src={image1} className="mainpage-recent-image" />
-				</div>
-
-				<div className="mainpage-recent-item">
-					<img src={image2} className="mainpage-recent-image" />
-				</div>
-
-				<div className="mainpage-recent-item">
-					<img src={image3} className="mainpage-recent-image" />
-				</div>
-
-				<div className="mainpage-recent-item">
-					<img src={image4} className="mainpage-recent-image" />
-				</div>
+				<RecentCard title={title} body={body} />
 			</div>
 		</>
 	);

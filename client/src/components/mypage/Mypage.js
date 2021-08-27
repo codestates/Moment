@@ -2,12 +2,15 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import classes from './Mypage.module.css';
 import Card from '../UI/MypageCard'
+import MypageDetail from './MypageDetail'
 import {ReactComponent as Book} from '../../assets/book.svg'
 import {ReactComponent as Search} from '../../assets/search.svg'
 import {ReactComponent as Edit} from '../../assets/edit.svg'
+import { dummyData } from '../../static/dummyData';
 import { Link } from 'react-router-dom';
 
 const Mypage = () => {
+    //userInfo상태들은 app.js에서 관리 해야할 필요가 있다. 추후 수정
     const [userInfo, setUserInfo] = useState({email:'clover@gmail.com', nickname:'clover'})
     axios.get('https://api.m0ment.be/users/profile', {withCredentials: true})
     .then(res => {
@@ -20,7 +23,7 @@ const Mypage = () => {
     //     axios.post(get("htts://api.m0ment.be/log/mylogs"), {withCredentials: true})
     // }
 
-
+    // const randomId = Math.floor(Math.random() * 10);
 
     const {email, nickname} = userInfo
     return (
@@ -51,5 +54,7 @@ const Mypage = () => {
         </Card>
     )
 }
+
+
 
 export default Mypage
