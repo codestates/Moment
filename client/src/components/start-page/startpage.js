@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './startpage.css';
 
 import { ReactComponent as Logo } from '../../assets/svg/13.svg';
-import Spinner from '../spinner/spinner';
+
+import Footer from '../footer/footer';
+
 export default function StartPage() {
 	return (
 		<div className="startpage">
@@ -20,6 +22,7 @@ export default function StartPage() {
 			>
 				Start
 			</a>
+			<Footer />
 		</div>
 	);
 }
