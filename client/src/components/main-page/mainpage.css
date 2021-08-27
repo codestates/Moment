@@ -8,42 +8,41 @@
 }
 
 .mainpage-btn {
-	position: absolute;
-	letter-spacing: 0.2rem;
-	left: 50%;
-	padding: 20px 0;
-	margin-top: 4%;
-	font-size: 35px;
-	width: 70rem;
-	transform: translate(-50%, -50%);
-	border: none;
 	background-color: transparent;
+	height: 60px;
+	width: 350px;
+	position: absolute;
+	margin-top: 6%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
 }
 
 .mainpage-btn::before {
 	content: 'Make your moments.';
+	height: 60px;
+	width: 300px;
 	position: absolute;
+	top: 70%;
+	font-size: 30px;
+	text-align: center;
 	left: 50%;
-	margin-top: 4%;
 	transform: translate(-50%, -50%);
-	letter-spacing: 0.2rem;
-	font-size: 35px;
-	width: 70rem;
-	transition: 0.5s ease-in-out;
+	transition: 0.5s;
 }
 
 .mainpage-btn::after {
-	content: 'forever.';
-	left: 50%;
-	margin-top: 4%;
-	transform: translate(-50%, -50%);
+	content: 'Forever.';
+	height: 60px;
+	width: 300px;
 	position: absolute;
-	letter-spacing: 0.2rem;
-	top: 140%;
+	top: 70%;
+	top: 150%;
+	font-size: 30px;
+	text-align: center;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	transition: 0.5s;
-	font-size: 35px;
-	width: 70rem;
-	overflow: hidden;
 }
 
 .mainpage-btn:hover::before {
@@ -51,14 +50,14 @@
 }
 
 .mainpage-btn:hover::after {
-	top: 50%;
+	top: 70%;
 }
 
 .mainpage-recent-container {
 	/* border: 1px solid black; */
 
 	margin: 0 auto;
-	margin-top: 200px;
+	margin-top: 150px;
 
 	display: flex;
 	justify-content: center;

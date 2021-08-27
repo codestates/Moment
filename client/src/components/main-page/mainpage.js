@@ -32,10 +32,15 @@ export default function MainPage() {
 	return (
 		<>
 			<div className="mainpage">
-				<button className="mainpage-btn"></button>
+				<a href="/log">
+					<div className="mainpage-btn"></div>
+				</a>
 			</div>
 			<div className="mainpage-recent-container">
 				<RecentCard title={title} body={body} />
+			</div>
+			<div>
+				<button>View all</button>
 			</div>
 		</>
 	);
