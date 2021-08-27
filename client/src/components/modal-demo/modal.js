@@ -1,4 +1,6 @@
 import React, { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 import './modal.css';
 
@@ -22,9 +24,13 @@ export default function Modal({ modalOpen, setModalOpen }) {
 							<input placeholder="Nickname"></input>
 							<input placeholder="password"></input>
 							<div className="options">
-								<button className="join">Join Now</button>
-								<button className="join">FaceBook</button>
-								<button className="join">Google</button>
+								<button className="join">Join</button>
+								<button className="join join-google">
+									<FontAwesomeIcon icon={faGoogle} />
+								</button>
+								<button className="join join-facebook">
+									<FontAwesomeIcon icon={faFacebookF} />
+								</button>
 							</div>
 						</div>
 						<div className="modalclosebutton" onClick={() => setModalOpen(prev => !prev)}>
