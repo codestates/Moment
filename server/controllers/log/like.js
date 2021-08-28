@@ -20,13 +20,13 @@ module.exports = async (req, res) => {
       const isLike = await post_like.findOne({
         where: {
           post_id: postId.id,
-          user_id: userId
+          user_id: userId.id
         }
       });
       if (!isLike) {
         await post_like.create({
           post_id: postId.id,
-          user_id: userId
+          user_id: userId.id
         });
         res.status(200).json({ isLike: true });
       } else {
