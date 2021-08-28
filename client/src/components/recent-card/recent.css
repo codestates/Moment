@@ -37,6 +37,40 @@ p {
 	margin-bottom: 0.5rem;
 }
 
+.recent-card-nickname {
+	margin: 0 10px 0 0;
+}
+
+.recent-card-updete {
+	margin: 0 10px 0 0;
+}
+
+.recent-card-liked {
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	transition: 0.2s ease-in;
+}
+
+.recent-card-liked:hover {
+	transform: scale(1.4);
+	color: #ff5093;
+}
+
+.recent-card-liked-click {
+	border: 0;
+	outline: 0;
+	background: transparent;
+	transform: scale(1.4);
+	color: #ff5093;
+}
+
+.recent-card-updete {
+	color: grey;
+	font-size: 13px;
+}
+
 .recent-btn-container {
 	display: flex;
 	justify-content: center;

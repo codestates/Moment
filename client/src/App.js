@@ -10,6 +10,7 @@ import Mypage from './components/mypage/Mypage';
 import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 import ModalBtn from '../src/components/modal-demo/modal-btn';
+import PostCard from '../src/components/post-card/postcard';
 
 function App() {
 	const [userInfo, setUserInfo] = useState('');
@@ -38,7 +39,7 @@ function App() {
 					<MypageDetail />
 				</Route>
 				<Route path="/test">
-					<ModalBtn />
+					<PostCard />
 				</Route>
 			</Switch>
 		</div>
