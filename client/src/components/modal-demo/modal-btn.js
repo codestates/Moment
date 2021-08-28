@@ -13,7 +13,7 @@ export default function ModalBtn() {
 	return (
 		<div className="container">
 			<button onClick={openModal} className="btn">
-				Click me
+				Sign Up
 			</button>
 			<Modal modalOpen={modalOpen} setModalOpen={setModalOpen} />
 		</div>

@@ -1,12 +1,13 @@
 .container {
 	max-width: 960px;
-	margin: 250px auto;
+	margin: 400px auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .bouncer {
+	margin-top: -6rem;
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-end;
