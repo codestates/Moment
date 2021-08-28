@@ -1,4 +1,4 @@
-const { Posts, Users, post_like } = require('../../models');
+const { Posts, Users } = require('../../models');
 
 module.exports = async (req, res) => {
   const post_id = req.params.id;
@@ -8,13 +8,10 @@ module.exports = async (req, res) => {
   const userInfo = await Users.findOne({
     where: { id: post.user_id }
   });
-  const likes = await post_like.findAll({
-    where: { post_id: post.id }
-  });
   if (!post) {
     res.status(404).json({ data: null });
   } else {
-    const { id, title, content, updated_at } = post;
+    const { id, title, content, updated_at, like_count } = post;
     res.status(200).json({
       data: {
         id: id,
@@ -22,7 +19,7 @@ module.exports = async (req, res) => {
         content: content,
         author: userInfo.nickname,
         updated: updated_at,
-        like: len(likes)
+        like: like_count
       }
     })
   }
