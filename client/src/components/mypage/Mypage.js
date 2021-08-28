@@ -6,6 +6,7 @@ import MypageDetail from './MypageDetail'
 import {ReactComponent as Book} from '../../assets/book.svg'
 import {ReactComponent as Search} from '../../assets/search.svg'
 import {ReactComponent as Edit} from '../../assets/edit.svg'
+import {ReactComponent as Plus} from '../../assets/plusIcon.svg'
 import { dummyData } from '../../static/dummyData';
 import { Link } from 'react-router-dom';
 
@@ -30,7 +31,10 @@ const Mypage = () => {
         <Card>
             <h2 className={classes.title}>My Profile</h2>
             <div className={classes.container}>
-                <img className={classes.pic} src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"></img>
+                <div className={classes.imgContainer}>
+                    <img className={classes.pic} src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"></img>
+                    <Link to="/log"><div className={classes.writeLog}><Plus /></div></Link>
+                </div>
                 <div className={classes.text}>
                     <h3>{nickname}</h3>
                 </div>
