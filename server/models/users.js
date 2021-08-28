@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
 			// define association here
 			models.Users.hasMany(models.Posts);
 			models.Users.hasMany(models.post_like);
-			models.Users.hasMany(models.follow);
-			models.Users.hasMany(models.follow);
 			models.Users.hasMany(models.Comment);
+			models.Users.belongsToMany(models.Users, { foreignKey: 'followee', through: 'follows', as: 'followee' });
+			models.Users.belongsToMany(models.Users, { foreignKey: 'follower', through: 'follows', as: 'follower' });
 		}
 	}
 	Users.init(
