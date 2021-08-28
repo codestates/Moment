@@ -4,8 +4,6 @@ import axios from 'axios'
 import PropTypes from 'prop-types'
 import classes from './Login.module.css'
 import Modal from '../UI/Modal'
-import Button from '../UI/Button'
-import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
 
@@ -47,18 +45,19 @@ const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refr
     
 
     const loginHandler = (event) => {
+        console.log(1)
         event.preventDefault();
+        document.location.href = '/main'
         console.log("clicked")
         axios.post('https://api.m0ment.be/users/login', {email: enteredEmail, password: enteredPassword}, { withCredentials: true })
         .then(res => {
-            console.log(JSON.stringify(res.headers))
             const refreshToken = JSON.stringify(res.headers.refreshtoken)
+            console.log(res)
             const {data: userData} = res;
             getUserInfo(userData);
-            //로그인상태관리함수
             isLoggedInHandler();
-            //refreshToken저장
-            refreshTokenHandler(refreshToken)
+            refreshTokenHandler(refreshToken);
+            document.location.href = '/main'
         })
         .catch(err => {
             alert("please check your email or password again")

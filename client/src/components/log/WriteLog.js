@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import classes from './WriteLog.module.css'
+import { faLock, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const WriteLog = () => {
     const [title, setTitle] = useState('')
@@ -43,19 +45,19 @@ const WriteLog = () => {
                     </div>
                     <div className={classes["content__container"]}>
                         <h4>Content</h4>
-                        <textarea className={classes.content} placeholder="Remember your moment in Moments forever." onChange={contentHandler} />
+                        <textarea className={classes.content} placeholder="Make your Moment forever." onChange={contentHandler} />
                         <div className={classes.grip}></div>
                     </div>
                 </div>
                 <div className={classes.secret}>
-                    <input type="checkbox" id="secret" name="secret" checked={secret ? true : false} value={secret} onChange={secretHandler}/>
+                    <input className={classes.lock} type="checkbox" id="secret" name="secret" checked={secret ? true : false} value={secret} onChange={secretHandler}/>
                     <label id="secret" htmlFor="secret">
-                        {secret && <span>Keep your Moment all by yourself</span>}
-                        {!secret && <span>Share your Moment with Others</span>}
+                        {!secret && <span className={classes.lockImg}><span className={classes.text}>Keep Your Precious Moment to Yourself</span></span>}
+                        {secret && <span className={classes.unlockImg}><span className={classes.text}>Share your Moment with Others</span></span>}
                     </label>
                 </div>
                 <div className={classes.btnContainer}>
-                    <button className={classes.btn} type="submit">POST</button>
+                    <button className={classes.btn} type="submit"><h4>POST</h4></button>
                 </div>
             </form>
         </div>
