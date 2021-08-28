@@ -4,7 +4,8 @@ import axios from 'axios'
 import './header.css';
 import Login from '../login/Login'
 import SignUp from '../signup/SignUp'
-export default function Header() {
+import PropTypes from 'prop-types'
+export default function Header({getUserInfo}) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loginOn, setLoginOn] = useState(false);
 	const [signUpON, setSignUpOn] = useState(false);
@@ -17,6 +18,7 @@ export default function Header() {
 	}
 	const isLoggedInHandler = () => {
 		setIsLoggedIn(true);
+		console.log(`login state: ${isLoggedIn}`)
 	}
 	const logoutHandler = () => {
 		let header = {refreshToken: `${refreshToken}`}
@@ -34,7 +36,7 @@ export default function Header() {
 
 	return (
 		<div className="header">
-			{loginOn && <Login loginModalHandler={loginModalHandler} isLoggedInHandler={isLoggedInHandler} refreshTokenHandler={refreshTokenHandler} loginOn={loginOn}/>}
+			{loginOn && <Login getUserInfo={getUserInfo} loginModalHandler={loginModalHandler} isLoggedInHandler={isLoggedInHandler} refreshTokenHandler={refreshTokenHandler} loginOn={loginOn}/>}
 			{signUpON && <SignUp signUpModalHandler={signUpModalHandler} signUpON={signUpON}/>}
 			<Link className="header-title" to="/">
 				<h1>Moment</h1>
@@ -51,4 +53,8 @@ export default function Header() {
 			</div>}
 		</div>
 	);
+}
+
+Login.propTypes = {
+    getUserInfo:PropTypes.func
 }

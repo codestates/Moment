@@ -8,13 +8,18 @@ import Button from '../UI/Button'
 import Input from '../UI/Input'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
-const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
+const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [emailIsValid, setEmailIsValid] = useState(true)
     const [enteredPassword, setEnteredPassword] = useState('')
     const [passwordIsValid, setPasswordIsValid] = useState(true)
     const [userInfo, setUserInfo] = useState({email:'', nickname:''})
     const [formIsValid, setFormIsValid] = useState(false)
+    useEffect(() => {
+        if(emailIsValid && passwordIsValid && enteredEmail.length !==0) setFormIsValid(true);
+        else setFormIsValid(false)
+    }, [emailIsValid, passwordIsValid])
+
 
     const emailInputHandler = (e) => {
         setEnteredEmail(e.target.value)
@@ -40,8 +45,8 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
         .then(res => {
             console.log(JSON.stringify(res.headers))
             const refreshToken = JSON.stringify(res.headers.refreshtoken)
-            const {data: userData} = res.data;
-            setUserInfo(userData);
+            const {data: userData} = res;
+            getUserInfo(userData);
             //로그인상태관리함수
             isLoggedInHandler();
             //refreshToken저장
@@ -51,7 +56,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
             alert("please check your email or password again")
         })
     }
-
+    const btnValid = !formIsValid
     return (
         <Modal loginModalHandler={loginModalHandler} loginOn={loginOn}>
             <>
@@ -63,7 +68,7 @@ const Login = ({loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandl
                     <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, onBlur: validatePasswordHandler, value: enteredPassword}} />
                     <Button > Facebook</Button>
                 {/* <GoogleLoginBtn/> */}
-                <Button className={classes.login} btn={{type: "submit", }}>Login</Button>
+                <Button className={formIsValid ? '' : `${classes.btnInvalid}`} btn={{type: "submit", disabled: btnValid}}>Login</Button>
                 </div>
             </form>
             </>
@@ -75,6 +80,7 @@ Login.propTypes = {
     loginModalHandler: PropTypes.any,
     loginOn: PropTypes.any,
     isLoggedInHandler:PropTypes.func,
-    refreshTokenHandler:PropTypes.func
+    refreshTokenHandler:PropTypes.func,
+    getUserInfo:PropTypes.func
 }
 export default Login
