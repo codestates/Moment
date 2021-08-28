@@ -12,6 +12,8 @@ export default function MainPage() {
 	const [content, setContent] = useState(
 		'Thank you. Thank you so much. I am so thrilled to be recieving this award today. But on the other hand, it`s a little bit bittersweet. It`s a pitty that the musical arts are evaluated and ranked like this. Yes. I know that this is too wonderful and glorious for me. I don`t want to denigrate this position or award. Thank you again for giving my this award.',
 	);
+	const [author, setAuthor] = useState('author');
+	const [updated, setUpdated] = useState('2021.08.28');
 
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -19,7 +21,7 @@ export default function MainPage() {
 		if (!isLoading) {
 			setTimeout(() => {
 				setIsLoading(true);
-			}, 3000);
+			}, 2000);
 		}
 	}, [isLoading]);
 
@@ -37,7 +39,11 @@ export default function MainPage() {
 				</a>
 			</div>
 			<div className="mainpage-recent-container">
-				<RecentCard title={title} content={content} />
+				{/* map으로 묶어서 보여 주기 */}
+				<RecentCard title={title} content={content} author={author} updated={updated} />
+				<RecentCard title={title} content={content} author={author} updated={updated} />
+				<RecentCard title={title} content={content} author={author} updated={updated} />
+				<RecentCard title={title} content={content} author={author} updated={updated} />
 			</div>
 			{/* <div>
 				<button>View all</button>
