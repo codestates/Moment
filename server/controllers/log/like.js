@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         });
         res.status(200).json({ isLike: true });
       } else {
-        await post_like.delete({
+        await post_like.destroy({
           post_id: postId.id,
           user_id: userId
         });
