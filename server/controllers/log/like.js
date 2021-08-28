@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
       } else {
         await post_like.destroy({
           post_id: postId.id,
-          user_id: userId
+          user_id: userId.id
         });
         res.status(200).json({ isLike: false });
       }
