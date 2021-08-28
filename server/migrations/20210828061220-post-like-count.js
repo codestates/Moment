@@ -8,7 +8,7 @@ module.exports = {
 		 * Example:
 		 * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
 		 */
-		await queryInterface.addColumn('Posts', 'like_id', {
+		await queryInterface.addColumn('Posts', 'like_count', {
 			type: Sequelize.INTEGER,
 			defaultValue: 0,
 		});
