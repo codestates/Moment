@@ -7,11 +7,17 @@
     z-index: 20;
     background-color: rgba(0, 0, 0, 0.75);
     opacity: 60%;
+    display: flex;
+    justify-content:center; 
+    align-items:center;
   }
 
   .modal {
     position: fixed;
-    top: 20%;
+    top:50%;
+    margin-top: -250px;
+    /* height: 50vh; */
+    /* margin-bottom: 15%; */
     background-color: #F2F5F6;
     padding: 1rem;
     border-radius: 14px;
@@ -28,7 +34,7 @@
 
 
 
-  @media (min-width: 768px) {
+  @media all and (min-width: 480px) {
     .modal {
       width: 30rem;
       left: calc(50% - 15rem);
