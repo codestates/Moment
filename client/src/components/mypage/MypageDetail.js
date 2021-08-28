@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import Card from '../UI/MypageCard';
 import Input from '../UI/Input'
 import Button from '../UI/Button'
+import Modal from '../modal/Modal'
 
 
-const MypageDetail = () => {
+const MypageDetail = ({login, loginHandler}) => {
     const [userInfo, setUserInfo] = useState({email:'clover@gmail.com', nickname:'clover'});
     const [enteredEmail, setEnteredEmail] = useState('clover@gmail.com');
     const [enteredNickname, setEnteredNickname] = useState('clover')
@@ -39,7 +40,9 @@ const MypageDetail = () => {
         else setConfirmPassword(false)
     }
 
-    return (
+    return (<>
+        {!login && <Modal loginHandler={loginHandler}/>}
+        {login && 
         <Card className={classes.container}>
             <form className={classes.form} onSubmit={editHandler}>
                 <h2 className={classes.title}>My Info</h2>
@@ -52,8 +55,8 @@ const MypageDetail = () => {
                     <Button className={classes.btn}>Edit</Button>
                 </div>
             </form>
-        </Card>
-    )
+        </Card>}
+    </>)
 }
 
 MypageDetail.propTypes = {

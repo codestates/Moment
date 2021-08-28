@@ -57,7 +57,7 @@ const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refr
             getUserInfo(userData);
             isLoggedInHandler();
             refreshTokenHandler(refreshToken);
-            document.location.href = '/main'
+            document.location.replace = '/main'
         })
         .catch(err => {
             alert("please check your email or password again")
