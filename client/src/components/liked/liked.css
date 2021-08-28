@@ -1,0 +1,65 @@
+.heart-btn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.content {
+	border: 2px solid #eae2e1;
+	padding: 11px 13px;
+	border-radius: 5px;
+	cursor: pointer;
+	display: flex;
+}
+
+.content .heart {
+	height: 70px;
+	width: 70px;
+	background: url('../../static/heart.png') no-repeat;
+	background-position: left;
+	background-size: 2900%;
+	position: absolute;
+	top: 50%;
+	left: 21%;
+	transform: translate(-50%, -50%);
+}
+
+.heart:hover {
+	background-position: right;
+	animation: animate 0.8s steps(28) 1;
+}
+
+.heartclick {
+	height: 70px;
+	width: 70px;
+	background: url('../../static/heart.png') no-repeat;
+	background-position: left;
+	background-size: 2900%;
+	position: absolute;
+	top: 50%;
+	left: 21%;
+	transform: translate(-50%, -50%) scale(1.3);
+	transition: 0.3s;
+	background-position: right;
+}
+
+@keyframes animate {
+	0% {
+		background-position: left;
+	}
+	100% {
+		background-position: right;
+	}
+}
+
+.like {
+	margin-left: 30px;
+	font-size: 19px;
+	color: #9c9496;
+}
+.numb {
+	font-size: 19px;
+	color: #9c9496;
+	margin-left: 7px;
+}

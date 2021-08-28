@@ -9,7 +9,7 @@ import './mainpage.css';
 
 export default function MainPage() {
 	const [title, setTitle] = useState('dummy');
-	const [body, setBody] = useState(
+	const [content, setContent] = useState(
 		'Thank you. Thank you so much. I am so thrilled to be recieving this award today. But on the other hand, it`s a little bit bittersweet. It`s a pitty that the musical arts are evaluated and ranked like this. Yes. I know that this is too wonderful and glorious for me. I don`t want to denigrate this position or award. Thank you again for giving my this award.',
 	);
 
@@ -32,11 +32,16 @@ export default function MainPage() {
 	return (
 		<>
 			<div className="mainpage">
-				<button className="mainpage-btn"></button>
+				<a href="/log">
+					<div className="mainpage-btn"></div>
+				</a>
 			</div>
 			<div className="mainpage-recent-container">
-				<RecentCard title={title} body={body} />
+				<RecentCard title={title} content={content} />
 			</div>
+			{/* <div>
+				<button>View all</button>
+			</div> */}
 		</>
 	);
 }

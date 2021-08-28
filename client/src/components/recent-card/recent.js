@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './recent.css';
 
-const RecentCard = ({ title, body }) => {
+const RecentCard = ({ title, content }) => {
 	return (
 		<div className="contains">
 			<div className="recent-container">
@@ -15,7 +15,7 @@ const RecentCard = ({ title, body }) => {
 						<h1>{title}</h1>
 					</div>
 					<div className="recent-body">
-						<p>{body}</p>
+						<p>{content}</p>
 					</div>
 				</div>
 				<div className="recent-btn-container">
@@ -33,7 +33,7 @@ const RecentCard = ({ title, body }) => {
 						<h1>{title}</h1>
 					</div>
 					<div className="recent-body">
-						<p>{body}</p>
+						<p>{content}</p>
 					</div>
 				</div>
 				<div className="recent-btn-container">
@@ -51,7 +51,7 @@ const RecentCard = ({ title, body }) => {
 						<h1>{title}</h1>
 					</div>
 					<div className="recent-body">
-						<p>{body}</p>
+						<p>{content}</p>
 					</div>
 				</div>
 				<div className="recent-btn-container">
@@ -69,7 +69,7 @@ const RecentCard = ({ title, body }) => {
 						<h1>{title}</h1>
 					</div>
 					<div className="recent-body">
-						<p>{body}</p>
+						<p>{content}</p>
 					</div>
 				</div>
 				<div className="recent-btn-container">
