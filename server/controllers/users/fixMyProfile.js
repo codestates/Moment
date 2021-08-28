@@ -27,6 +27,14 @@ module.exports = async (req, res) => {
 					},
 				},
 			);
+			const { originEmail, originNickname } = origin;
+			const fixAccessToken = generateAccessToken({ originEmail, originNickname });
+
+			res.cookie('accessToken', fixAccessToken, {
+				sameSite: 'none',
+				secure: true,
+				httpOnly: true,
+			});
 			res.status(200).send({ profileFix: true });
 		}
 	}
