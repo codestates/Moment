@@ -9,11 +9,30 @@
     margin-top: 2rem;
 }
 
+.imgContainer{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+}
 .pic{
     width: 20rem; 
     height: 20rem; 
     object-fit: cover;
     border-radius: 3rem;
+}
+.writeLog{
+    position: absolute;
+    bottom: -5%;
+    left: 50%;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    z-index: 999;
+    width: 50px;
+    border: none;
+    cursor: pointer;
+    transform: translate(-50%, 0%);
 }
 
 

@@ -60,13 +60,13 @@ p {
 	margin-bottom: 1rem;
 }
 
-button {
+/* button {
 	padding: 15px 15px;
 	background: #2d3d8b;
 	color: #fff;
 	border: none;
 	border-radius: 50px;
-}
+} */
 
 .options {
 	display: flex;
