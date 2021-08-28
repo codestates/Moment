@@ -2,7 +2,6 @@ const { Posts, Users, post_like } = require('../../models');
 const { isAuthorized } = require('../../lib/index');
 
 module.exports = async (req, res) => {
-  // d
   const post_id = req.params.id;
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
@@ -18,10 +17,26 @@ module.exports = async (req, res) => {
       const postId = await Posts.findOne({
         where: { id: post_id }
       });
-      await post_like.update({
-        post_id: postId,
-        user_id: userId
+      const isLike = await post_like.findOne({
+        where: {
+          post_id: postId.id,
+          user_id: userId
+        }
       });
+      if (!isLike) {
+        await post_like.update({
+          post_id: postId.id,
+          user_id: userId
+        });
+        res.status(200).json({ isLike: true });
+      } else {
+        await post_like.delete({
+          post_id: postId.id,
+          user_id: userId
+        });
+        res.status(200).json({ isLike: false });
+      }
+
     }
   }
 }
