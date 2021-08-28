@@ -7,5 +7,8 @@ const { userController } = require('../controllers');
 router.put('/signup', userController.signup);
 router.post('/login', userController.login);
 router.get('/logout', userController.logout);
+router.get('/profile', userController.profile);
+router.put('/fixprofile', userController.fixProfile);
+router.post('/facebook', userController.facebook);
 
 module.exports = router;

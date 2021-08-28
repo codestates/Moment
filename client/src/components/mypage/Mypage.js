@@ -2,12 +2,16 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import classes from './Mypage.module.css';
 import Card from '../UI/MypageCard'
+import MypageDetail from './MypageDetail'
 import {ReactComponent as Book} from '../../assets/book.svg'
 import {ReactComponent as Search} from '../../assets/search.svg'
 import {ReactComponent as Edit} from '../../assets/edit.svg'
+import {ReactComponent as Plus} from '../../assets/plusIcon.svg'
+import { dummyData } from '../../static/dummyData';
 import { Link } from 'react-router-dom';
 
 const Mypage = () => {
+    //userInfo상태들은 app.js에서 관리 해야할 필요가 있다. 추후 수정
     const [userInfo, setUserInfo] = useState({email:'clover@gmail.com', nickname:'clover'})
     axios.get('https://api.m0ment.be/users/profile', {withCredentials: true})
     .then(res => {
@@ -20,14 +24,17 @@ const Mypage = () => {
     //     axios.post(get("htts://api.m0ment.be/log/mylogs"), {withCredentials: true})
     // }
 
-
+    // const randomId = Math.floor(Math.random() * 10);
 
     const {email, nickname} = userInfo
     return (
         <Card>
             <h2 className={classes.title}>My Profile</h2>
             <div className={classes.container}>
-                <img className={classes.pic} src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"></img>
+                <div className={classes.imgContainer}>
+                    <img className={classes.pic} src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"></img>
+                    <Link to="/log"><div className={classes.writeLog}><Plus /></div></Link>
+                </div>
                 <div className={classes.text}>
                     <h3>{nickname}</h3>
                 </div>
@@ -51,5 +58,7 @@ const Mypage = () => {
         </Card>
     )
 }
+
+
 
 export default Mypage

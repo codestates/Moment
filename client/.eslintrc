@@ -7,6 +7,7 @@
 			"jsx": true
 		}
 	},
+	"plugins": ["react"],
 	"extends": ["plugin:react/recommended"],
 	"ignorePatterns": ["node_modules/"],
 	"env": {
@@ -20,6 +21,7 @@
 		"no-empty": "error",
 		"default-case": "error",
 		"eqeqeq": ["error", "always"],
-		"prefer-template": "error"
+		"prefer-template": "error",
+		"react/prop-types": 0
 	}
 }

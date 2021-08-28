@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Modal from '../UI/Modal'
 import classes from './SignUp.module.css'
@@ -6,13 +6,19 @@ import PropTypes from 'prop-types'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 const SignUp = ({signUpModalHandler, signUpON}) => {
-    const [enteredEmail, setEnteredEmail] = useState('')
-    const [emailIsValid, setEmailIsValid] = useState(true)
-    const [enteredPassword, setEnteredPassword] = useState('')
-    const [passwordIsValid, setPasswordIsValid] = useState(true)
-    const [confirmPassword, setConfirmPassword] = useState(true)
-    const [enteredNickname, setEnteredNickname] = useState('')
-    const [nicknameIsValid, setNicknameIsValid] = useState(true)
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [emailIsValid, setEmailIsValid] = useState(true);
+    const [enteredPassword, setEnteredPassword] = useState('');
+    const [passwordIsValid, setPasswordIsValid] = useState(true);
+    const [confirmPassword, setConfirmPassword] = useState(true);
+    const [enteredNickname, setEnteredNickname] = useState('');
+    const [nicknameIsValid, setNicknameIsValid] = useState(true);
+    const [formIsValid, setFormIsValid] = useState(false)
+
+    useEffect(() => {
+        if(emailIsValid && passwordIsValid && enteredEmail.length !==0 && enteredPassword.length !==0 && enteredNickname.length !==0 && confirmPassword) setFormIsValid(true);
+        else setFormIsValid(false)
+    }, [emailIsValid, passwordIsValid, enteredEmail, enteredPassword, enteredNickname, confirmPassword])
 
     const emailInputHandler = (e) => {
         setEnteredEmail(e.target.value)
@@ -47,15 +53,14 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
 
     const submitHandler = (event) => {
         event.preventDefault();
-        axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: setEnteredNickname})
+        signUpModalHandler()
+        axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: enteredNickname})
         .then(res => {
             signUpModalHandler()
-            //로그인 상태 수정이 필요할듯...?
-            //모달창 닫아주는게 필요.
         })
     }
 
-
+    const btnValid = !formIsValid
     return (
         <Modal signUpModalHandler={signUpModalHandler}  signUpON={signUpON}>
             <div>
@@ -68,7 +73,7 @@ const SignUp = ({signUpModalHandler, signUpON}) => {
                 <Input className={passwordIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Password", type:"password", onChange: passwordInputHandler, value: enteredPassword}} />
                 <Input className={confirmPassword ? '' : `${classes.invalid}`} input={{placeholder:"Confirm Password ", type:"password", onChange: confirmPasswordHandler}} />
                 <Input className={nicknameIsValid ? '' : `${classes.invalid}`} input={{placeholder:"Nickname", type:"text", onChange: nickNameInputHandler, value: enteredNickname}} />
-                <Button className={classes.signup} btn={{type:"submit"}}>Sign Up</Button>
+                <Button className={formIsValid ? '' : `${classes.btnInvalid}`} btn={{type: "submit", disabled: btnValid}}>Sign Up</Button>
         </form>
         </div>
     </Modal>
