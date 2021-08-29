@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from '../src/components/pages/homepage';
@@ -24,7 +24,9 @@ function App() {
 		console.log('userInfo at App :', data);
 	};
 	const loginHandler = () => {
+		localStorage.setItem('login', true);
 		setLogin(true);
+		console.log(localStorage.getItem('login'));
 	};
 	const refreshTokenHandler = token => {
 		setRefreshToken(token);
@@ -36,8 +38,16 @@ function App() {
 			headers: header,
 		});
 		console.log(response);
+		localStorage.removeItem('login');
 		setLogin(false);
+		document.location.href = './';
 	};
+	const local = localStorage.getItem('login');
+	useEffect(() => {
+		if (local) setLogin(true);
+		else setLogin(false);
+	}, [local]);
+
 	return (
 		<div>
 			<Header
