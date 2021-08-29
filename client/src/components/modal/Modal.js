@@ -1,14 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+const dotenv = require('dotenv');
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 
 import './Modal.css';
-
+import { Redirect } from 'react-router';
+const FACEBOOK_ID= process.env.FACEBOOK_ID
+const GOOGLE_CLIENT_ID= process.env.GOOGLE_CLIENT_ID
 
 
 const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, isLoginOpen}) => {
+    console.log(FACEBOOK_ID, GOOGLE_CLIENT_ID)
 	const modalRef = useRef();
 	const [enteredEmail, setEnteredEmail] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(true);
@@ -40,7 +44,6 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandle
 	const closerModal = e => {
 		if (modalRef.current === e.target) {
             loginModalHandler()
-			// setModalOpen(false);
 		}
 	};
     const submitHandler = async() => {
@@ -51,14 +54,23 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandle
         refreshTokenHandler(refreshToken)
         loginHandler()
         loginModalHandler()
-        document.location.replace = '/main'
+        document.location.href = "./main";
     }
+    const FB_URL=`https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=https://api.m0ment.be/users/facebook&scope=email,public_profile`
+    const Google_URL=`https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&response_type=code&scope=openid email&redirect_uri=https://api.m0ment.be/users/google`
+    const facebookHandler = () => {
+        window.location.assign(FB_URL)
+    }
+    const googleHandler = () => {
+        window.location.assign(Google_URL)
+    }
+
 
     const portalPlace = document.getElementById("overlay")
 
 	return (
 		<>  
-        {ReactDOM.createPortal( isLoginOpen ? (
+        {ReactDOM.createPortal(
 				<div className="background" ref={modalRef} onClick={closerModal}>
 					<div className="modalwrapper" >
 						<img className="modalimage" src={require('../../assets/svg/17.svg').default} alt="" />
@@ -71,12 +83,14 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandle
                             </form>
 							<div className="options">
 								<button className={formIsValid ? "btn-recent join" : "btn-recent join invalidbtn"} onClick={submitHandler}>Join</button>
-								<button className="btn-recent join join-google">
+								<button className="btn-recent join join-google"  onClick={googleHandler}>
 									<FontAwesomeIcon icon={faGoogle} />
 								</button>
-								<button className="btn-recent join join-facebook">
+								
+                                    <button className="btn-recent join join-facebook" onClick={facebookHandler}>
 									<FontAwesomeIcon icon={faFacebookF} />
-								</button>
+								    </button>
+                                
 							</div>
 						</div>
 						<div className="modalclosebutton" onClick={loginModalHandler}>
@@ -84,7 +98,7 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandle
 						</div>
 					</div>
 				</div>
-			) : null , portalPlace)}
+			, portalPlace)}
 		</>
 	);
 }

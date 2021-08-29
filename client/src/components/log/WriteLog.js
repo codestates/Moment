@@ -26,7 +26,7 @@ const WriteLog = ({login, loginHandler}) => {
         axios.post("https://api.m0ment.be/log/submit", {conetent: content, title: title, secret: secret}, {withCredentials: true})
         .then(res => console.log(res))
     }
-
+    console.log(login)
     return ( <>   
     {!login && <Modal loginHandler={loginHandler}/>}
     {login && 

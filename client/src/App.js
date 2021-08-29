@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from '../src/components/pages/homepage';
@@ -18,12 +18,20 @@ function App() {
 	const [userInfo, setUserInfo] = useState('');
 	const [login, setLogin] = useState(false);
 	const [refreshToken, setRefreshToken] = useState('')
+	const local = localStorage.getItem("login")
+	useEffect(() => {
+		if(local) setLogin(true);
+		else setLogin(false)
+	},[local])
+
 	const getUserInfo = (data) => {
 		setUserInfo(data);
 		console.log('userInfo at App :', data);
 	};
 	const loginHandler = () => {
+		localStorage.setItem("login", true)
 		setLogin(true)
+		console.log(localStorage.getItem("login"))
 	}
 	const refreshTokenHandler = (token) => {
 		setRefreshToken(token)
@@ -32,7 +40,9 @@ function App() {
 		let header = {refreshToken: `${refreshToken}`}
 		const response = await axios.get('https://api.m0ment.be/users/logout', {withCredentials: true, headers: header})
 		console.log(response);
+		localStorage.removeItem("login")
 		setLogin(false)
+		document.location.href = "./";
 	}
 	return (
 		<div>
