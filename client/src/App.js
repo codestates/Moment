@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 import HomePage from '../src/components/pages/homepage';
@@ -11,19 +11,15 @@ import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 import PostCard from '../src/components/post-card/postcard';
 import Modal from './components/modal/Modal';
-import LogDetail from './components/log/LogDetail'
-import axios from 'axios'
+import LogDetail from './components/log/LogDetail';
+import RecentPage from '../src/components/pages/recentpage';
+import axios from 'axios';
 
 function App() {
 	const [userInfo, setUserInfo] = useState('');
 	const [login, setLogin] = useState(false);
 	const [refreshToken, setRefreshToken] = useState('')
 	const local = localStorage.getItem("login")
-	useEffect(() => {
-		if(local) setLogin(true);
-		else setLogin(false)
-	},[local])
-
 	const getUserInfo = (data) => {
 		setUserInfo(data);
 		console.log('userInfo at App :', data);
@@ -44,6 +40,11 @@ function App() {
 		setLogin(false)
 		document.location.href = "./";
 	}
+	useEffect(() => {
+		if(local) setLogin(true);
+		else setLogin(false)
+	},[local])
+
 	return (
 		<div>
 			<Header getUserInfo={getUserInfo} loginHandler={loginHandler} login={login} logoutHandler={logoutHandler} refreshTokenHandler={refreshTokenHandler}/>

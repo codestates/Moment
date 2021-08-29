@@ -1,18 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-const dotenv = require('dotenv');
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
-
 import './Modal.css';
 import { Redirect } from 'react-router';
-const FACEBOOK_ID= process.env.FACEBOOK_ID
-const GOOGLE_CLIENT_ID= process.env.GOOGLE_CLIENT_ID
+
+
+const FACEBOOK_ID= process.env.REACT_APP_FACEBOOK_ID
+const GOOGLE_CLIENT_ID= process.env.REACT_APP_GOOGLE_CLIENT_ID
 
 
 const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, isLoginOpen}) => {
-    console.log(FACEBOOK_ID, GOOGLE_CLIENT_ID)
 	const modalRef = useRef();
 	const [enteredEmail, setEnteredEmail] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(true);
