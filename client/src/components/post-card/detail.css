@@ -1,0 +1,68 @@
+.details-container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+}
+
+.details-inner-container {
+	display: flex;
+	flex-direction: column;
+	max-width: 80%;
+}
+
+.details-header {
+	margin: 0;
+	color: #2d3d8b;
+	font-weight: 700;
+	font-size: 20px;
+}
+
+.details-subheader {
+	margin: 10px 0;
+	color: #000;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.details-text {
+	color: #000;
+	font-weight: 200;
+	font-size: 20px;
+}
+
+.recent-card-liked {
+	margin-right: 200px;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	transition: 0.2s ease-in;
+}
+
+.recent-card-liked:hover {
+	cursor: pointer;
+	transform: scale(1.4);
+	color: #ff5093;
+}
+
+.recent-card-liked-click {
+	margin-right: 200px;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	transform: scale(1.4);
+	color: #ff5093;
+}
+
+.details-options {
+	margin-left: 4px;
+}
+
+.detail-count {
+	margin-top: 7px;
+	font-weight: 200;
+	font-size: small;
+}
