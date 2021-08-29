@@ -30,27 +30,31 @@ function App() {
 		setRefreshToken(token);
 	};
 	const logoutHandler = async () => {
-		let header = {refreshToken: `${refreshToken}`}
-		const response = await axios.get('https://api.m0ment.be/users/logout', {withCredentials: true, headers: header})
+		let header = { refreshToken: `${refreshToken}` };
+		const response = await axios.get('https://api.m0ment.be/users/logout', {
+			withCredentials: true,
+			headers: header,
+		});
 		console.log(response);
-		localStorage.removeItem("login")
-		setLogin(false)
-		document.location.href = "./";
-	}
-	const local = localStorage.getItem("login")
+		localStorage.removeItem('login');
+		setLogin(false);
+		document.location.href = './';
+	};
+	const local = localStorage.getItem('login');
 	useEffect(() => {
-		if(local) setLogin(true);
-		else setLogin(false)
-	},[local])
+		if (local) setLogin(true);
+		else setLogin(false);
+	}, [local]);
 
 	return (
 		<div>
-			<Header 
-                getUserInfo={getUserInfo}
-                loginHandler={loginHandler} 
-                login={login} 
-                logoutHandler={logoutHandler} 
-                refreshTokenHandler={refreshTokenHandler}/>
+			<Header
+				getUserInfo={getUserInfo}
+				loginHandler={loginHandler}
+				login={login}
+				logoutHandler={logoutHandler}
+				refreshTokenHandler={refreshTokenHandler}
+			/>
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
@@ -59,13 +63,13 @@ function App() {
 					<MainPage />
 				</Route>
 				<Route path="/log">
-					<WriteLog login={login} loginHandler={loginHandler}/>
+					<WriteLog login={login} loginHandler={loginHandler} />
 				</Route>
 				<Route path="/myprofile">
-					<Mypage login={login} loginHandler={loginHandler}/>
+					<Mypage login={login} loginHandler={loginHandler} />
 				</Route>
 				<Route path="/fixprofile">
-					<MypageDetail login={login} loginHandler={loginHandler}/>
+					<MypageDetail login={login} loginHandler={loginHandler} />
 				</Route>
 				<Route path="/test">
 					<LogDetail />
