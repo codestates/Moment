@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const { generateRefreshToken } = require('../../lib');
 dotenv.config();
 
-module.exportes = async (req, res) => {
+module.exports = async (req, res) => {
 	const googleCode = await axios({
 		url: 'https://oauth2.googleapis.com/token',
 		method: 'post',
