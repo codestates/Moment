@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 				},
 			});
 			if (!isLike) {
-				await post_like.update({
+				await post_like.create({
 					post_id: postId.id,
 					user_id: userId.id,
 				});
