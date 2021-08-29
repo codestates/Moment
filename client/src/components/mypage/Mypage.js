@@ -1,67 +1,79 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import classes from './Mypage.module.css';
-import Card from '../UI/MypageCard'
-import MypageDetail from './MypageDetail'
-import Modal from '../modal/Modal'
-import {ReactComponent as Book} from '../../assets/book.svg'
-import {ReactComponent as Search} from '../../assets/search.svg'
-import {ReactComponent as Edit} from '../../assets/edit.svg'
-import {ReactComponent as Plus} from '../../assets/plusIcon.svg'
-import { dummyData } from '../../static/dummyData';
+import Card from '../UI/MypageCard';
+import MypageDetail from './MypageDetail';
+import Modal from '../modal/Modal';
+import { AiOutlineRead, AiOutlineFileSearch } from 'react-icons/ai';
+import { RiUserSettingsLine } from 'react-icons/ri';
+import { ReactComponent as Book } from '../../assets/book.svg';
+import { ReactComponent as Search } from '../../assets/search.svg';
+import { ReactComponent as Edit } from '../../assets/edit.svg';
+import { ReactComponent as Plus } from '../../assets/plusIcon.svg';
 import { Link } from 'react-router-dom';
+import { Context } from '../../Context';
 
-const Mypage = ({login, loginHandler}) => {
-    //userInfo상태들은 app.js에서 관리 해야할 필요가 있다. 추후 수정
-    const [userInfo, setUserInfo] = useState({email:'clover@gmail.com', nickname:'clover'})
-    axios.get('https://api.m0ment.be/users/profile', {withCredentials: true})
-    .then(res => {
-        const {data: userInfo} = res
-        setUserInfo(userInfo)
-    })
+const Mypage = () => {
+	const { login, isLoginOpen } = useContext(Context);
+	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
+	axios.get('https://api.m0ment.be/users/profile', { withCredentials: true }).then(res => {
+		const { data: userInfo } = res;
+		setUserInfo(userInfo);
+	});
 
-    //그냥 내글보기 컴포넌트에서 받아오면 될듯...?
-    // const mypostHandler = () => {
-    //     axios.post(get("htts://api.m0ment.be/log/mylogs"), {withCredentials: true})
-    // }
+	const { email, nickname } = userInfo;
+	return (
+		<>
+			{login && <Modal />}
+			{!login && (
+				<div className={`${classes.card} ${classes.middle}`}>
+					<div className={classes.front}>
+						<img src="https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" />
+					</div>
 
-    // const randomId = Math.floor(Math.random() * 10);
+					<div className={classes.back}>
+						<div className={`${classes.back__content} ${classes.middle}`}>
+							<div>
+								<img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80" />
+							</div>
+							<Link to="/log">
+								<div className={classes.writeLog}>
+									<Plus />
+								</div>
+							</Link>
+							<div className={classes.text__container}>
+								<span>{email}</span>
+								<span>{nickname}</span>
+							</div>
 
-    const {email, nickname} = userInfo
-    return (<>
-        {!login && <Modal loginHandler={loginHandler}/>}
-        {login && 
-        <Card>
-            <h2 className={classes.title}>My Profile</h2>
-            <div className={classes.container}>
-                <div className={classes.imgContainer}>
-                    <img className={classes.pic} src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_1280.jpg"></img>
-                    <Link to="/log"><div className={classes.writeLog}><Plus /></div></Link>
-                </div>
-                <div className={classes.text}>
-                    <h3>{nickname}</h3>
-                </div>
-                <div className={classes.text}>
-                    <h3>{email}</h3>
-                </div>
-                <div className={classes.btncontainer}>
-                    <Link to="/recent/page/1">
-                        <button className={classes.btn}><Book width="34.59" height="34.59"/><br />최신 글</button>
-                    </Link>
-                    <Link to="/mylogs">
-                        <button className={classes.btn}><Search width="34.59" height="34.59"/><br />내 글 보기</button>
-                    </Link>
-                    <Link to="/fixprofile">
-                        <button className={classes.btn}><Edit width="34.59" height="34.59"/><br />정보 수정</button>
-                    </Link>
-                    {/* <button>Follower</button>
-                    <button>Following</button> */}
-                </div>  
-            </div>
-        </Card>}
-        </>)
-}
+							<div className={classes.link__container}>
+								{/* <Link to="/recent/page/1"> */}
+								<button className={classes.btn}>
+									<AiOutlineRead size={30} />
+									<br />
+									최신 글
+								</button>
+								{/* </Link> */}
+								{/* <Link to="/mylogs"> */}
+								<button className={classes.btn}>
+									<AiOutlineFileSearch size={30} />
+									<br />내 글 보기
+								</button>
+								{/* </Link> */}
+								{/* <Link to="/fixprofile"> */}
+								<button className={classes.btn}>
+									<RiUserSettingsLine size={30} />
+									<br />
+									정보 수정
+								</button>
+								{/* </Link> */}
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+		</>
+	);
+};
 
-
-
-export default Mypage
+export default Mypage;
