@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
 			code: req.query.code,
 			client_id: process.env.GOOGLE_CLIENT_ID,
 			client_secret: process.env.GOOGLE_CLIENT_SECRET,
-			redirect_uri: 'https://m0ment.be/',
+			redirect_uri: 'https://api.m0ment.be/users/google',
 			grant_type: 'authorization_code',
 		},
 	});
