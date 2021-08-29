@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
-
+import LogDetail from '../log/LogDetail'
 import './recent.css';
 
 const RecentCard = ({ title, content, author, updated }) => {
@@ -48,9 +48,11 @@ const RecentCard = ({ title, content, author, updated }) => {
 					</div>
 				</div>
 				<div className="recent-btn-container">
-					<button className="recent-btn">
-						<a>View more</a>
-					</button>
+					<Link to="/main/recent">
+						<button className="recent-btn">
+							<a>View more</a>
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>
