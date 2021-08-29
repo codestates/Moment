@@ -1,7 +1,6 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-
 import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
 import Login from './components/login/Login';
@@ -16,47 +15,9 @@ import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 
 function App() {
-	const [userInfo, setUserInfo] = useState('');
-	const [login, setLogin] = useState(false);
-	const [refreshToken, setRefreshToken] = useState('');
-	const getUserInfo = data => {
-		setUserInfo(data);
-		console.log('userInfo at App :', data);
-	};
-	const loginHandler = () => {
-		localStorage.setItem('login', true);
-		setLogin(true);
-		console.log(localStorage.getItem('login'));
-	};
-	const refreshTokenHandler = token => {
-		setRefreshToken(token);
-	};
-	const logoutHandler = async () => {
-		let header = { refreshToken: `${refreshToken}` };
-		const response = await axios.get('https://api.m0ment.be/users/logout', {
-			withCredentials: true,
-			headers: header,
-		});
-		console.log(response);
-		localStorage.removeItem('login');
-		setLogin(false);
-		document.location.href = './';
-	};
-	const local = localStorage.getItem('login');
-	useEffect(() => {
-		if (local) setLogin(true);
-		else setLogin(false);
-	}, [local]);
-
 	return (
 		<div>
-			<Header
-				getUserInfo={getUserInfo}
-				loginHandler={loginHandler}
-				login={login}
-				logoutHandler={logoutHandler}
-				refreshTokenHandler={refreshTokenHandler}
-			/>
+			<Header />
 			<Switch>
 				<Route exact path="/">
 					<HomePage />
@@ -65,13 +26,13 @@ function App() {
 					<MainPage />
 				</Route>
 				<Route path="/log">
-					<WriteLog login={login} loginHandler={loginHandler} />
+					<WriteLog />
 				</Route>
 				<Route path="/myprofile">
-					<Mypage login={login} loginHandler={loginHandler} />
+					<Mypage />
 				</Route>
 				<Route path="/fixprofile">
-					<MypageDetail login={login} loginHandler={loginHandler} />
+					<MypageDetail />
 				</Route>
 				<Route path="/test">
 					<LogDetail />
