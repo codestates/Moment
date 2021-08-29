@@ -55,7 +55,7 @@ p {
 
 .recent-card-liked:hover {
 	transform: scale(1.4);
-	color: #ff5093;
+	color: #7fbbca;
 }
 
 .recent-card-liked-click {
@@ -63,7 +63,7 @@ p {
 	outline: 0;
 	background: transparent;
 	transform: scale(1.4);
-	color: #ff5093;
+	color: #7fbbca;
 }
 
 .recent-card-updete {
