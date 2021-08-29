@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 	const post_id = req.params.id;
 	const accessToken = req.cookies.accessToken;
 	const { title, content } = req.body;
-	const findPost = await Posts.findOne({ where: { id: post_id } });
+	const findPost = await Posts.findByPk(post_id);
 	if (!findPost) res.status(404).send({ isFixed: false });
 	if (!accessToken) {
 		res.status(401).send({ isFixed: false });
