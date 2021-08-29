@@ -86,6 +86,9 @@ const MypageDetail = ({ login, loginHandler }) => {
 						<div className={!confirmPassword ? `${classes.err}` : `${classes.err} ${classes.errNone}`}>
 							Please check the password.
 						</div>
+						<div className={classes.imgcontainer}>
+							<img className={classes.imgsize} src={require('../../assets/svg/20.svg').default} />
+						</div>
 						<div className={classes.btncontainer}>
 							<Button className={classes.btn}>Edit</Button>
 						</div>
