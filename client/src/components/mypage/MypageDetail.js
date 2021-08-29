@@ -42,8 +42,8 @@ const MypageDetail = ({ login, loginHandler }) => {
 
 	return (
 		<>
-			{!login && <Modal loginHandler={loginHandler} />}
-			{login && (
+			{login && <Modal loginHandler={loginHandler} />}
+			{!login && (
 				<Card className={classes.container}>
 					<div className={classes.form} onSubmit={editHandler}>
 						<h2 className={classes.title}>Information</h2>

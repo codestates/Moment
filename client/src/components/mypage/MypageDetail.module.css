@@ -41,6 +41,7 @@
 }
 .err {
 	margin-top: 1rem;
+	margin-bottom: 1rem;
 	width: 100%;
 }
 
@@ -49,11 +50,9 @@
 }
 
 .imgcontainer {
-	position: relative;
+	margin-top: 350px;
+	padding: 20px;
+	position: fixed;
+	width: 200px;
+	height: 150px;
 }
-
-/* .imgsize {
-	object-fit: cover;
-	position: absolute;
-	background-size: cover;
-} */

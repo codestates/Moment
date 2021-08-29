@@ -1,5 +1,6 @@
 .contains {
 	display: flex;
+	height: 550px;
 	flex-direction: row;
 }
 
