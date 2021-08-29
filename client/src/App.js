@@ -36,11 +36,8 @@ function App() {
 			headers: header,
 		});
 		console.log(response);
-		localStorage.removeItem('login');
 		setLogin(false);
-		document.location.href = './';
 	};
-
 	return (
 		<div>
 			<Header
