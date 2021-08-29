@@ -19,7 +19,6 @@ function App() {
 	const [userInfo, setUserInfo] = useState('');
 	const [login, setLogin] = useState(false);
 	const [refreshToken, setRefreshToken] = useState('');
-	const local = localStorage.getItem("login")
 	const getUserInfo = data => {
 		setUserInfo(data);
 		console.log('userInfo at App :', data);
@@ -38,6 +37,7 @@ function App() {
 		setLogin(false)
 		document.location.href = "./";
 	}
+	const local = localStorage.getItem("login")
 	useEffect(() => {
 		if(local) setLogin(true);
 		else setLogin(false)
