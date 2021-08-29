@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import classes from './LogView.module.css'
+import classes from './LogView.css'
 
 const LogView = ({post}) => {
 

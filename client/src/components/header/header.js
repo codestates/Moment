@@ -37,7 +37,3 @@ export default function Header({getUserInfo, loginHandler, login, logoutHandler,
 		</div>
 	);
 }
-
-Login.propTypes = {
-    getUserInfo:PropTypes.func
-}

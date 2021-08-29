@@ -11,7 +11,7 @@ import MypageDetail from './components/mypage/MypageDetail';
 import MainPage from '../src/components/main-page/mainpage';
 import PostCard from '../src/components/post-card/postcard';
 import Modal from './components/modal/Modal';
-import Test from './components/modal-demo/modal-btn'
+import LogDetail from './components/log/LogDetail'
 import axios from 'axios'
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
 					<MypageDetail login={login} loginHandler={loginHandler}/>
 				</Route>
 				<Route path="/test">
-					<PostCard />
+					<LogDetail />
 				</Route>
 			</Switch>
 		</div>
