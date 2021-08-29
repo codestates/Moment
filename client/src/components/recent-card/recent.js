@@ -48,7 +48,7 @@ const RecentCard = ({ title, content, author, updated }) => {
 					</div>
 				</div>
 				<div className="recent-btn-container">
-					<Link to="https://www.facebook.com/v11.0/dialog/oauth?client_id=894017107879361&redirect_uri=https://api.m0ment.be/users/facebook&scope=email,public_profile">
+					<Link to="/main/recent">
 						<button className="recent-btn">
 							<a>View more</a>
 						</button>
