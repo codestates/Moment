@@ -19,8 +19,15 @@
 	font-weight: 400;
 }
 
+.ipt {
+	border: none;
+	background-color: transparent;
+	width: 10rem;
+	height: 1rem;
+	margin-top: 5rem;
+}
 .invalid:not(:focus) {
-	border-bottom: 1px solid red;
+	border-bottom: 1px solid rgb(255, 91, 91);
 }
 .btn {
 	margin: 0 auto;
@@ -29,14 +36,12 @@
 .btncontainer {
 	position: absolute;
 	bottom: 3rem;
-	left: 41%;
-	/* margin: 0 auto; */
+	margin: 0 auto;
 	/* display: flex;
     justify-content: center; */
 }
 .err {
-	margin-top: 7rem;
-	color: red;
+	margin-top: 1rem;
 	width: 100%;
 }
 

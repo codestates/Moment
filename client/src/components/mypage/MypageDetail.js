@@ -84,7 +84,7 @@ const MypageDetail = ({ login, loginHandler }) => {
 							}}
 						/>
 						<div className={!confirmPassword ? `${classes.err}` : `${classes.err} ${classes.errNone}`}>
-							비밀번호를 확인 해주세요.
+							Please check the password.
 						</div>
 						<div className={classes.btncontainer}>
 							<Button className={classes.btn}>Edit</Button>
