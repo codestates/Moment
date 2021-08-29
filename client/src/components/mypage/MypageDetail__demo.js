@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import classes from './MypageDetail.module.css';
 import PropTypes from 'prop-types';
@@ -6,8 +6,10 @@ import Card from '../UI/MypageCard';
 import Input from '../UI/Input';
 import Button from '../UI/Button';
 import Modal from '../modal/Modal';
+import { Context } from '../../Context';
 
-const MypageDetail = ({ login, loginHandler }) => {
+const MypageDetail = () => {
+	const { login } = useContext(Context);
 	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
 	const [enteredEmail, setEnteredEmail] = useState('clover@gmail.com');
 	const [enteredNickname, setEnteredNickname] = useState('clover');
@@ -42,11 +44,11 @@ const MypageDetail = ({ login, loginHandler }) => {
 
 	return (
 		<>
-			{!login && <Modal loginHandler={loginHandler} />}
-			{login && (
+			{login && <Modal />}
+			{!login && (
 				<Card className={classes.container}>
-					<div className={classes.form} onSubmit={editHandler}>
-						<h2 className={classes.title}>Information</h2>
+					<form className={classes.form} onSubmit={editHandler}>
+						<h2 className={classes.title}>My Info</h2>
 						<Input
 							className={classes.ipt}
 							input={{
@@ -84,24 +86,16 @@ const MypageDetail = ({ login, loginHandler }) => {
 							}}
 						/>
 						<div className={!confirmPassword ? `${classes.err}` : `${classes.err} ${classes.errNone}`}>
-							Please check the password.
-						</div>
-						<div className={classes.imgcontainer}>
-							<img className={classes.imgsize} src={require('../../assets/svg/20.svg').default} />
+							비밀번호를 확인 해주세요.
 						</div>
 						<div className={classes.btncontainer}>
 							<Button className={classes.btn}>Edit</Button>
 						</div>
-					</div>
+					</form>
 				</Card>
 			)}
 		</>
 	);
-};
-
-MypageDetail.propTypes = {
-	loginModalHandler: PropTypes.any,
-	loginOn: PropTypes.any,
 };
 
 export default MypageDetail;
