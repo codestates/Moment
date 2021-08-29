@@ -18,18 +18,20 @@ import axios from 'axios';
 function App() {
 	const [userInfo, setUserInfo] = useState('');
 	const [login, setLogin] = useState(false);
-	const [refreshToken, setRefreshToken] = useState('');
+	const [refreshToken, setRefreshToken] = useState('')
 	const local = localStorage.getItem("login")
-	const getUserInfo = data => {
+	const getUserInfo = (data) => {
 		setUserInfo(data);
 		console.log('userInfo at App :', data);
 	};
 	const loginHandler = () => {
-		setLogin(true);
-	};
-	const refreshTokenHandler = token => {
-		setRefreshToken(token);
-	};
+		localStorage.setItem("login", true)
+		setLogin(true)
+		console.log(localStorage.getItem("login"))
+	}
+	const refreshTokenHandler = (token) => {
+		setRefreshToken(token)
+	}
 	const logoutHandler = async () => {
 		let header = {refreshToken: `${refreshToken}`}
 		const response = await axios.get('https://api.m0ment.be/users/logout', {withCredentials: true, headers: header})
