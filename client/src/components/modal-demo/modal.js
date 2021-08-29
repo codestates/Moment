@@ -7,6 +7,7 @@ import './modal.css';
 export default function Modal({ modalOpen, setModalOpen }) {
 	const modalRef = useRef();
 	const closerModal = e => {
+		console.log(modalRef.current, e.target)
 		if (modalRef.current === e.target) {
 			setModalOpen(false);
 		}

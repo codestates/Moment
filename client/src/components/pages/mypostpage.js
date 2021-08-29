@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './recent-page.css';
+import './mypagepost.css';
 
 import PostCard from '../post-card/postcard';
 
-export default function RecentPage() {
+export default function MyPagePost() {
 	return (
-		<div className="recent-main-container">
+		<div className="My-post-main-container">
 			<PostCard />
 		</div>
 	);
