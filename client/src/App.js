@@ -66,6 +66,9 @@ function App() {
 				<Route path="/test">
 					<LogDetail />
 				</Route>
+				<Route path="/main/recent">
+					<RecentPage />
+				</Route>
 			</Switch>
 		</div>
 	);

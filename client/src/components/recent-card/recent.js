@@ -48,9 +48,11 @@ const RecentCard = ({ title, content, author, updated }) => {
 					</div>
 				</div>
 				<div className="recent-btn-container">
-					<button className="recent-btn">
-						<a>View more</a>
-					</button>
+					<Link to="/main/recent">
+						<button className="recent-btn">
+							<a>View more</a>
+						</button>
+					</Link>
 				</div>
 			</div>
 		</div>
