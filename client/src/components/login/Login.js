@@ -7,7 +7,7 @@ import Modal from '../UI/Modal'
 // import GoogleLoginBtn from './GoogleLoginBtn'
 
 
-const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler}) => {
+const Login = ({getUserInfo, loginModalHandler, loginOn, isLoggedInHandler, refreshTokenHandler, isLoginOpen}) => {
     const FACEBOOK_ID = process.env.FACEBOOK_ID
     const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID
 

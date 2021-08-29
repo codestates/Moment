@@ -7,21 +7,20 @@ import ModalSignUp from '../modal/ModalSignUp'
 import Modal from '../modal/Modal'
 import PropTypes from 'prop-types'
 export default function Header({getUserInfo, loginHandler, login, logoutHandler, refreshTokenHandler}) {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [loginOn, setLoginOn] = useState(false);
-	const [signUpON, setSignUpOn] = useState(false);
+	const [isLoginOpen, setIsLoginOpen] = useState(false);
+	const [isSignupOpen, setIsSignupOpen] = useState(false);
 	const loginModalHandler = () => {
-		setLoginOn(!loginOn)
+		setIsLoginOpen(!isLoginOpen)
 	}
 	const signUpModalHandler = () => {
-		setSignUpOn(!signUpON)
+		setIsSignupOpen(!isSignupOpen)
 	}
 
 
 	return (
 		<div className="header">
-			{loginOn && <Modal loginHandler={loginHandler} getUserInfo={getUserInfo} refreshTokenHandler={refreshTokenHandler}/>}
-			{signUpON && <ModalSignUp />}
+			{isLoginOpen && <Modal loginHandler={loginHandler} getUserInfo={getUserInfo} refreshTokenHandler={refreshTokenHandler} loginModalHandler={loginModalHandler} isLoginOpen={isLoginOpen}/>}
+			{isSignupOpen && <ModalSignUp signUpModalHandler={signUpModalHandler} isSignupOpen={isSignupOpen}/>}
 			<Link className="header-title" to="/">
 				<h1>Moment</h1>
 			</Link>

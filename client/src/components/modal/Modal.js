@@ -8,9 +8,8 @@ import './Modal.css';
 
 
 
-const Modal = ({loginHandler, getUserInfo, refreshTokenHandler}) => {
+const Modal = ({loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, isLoginOpen}) => {
 	const modalRef = useRef();
-    const [modalOpen, setModalOpen] = useState(true);
 	const [enteredEmail, setEnteredEmail] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(true);
     const [enteredPassword, setEnteredPassword] = useState('');
@@ -40,7 +39,8 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler}) => {
     }
 	const closerModal = e => {
 		if (modalRef.current === e.target) {
-			setModalOpen(false);
+            loginModalHandler()
+			// setModalOpen(false);
 		}
 	};
     const submitHandler = async() => {
@@ -50,15 +50,15 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler}) => {
         console.log(refreshToken)
         refreshTokenHandler(refreshToken)
         loginHandler()
-        setModalOpen(false);
-        // document.location.replace = '/main'
+        loginModalHandler()
+        document.location.replace = '/main'
     }
 
     const portalPlace = document.getElementById("overlay")
 
 	return (
 		<>  
-        {ReactDOM.createPortal( modalOpen ? (
+        {ReactDOM.createPortal( isLoginOpen ? (
 				<div className="background" ref={modalRef} onClick={closerModal}>
 					<div className="modalwrapper" >
 						<img className="modalimage" src={require('../../assets/svg/17.svg').default} alt="" />
@@ -79,7 +79,7 @@ const Modal = ({loginHandler, getUserInfo, refreshTokenHandler}) => {
 								</button>
 							</div>
 						</div>
-						<div className="modalclosebutton" onClick={()=>setModalOpen(prev => !prev)}>
+						<div className="modalclosebutton" onClick={loginModalHandler}>
 							&#10005;
 						</div>
 					</div>

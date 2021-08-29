@@ -8,14 +8,13 @@ import './ModalSignUp.css';
 
 
 
-const ModalSignUp = () => {
+const ModalSignUp = ({isSignupOpen, signUpModalHandler}) => {
 	const modalRef = useRef();
-    const [modalOpen, setModalOpen] = useState(true);
 	const [enteredEmail, setEnteredEmail] = useState('');
     const [emailIsValid, setEmailIsValid] = useState(true);
     const [enteredPassword, setEnteredPassword] = useState('');
     const [passwordIsValid, setPasswordIsValid] = useState(true);
-    const [confirmPassword, setConfirmPassword] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState(true);
     const [enteredNickname, setEnteredNickname] = useState('');
     const [nicknameIsValid, setNicknameIsValid] = useState(true);
     const [formIsValid, setFormIsValid] = useState(false)
@@ -57,20 +56,20 @@ const ModalSignUp = () => {
     }
 	const closerModal = e => {
 		if (modalRef.current === e.target) {
-			setModalOpen(false);
+            signUpModalHandler()
 		}
 	};
     const submitHandler = async (event) => {
 		event.preventDefault();
 		const res = await axios.put('https://api.m0ment.be/users/signup', {email: enteredEmail, password: enteredPassword, nickname: enteredNickname})
 		console.log(res)
-        setModalOpen(false);
+        signUpModalHandler()
     }
 
     const portalPlace = document.getElementById("overlay")
 	return (
 		<>  
-        {ReactDOM.createPortal( modalOpen ? (
+        {ReactDOM.createPortal( isSignupOpen ? (
 				<div className="background" ref={modalRef} onClick={closerModal}>
 					<div className="modalwrapper">
 						<img className="modalimage" src={require('../../assets/svg/14.svg').default} alt="" />
@@ -88,7 +87,7 @@ const ModalSignUp = () => {
 								<button className={formIsValid ? "btn-recent join" : "btn-recent join invalidbtn"} onClick={submitHandler} disabled={!formIsValid}>Join</button>
 							</div>
 						</div>
-						<div className="modalclosebutton" onClick={()=>setModalOpen(prev => !prev)}>
+						<div className="modalclosebutton" onClick={signUpModalHandler}>
 							&#10005;
 						</div>
 					</div>
