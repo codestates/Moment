@@ -40,11 +40,6 @@ function App() {
 		setLogin(false);
 		document.location.href = './';
 	};
-	const local = localStorage.getItem('login');
-	useEffect(() => {
-		if (local) setLogin(true);
-		else setLogin(false);
-	}, [local]);
 
 	return (
 		<div>
