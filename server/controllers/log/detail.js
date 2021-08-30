@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 					content,
 					author: userInfo.nickname,
 					updated: updatedAt,
-					like: like_count,
+					like_count,
 				},
 			});
 		}
