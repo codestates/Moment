@@ -12,28 +12,19 @@ module.exports = {
 		 * }], {});
 		 */
 		await queryInterface.bulkInsert(
-			'Users',
+			'post_likes',
 			[
 				{
-					email: 'admin@gmail.com',
-					nickname: 'Admin',
-					password: 'nimdA123',
-					createdAt: new Date(),
-					updatedAt: new Date(),
+					post_id: 1,
+					user_id: 2,
 				},
 				{
-					email: 'clover@gmail.com',
-					nickname: 'Clover',
-					password: 'clover',
-					createdAt: new Date(),
-					updatedAt: new Date(),
+					post_id: 1,
+					user_id: 1,
 				},
 				{
-					email: 'moment@m0ment.be',
-					nickname: 'Moment',
-					password: 'moment',
-					createdAt: new Date(),
-					updatedAt: new Date(),
+					post_id: 2,
+					user_id: 3,
 				},
 			],
 			{},
@@ -47,6 +38,5 @@ module.exports = {
 		 * Example:
 		 * await queryInterface.bulkDelete('People', null, {});
 		 */
-		await queryInterface.bulkDelete('Users', null, {});
 	},
 };
