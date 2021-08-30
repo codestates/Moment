@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import classes from './MypageDetail.module.css';
-import PropTypes from 'prop-types';
-import Card from '../UI/MypageCard';
-import Input from '../UI/Input';
-import Button from '../UI/Button';
-import Modal from '../modal/Modal';
 
-const MypageDetail = ({ login, loginHandler }) => {
+import './MypageDetail.css';
+
+const MypageDetail = () => {
 	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
 	const [enteredEmail, setEnteredEmail] = useState('clover@gmail.com');
 	const [enteredNickname, setEnteredNickname] = useState('clover');
@@ -41,67 +36,47 @@ const MypageDetail = ({ login, loginHandler }) => {
 	};
 
 	return (
-		<>
-			{login && <Modal loginHandler={loginHandler} />}
-			{!login && (
-				<Card className={classes.container}>
-					<div className={classes.form} onSubmit={editHandler}>
-						<h2 className={classes.title}>Information</h2>
-						<Input
-							className={classes.ipt}
-							input={{
-								type: 'text',
-								placeholder: 'E-Mail',
-								value: enteredEmail,
-								onChange: emailInputHandler,
-							}}
-						/>
-						<Input
-							className={classes.ipt}
-							input={{
-								type: 'text',
-								placeholder: 'Nickname',
-								value: enteredNickname,
-								onChange: nickNameInputHandler,
-							}}
-						/>
-						<Input
-							className={passwordIsValid ? `${classes.ipt}` : `${classes.ipt} ${classes.invalid}`}
-							input={{
-								placeholder: 'Password',
-								type: 'password',
-								onChange: passwordInputHandler,
-								onBlur: validatePasswordHandler,
-								value: enteredPassword,
-							}}
-						/>
-						<Input
-							className={confirmPassword ? `${classes.ipt}` : `${classes.ipt} ${classes.invalid}`}
-							input={{
-								type: 'password',
-								placeholder: 'Confrim Password',
-								onChange: confirmPasswordHandler,
-							}}
-						/>
-						<div className={!confirmPassword ? `${classes.err}` : `${classes.err} ${classes.errNone}`}>
-							Please check the password.
-						</div>
-						<div className={classes.imgcontainer}>
-							<img className={classes.imgsize} src={require('../../assets/svg/20.svg').default} />
-						</div>
-						<div className={classes.btncontainer}>
-							<Button className={classes.btn}>Edit</Button>
-						</div>
-					</div>
-				</Card>
-			)}
-		</>
+		<div className="my-page-info-container">
+			<h2 className="my-page-info-title">Information</h2>
+			<div className="my-page-info-ipt-container">
+				<input
+					className="my-page-info-ipt"
+					type="text"
+					value={enteredEmail}
+					placeholder="E-Mail"
+					onChange={emailInputHandler}
+				></input>
+				<input
+					className="my-page-info-ipt"
+					type="text"
+					value={enteredNickname}
+					placeholder="Nickname"
+					onChange={nickNameInputHandler}
+				></input>
+				<input
+					className="my-page-info-ipt"
+					type="Password"
+					value={enteredPassword}
+					placeholder="Password"
+					onChange={passwordInputHandler}
+					onBlur={validatePasswordHandler}
+				></input>
+				<input
+					className="my-page-info-ipt"
+					type="Password"
+					placeholder="Confrim Password"
+					onChange={confirmPasswordHandler}
+				></input>
+			</div>
+			<div className="my-page-info-password-err">Please check the password.</div>
+			<div className="my-page-info-imgcontainer">
+				<img className="my-page-info-imgsize" src={require('../../assets/svg/20.svg').default} />
+			</div>
+			<div className="my-page-info-btn-container">
+				<button className="my-page-info-btn">Edit</button>
+			</div>
+		</div>
 	);
-};
-
-MypageDetail.propTypes = {
-	loginModalHandler: PropTypes.any,
-	loginOn: PropTypes.any,
 };
 
 export default MypageDetail;

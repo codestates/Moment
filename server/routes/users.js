@@ -11,5 +11,7 @@ router.get('/profile', userController.profile);
 router.patch('/fixprofile', userController.fixProfile);
 router.get('/facebook', userController.facebook);
 router.get('/google', userController.google);
+router.get('/myPost', userController.myPost);
+router.get('/myPostDetail', userController.myPostDetail);
 
 module.exports = router;

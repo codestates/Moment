@@ -10,7 +10,8 @@ const FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID;
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 const Modal = () => {
-	const { loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler } = useContext(Context);
+	const { loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, headerModalOpen, headerModalHandler } =
+		useContext(Context);
 	const modalRef = useRef();
 	const [enteredEmail, setEnteredEmail] = useState('');
 	const [emailIsValid, setEmailIsValid] = useState(true);
@@ -42,7 +43,8 @@ const Modal = () => {
 	};
 	const closerModal = e => {
 		if (modalRef.current === e.target) {
-			loginModalHandler();
+			if (headerModalOpen) headerModalHandler();
+			else loginModalHandler();
 		}
 	};
 	const submitHandler = async () => {
@@ -56,8 +58,13 @@ const Modal = () => {
 		console.log(refreshToken);
 		refreshTokenHandler(refreshToken);
 		loginHandler();
-		loginModalHandler();
-		document.location.href = './main';
+		if (headerModalOpen) {
+			headerModalHandler();
+			document.location.href = './main';
+		} else {
+			loginModalHandler();
+			document.location.href = './main';
+		}
 	};
 	const FB_URL = `https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=https://api.m0ment.be/users/facebook&scope=email,public_profile`;
 	const Google_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&response_type=code&scope=openid email&redirect_uri=https://api.m0ment.be/users/google`;
@@ -66,6 +73,10 @@ const Modal = () => {
 	};
 	const googleHandler = () => {
 		window.location.assign(Google_URL);
+	};
+	const closeButtonHandler = () => {
+		if (headerModalOpen) headerModalHandler();
+		else loginModalHandler();
 	};
 
 	const portalPlace = document.getElementById('overlay');
@@ -112,7 +123,7 @@ const Modal = () => {
 								</button>
 							</div>
 						</div>
-						<div className="modalclosebutton" onClick={loginModalHandler}>
+						<div className="modalclosebutton" onClick={closeButtonHandler}>
 							&#10005;
 						</div>
 					</div>
