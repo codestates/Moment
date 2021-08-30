@@ -26,7 +26,7 @@ export default function Detail({ post }) {
 			<div className="details-inner-container">
 				<h1 className="details-header">{post.title}</h1>
 				<span className="sub details-subheader">
-					{post.User.author}
+					{post.User.nickname}
 					<br />
 					{post.updated}
 				</span>
