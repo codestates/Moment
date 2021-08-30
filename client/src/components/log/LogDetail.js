@@ -9,7 +9,7 @@ const LogDetail = () => {
 	const postId = document.location.pathname.split('/')[3];
 	const [post, setPost] = useState({});
 	const [heartClicked, setHeartClicked] = useState(false);
-	const [numOfLike, setNumOfLike] = useState(post['like_count']);
+	const [numOfLike, setNumOfLike] = useState(0);
 	const [randomNum, setRandomNum] = useState(1);
 	useEffect(() => {
 		getRandomPic();
