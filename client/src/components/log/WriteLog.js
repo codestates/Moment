@@ -23,11 +23,11 @@ const WriteLog = () => {
 	};
 	const submitHandler = event => {
 		event.preventDefault();
-		console.log({ conetent: content, title: title, secret: secret });
+		console.log({ content: content, title: title, secret: secret });
 		axios
 			.post(
 				'https://api.m0ment.be/log/submit',
-				{ conetent: content, title: title, secret: secret },
+				{ content: content, title: title, secret: secret },
 				{ withCredentials: true },
 			)
 			.then(res => console.log(res));
