@@ -8,8 +8,10 @@ import { Context } from '../../Context';
 
 const FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID;
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Modal = () => {
+	console.log(ENDPOINT, FACEBOOK_ID);
 	const { loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, headerModalOpen, headerModalHandler } =
 		useContext(Context);
 	const modalRef = useRef();
@@ -49,7 +51,7 @@ const Modal = () => {
 	};
 	const submitHandler = async () => {
 		const res = await axios.post(
-			'https://api.m0ment.be/users/login',
+			`${ENDPOINT}/users/login`,
 			{ email: enteredEmail, password: enteredPassword },
 			{ withCredentials: true },
 		);

@@ -16,7 +16,6 @@ const ContextProvider = ({ children }) => {
 	const [refreshToken, setRefreshToken] = useState('');
 	const headerModalHandler = () => {
 		setHeaderModalOpen(!headerModalOpen);
-		console.log(1);
 	};
 	const loginModalHandler = () => {
 		setIsLoginOpen(!isLoginOpen);
