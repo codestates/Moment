@@ -14,7 +14,7 @@
 }
 
 .my-page-info-ipt-container {
-	margin: 40px 95px 0;
+	margin: 25px 95px 0;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -25,20 +25,35 @@
 	padding: 3px;
 }
 
+.my-page-info-ipt-invalid {
+	margin-bottom: 20px;
+	padding: 3px;
+	border-bottom: 1px solid rgb(250, 134, 125);
+}
+
 .my-page-info-password-err {
+	height: 11px;
+	width: 402px;
+	position: fixed;
 	text-align: center;
-	margin-top: 10px;
+	margin: 10px auto 0;
 	font-size: 10px;
+	color: rgb(250, 134, 125);
+}
+
+.my-page-info-password-noerr {
+	display: none;
 }
 
 .my-page-info-imgcontainer {
-	margin: 90px auto 0;
-	width: 200px;
-	height: 150px;
+	margin: 55px auto 0;
+	width: 250px;
+	height: 120px;
 }
 
 .my-page-info-btn-container {
 	text-align: center;
+	margin-top: 60px;
 }
 
 .my-page-info-btn:link,
