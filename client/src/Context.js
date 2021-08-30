@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 const Context = React.createContext({
 	login: '',
 	loginHandler: () => {},
@@ -49,7 +52,7 @@ const ContextProvider = ({ children }) => {
 	}, [local]);
 	const logoutHandler = async () => {
 		let header = { refreshToken: `${refreshToken}` };
-		const response = await axios.get('https://api.m0ment.be/users/logout', {
+		const response = await axios.get(`${ENDPOINT}/users/logout`, {
 			withCredentials: true,
 			headers: header,
 		});
@@ -62,7 +65,7 @@ const ContextProvider = ({ children }) => {
 	//recent
 	const [posts, setPosts] = useState('');
 	useEffect(async () => {
-		const res = await axios.get('https://api.m0ment.be/log/recent/page/1');
+		const res = await axios.get(`${ENDPOINT}/log/recent/page/1`);
 		const logs = res.data.data;
 		setPosts([...logs]);
 		console.log(posts);
