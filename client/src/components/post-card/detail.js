@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { TiHeartOutline } from 'react-icons/ti';
 
 import './detail.css';
 
@@ -38,7 +37,7 @@ export default function Detail() {
 				<p className="details-text">{content}</p>
 				<div className="details-options">
 					<button className={click ? `recent-card-liked-click` : 'recent-card-liked'} onClick={clickHandler}>
-						<FontAwesomeIcon icon={faHeart} size="2x" onClick={countHandler} />
+						<TiHeartOutline size="18" onClick={countHandler} />
 					</button>
 				</div>
 				<span className="detail-count">Like: {count}</span>

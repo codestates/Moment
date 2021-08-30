@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { TiHeartOutline } from 'react-icons/ti';
 import './recent.css';
 const RecentCard = ({ title, content, author, updated }) => {
 	const [click, setClick] = useState(false);
@@ -35,9 +34,8 @@ const RecentCard = ({ title, content, author, updated }) => {
 								className={click ? `recent-card-liked-click` : 'recent-card-liked'}
 								onClick={clickHandler}
 							>
-								<FontAwesomeIcon icon={faHeart} />
+								<TiHeartOutline size="15" />
 							</button>
-							{/* "recent-card-liked" */}
 						</div>
 						<div className="recent-body">
 							<p>{content}</p>
