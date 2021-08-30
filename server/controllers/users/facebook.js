@@ -16,7 +16,6 @@ module.exports = async (req, res) => {
 		},
 	});
 	const accessToken = data.data.access_token;
-	console.log(accessToken);
 	const getUser = await axios({
 		url: 'https://graph.facebook.com/me',
 		method: 'get',
@@ -48,7 +47,7 @@ module.exports = async (req, res) => {
 	});
 	if (!searchUser) {
 		await Users.create({
-			// avatar: payload.data.picture.data.url,
+			avatar: payload.data.picture.data.url,
 			email: payload.data.id,
 			nickname: payload.data.id,
 			password: accessToken,
@@ -62,15 +61,11 @@ module.exports = async (req, res) => {
 	};
 	const currentAccessToken = generateAccessToken(generatePayload);
 	const currentRefreshToken = generateRefreshToken(generatePayload);
-	res.set('refreshToken', currentRefreshToken);
-	res.cookie('accessToken', currentAccessToken, {
-		sameSite: 'none',
-		secure: true,
-		httpOnly: true,
-	});
-
-	res.status(200).send({
-		isLogin: true,
-		data: generatePayload,
-	});
+	res.set('refreshToken', currentRefreshToken)
+		.status(200)
+		.cookie('accessToken', currentAccessToken, {
+			secure: true,
+			httpOnly: true,
+		})
+		.redirect('https://m0ment.be/');
 };
