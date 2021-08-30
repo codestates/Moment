@@ -29,9 +29,15 @@ const ContextProvider = ({ children }) => {
 		console.log('userInfo at App :', data);
 	};
 	const loginHandler = () => {
+		// 마이프로필에 요청, 데이터가 없으면 로그인안된거, 데이터가 있으면,
+		// console.log(1);
+		// const res = await axios.get('https://api.m0ment.be/users/profile', { withCredentials: true });
+		// console.log(res);
+		// if (res.data) {
 		localStorage.setItem('login', true);
 		setLogin(true);
 		console.log(localStorage.getItem('login'));
+		// }
 	};
 	const refreshTokenHandler = token => {
 		setRefreshToken(token);
