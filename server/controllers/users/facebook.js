@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 		method: 'get',
 		params: {
 			client_id: process.env.FB_CLIENT_ID,
-			redirect_uri: `${process.env.END_POINT}/users/facebook_redirect`,
+			redirect_uri: `${process.env.END_POINT}/users/facebook`,
 			client_secret: process.env.FB_CLIENT_SECRET,
 			code: req.query.code,
 		},

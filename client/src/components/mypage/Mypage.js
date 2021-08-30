@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Mypage.css';
 import { FiPaperclip } from 'react-icons/fi';
-import { RiUserSettingsLine } from 'react-icons/ri';
+import { RiHomeHeartLine, RiBookMarkLine, RiInformationLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 
 const Mypage = () => {
@@ -29,8 +29,13 @@ const Mypage = () => {
 					<FiPaperclip size={30} />
 				</button>
 				<div className="my-page-card-info-welcome-container">
-					<p>Welcome! What would you like to write today?</p>
+					<p>Welcome! What do you want to write today?</p>
 				</div>
+			</div>
+			<div className="my-page-card-info-options-icon">
+				<RiHomeHeartLine />
+				<RiBookMarkLine />
+				<RiInformationLine />
 			</div>
 			<div className="my-page-card-info-options">
 				<button>Moment</button>
