@@ -1,4 +1,5 @@
 const { Posts, Users } = require('../../models');
+const { isAuthorized } = require('../../lib/index');
 
 module.exports = async (req, res) => {
   const post_id = req.params.id;

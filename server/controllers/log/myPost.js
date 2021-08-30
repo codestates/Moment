@@ -22,7 +22,11 @@ module.exports = async (req, res) => {
           where: { user_id: userInfo.id },
           include: [{ model: Users, attributes: ['nickname'] }],
         });
-        res.status(200).json({ data: pageData });
+        if (offset + 1 <= pageData.length) {
+          res.status(200).json({ data: pageData });
+        } else {
+          res.status(404).json({ message: "end!!!" });
+        }
       } catch (err) {
         console.log(err);
       }
