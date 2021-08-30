@@ -11,7 +11,6 @@ const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Modal = () => {
-	console.log(ENDPOINT, FACEBOOK_ID);
 	const { loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, headerModalOpen, headerModalHandler } =
 		useContext(Context);
 	const modalRef = useRef();
