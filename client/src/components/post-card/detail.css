@@ -28,8 +28,12 @@
 }
 
 .details-text {
+	/* font: inherit;
+	font-family: 'IBMPlexSansKR-ExtraLight'; */
 	color: #000;
 	font-weight: 200;
+	width: 216px;
+	height: 96px;
 	font-size: 20px;
 }
 
