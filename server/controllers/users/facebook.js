@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 		method: 'get',
 		params: {
 			client_id: process.env.FB_CLIENT_ID,
-			redirect_uri: 'https://api.m0ment.be/users/facebook',
+			redirect_uri: `${process.env.END_POINT}/users/facebook`,
 			client_secret: process.env.FB_CLIENT_SECRET,
 			code: req.query.code,
 		},
@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
 	});
 	if (!searchUser) {
 		await Users.create({
-			avatar: payload.data.picture.data.url,
+			// avatar: payload.data.picture.data.url,
 			email: payload.data.id,
 			nickname: payload.data.id,
 			password: accessToken,
