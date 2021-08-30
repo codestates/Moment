@@ -10,12 +10,13 @@ module.exports = async (req, res) => {
 		method: 'get',
 		params: {
 			client_id: process.env.FB_CLIENT_ID,
-			redirect_uri: `${process.env.END_POINT}/users/facebook`,
+			redirect_uri: `${process.env.END_POINT}/users/facebook_redirect`,
 			client_secret: process.env.FB_CLIENT_SECRET,
 			code: req.query.code,
 		},
 	});
 	const accessToken = data.data.access_token;
+	console.log(accessToken);
 	const getUser = await axios({
 		url: 'https://graph.facebook.com/me',
 		method: 'get',
