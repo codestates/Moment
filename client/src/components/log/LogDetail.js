@@ -22,10 +22,10 @@ const LogDetail = () => {
 		const res = await axios.get(`${ENDPOINT}/log/like/${postId}`, { withCredentials: true });
 		console.log(res);
 		if (!heartClicked) {
-			setHeartClicked(!click);
+			setHeartClicked(!heartClicked);
 			setNumOfLike(prevState => prevState + 1);
 		} else {
-			setHeartClicked(!click);
+			setHeartClicked(!heartClicked);
 			setNumOfLike(prevState => prevState - 1);
 		}
 	};
