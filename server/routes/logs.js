@@ -5,7 +5,7 @@ const { logController } = require('../controllers');
 
 // Users Controller
 router.post('/submit', logController.submit);
-router.post('/fix/:id', logController.fix);
+router.patch('/fix/:id', logController.fix);
 router.delete('/delete/:id', logController.delete);
 router.get('/detail/:id', logController.detail);
 router.get('/like/:id', logController.like);
