@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { Users } = require('../../models');
 const dotenv = require('dotenv');
-const { generateRefreshToken } = require('../../lib');
+const { generateRefreshToken, generateAccessToken } = require('../../lib');
 dotenv.config();
 
 module.exports = async (req, res) => {
@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
 			code: req.query.code,
 			client_id: process.env.GOOGLE_CLIENT_ID,
 			client_secret: process.env.GOOGLE_CLIENT_SECRET,
-			redirect_uri: 'https://api.m0ment.be/users/google',
+			redirect_uri: `${process.env.END_POINT}/users/google`,
 			grant_type: 'authorization_code',
 		},
 	});
@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
 	});
 	if (!searchUser) {
 		await Users.create({
-			avatar: googleUserInfo.data.picture,
+			// avatar: googleUserInfo.data.picture,
 			email: googleUserInfo.data.email,
 			nickname: googleUserInfo.data.sub,
 			password: googleAccessToken,
@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
 		secure: true,
 		httpOnly: true,
 	});
-	res.status(200).send({
+	res.status(200).json({
 		isLogin: true,
 		data: payload,
 	});
