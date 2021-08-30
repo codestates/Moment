@@ -8,11 +8,16 @@ const Context = React.createContext({
 
 const ContextProvider = ({ children }) => {
 	//login, signup
+	const [headerModalOpen, setHeaderModalOpen] = useState(false);
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isSignupOpen, setIsSignupOpen] = useState(false);
 	const [userInfo, setUserInfo] = useState('');
 	const [login, setLogin] = useState(false);
 	const [refreshToken, setRefreshToken] = useState('');
+	const headerModalHandler = () => {
+		setHeaderModalOpen(!headerModalOpen);
+		console.log(1);
+	};
 	const loginModalHandler = () => {
 		setIsLoginOpen(!isLoginOpen);
 		console.log(isLoginOpen);
@@ -71,6 +76,8 @@ const ContextProvider = ({ children }) => {
 				signUpModalHandler,
 				logoutHandler,
 				posts,
+				headerModalOpen,
+				headerModalHandler,
 			}}
 		>
 			{children}

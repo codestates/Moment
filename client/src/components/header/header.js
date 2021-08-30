@@ -5,19 +5,19 @@ import ModalSignUp from '../modal/ModalSignUp';
 import Modal from '../modal/Modal';
 import { Context } from '../../Context';
 export default function Header() {
-	const { login, isLoginOpen, isSignupOpen, loginModalHandler, signUpModalHandler, logoutHandler } =
+	const { login, isSignupOpen, signUpModalHandler, logoutHandler, headerModalOpen, headerModalHandler } =
 		useContext(Context);
 
 	return (
 		<div className="header">
-			{isLoginOpen && <Modal />}
-			{isSignupOpen && <ModalSignUp signUpModalHandler={signUpModalHandler} isSignupOpen={isSignupOpen} />}
+			{headerModalOpen && <Modal />}
+			{isSignupOpen && <ModalSignUp />}
 			<Link className="header-title" to="/">
 				<h1>Moment</h1>
 			</Link>
 			{!login && (
 				<div className="option">
-					<div className="header-login" onClick={loginModalHandler}>
+					<div className="header-login" onClick={headerModalHandler}>
 						Login
 					</div>
 					<div className="header-signup" onClick={signUpModalHandler}>

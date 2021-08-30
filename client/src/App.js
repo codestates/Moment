@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
@@ -13,8 +13,11 @@ import Modal from './components/modal/Modal';
 import LogDetail from './components/log/LogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
+import { Context } from './Context';
 
 function App() {
+	const { isLoginOpen, login } = useContext(Context);
+
 	return (
 		<div>
 			<Header />
@@ -25,15 +28,9 @@ function App() {
 				<Route exact path="/main">
 					<MainPage />
 				</Route>
-				<Route path="/log">
-					<WriteLog />
-				</Route>
-				<Route path="/myprofile">
-					<Mypage />
-				</Route>
-				<Route path="/fixprofile">
-					<MypageDetail />
-				</Route>
+				<Route path="/log">{login && !isLoginOpen ? <WriteLog /> : <Modal />}</Route>
+				<Route path="/myprofile">{login && !isLoginOpen ? <Mypage /> : <Modal />}</Route>
+				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
 				<Route path="/test">
 					<LogDetail />
 				</Route>
