@@ -57,15 +57,14 @@ const Modal = () => {
 		);
 		getUserInfo(res.data.data);
 		const refreshToken = JSON.stringify(res.headers.refreshtoken);
-		console.log(refreshToken);
 		refreshTokenHandler(refreshToken);
 		loginHandler();
 		if (headerModalOpen) {
 			headerModalHandler();
-			document.location.href = './main';
+			document.location.href = '/main';
 		} else {
 			loginModalHandler();
-			document.location.href = './main';
+			document.location.href = '/main';
 		}
 	};
 	const FB_URL = `https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=https://api.m0ment.be/users/facebook&scope=email,public_profile`;
