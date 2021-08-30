@@ -8,23 +8,28 @@ module.exports = async (req, res) => {
 	const googleCode = await axios({
 		url: 'https://oauth2.googleapis.com/token',
 		method: 'post',
+		headers: {
+			accept: 'application/json',
+		},
 		data: {
 			code: req.query.code,
 			client_id: process.env.GOOGLE_CLIENT_ID,
 			client_secret: process.env.GOOGLE_CLIENT_SECRET,
-			redirect_uri: `${process.env.END_POINT}/users/google`,
+			// redirect_uri: `${process.env.END_POINT}/`,
+			redirect_uri: `http://localhost:3000/`,
 			grant_type: 'authorization_code',
 		},
 	});
 	const googleAccessToken = googleCode.data.access_token;
-	const googleUserInfo = await axios({
-		url: 'https://www.googleapis.com/oauth2/v3/userinfo',
-		method: 'get',
-		params: {
-			access_token: googleAccessToken,
-			scope: 'https://www.googleapis.com/auth/userinfo.email',
-		},
-	});
+	res.send(googleAccessToken);
+	// const googleUserInfo = await axios({
+	// 	url: 'https://www.googleapis.com/oauth2/v3/userinfo',
+	// 	method: 'get',
+	// 	params: {
+	// 		access_token: googleAccessToken,
+	// 		scope: 'https://www.googleapis.com/auth/userinfo.email',
+	// 	},
+	// });
 	// data structure
 	// googleUserInfo.data = {
 	// 	"sub": "109577084072413087857",
@@ -32,33 +37,32 @@ module.exports = async (req, res) => {
 	// 	"email": "8350130@gmail.com",
 	// 	"email_verified": true
 	//   }
-	const searchUser = await Users.findOne({
-		where: { email: googleUserInfo.data.email },
-	});
-	if (!searchUser) {
-		await Users.create({
-			// avatar: googleUserInfo.data.picture,
-			email: googleUserInfo.data.email,
-			nickname: googleUserInfo.data.sub,
-			password: googleAccessToken,
-			createdAt: new Date(),
-			updatedAt: new Date(),
-		});
-	}
-	const payload = {
-		email: googleUserInfo.data.email,
-		nickname: googleUserInfo.data.sub,
-	};
-	const accessToken = generateAccessToken(payload);
-	const refreshToken = generateRefreshToken(payload);
-	res.set('refreshToken', refreshToken);
-	res.cookie('accessToken', accessToken, {
-		sameSite: 'none',
-		secure: true,
-		httpOnly: true,
-	});
-	res.status(200).json({
-		isLogin: true,
-		data: payload,
-	});
+
+	// const searchUser = await Users.findOne({
+	// 	where: { email: googleUserInfo.data.email },
+	// });
+	// if (!searchUser) {
+	// 	await Users.create({
+	// 		// avatar: googleUserInfo.data.picture,
+	// 		email: googleUserInfo.data.email,
+	// 		nickname: googleUserInfo.data.sub,
+	// 		password: googleAccessToken,
+	// 		createdAt: new Date(),
+	// 		updatedAt: new Date(),
+	// 	});
+	// }
+	// const payload = {
+	// 	email: googleUserInfo.data.email,
+	// 	nickname: googleUserInfo.data.sub,
+	// };
+	// const accessToken = generateAccessToken(payload);
+	// const refreshToken = generateRefreshToken(payload);
+	// res.set('refreshToken', refreshToken);
+	// res.status(200)
+	// 	.cookie('accessToken', accessToken, {
+	// 		sameSite: 'none',
+	// 		secure: true,
+	// 		httpOnly: true,
+	// 	})
+	// 	.redirect('http://localhost:3000/main');
 };
