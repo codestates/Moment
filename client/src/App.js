@@ -13,6 +13,7 @@ import LogDetail from './components/log/LogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 import { Context } from './Context';
+import MyPostPage from './components/pages/MyPostPage';
 
 function App() {
 	const { isLoginOpen, login } = useContext(Context);
@@ -27,14 +28,21 @@ function App() {
 				<Route exact path="/main">
 					<MainPage />
 				</Route>
-				<Route path="/log">{login && !isLoginOpen ? <WriteLog /> : <Modal />}</Route>
-				<Route path="/myprofile">{login && !isLoginOpen ? <Mypage /> : <Modal />}</Route>
+				<Route exact path="/log">
+					{login && !isLoginOpen ? <WriteLog /> : <Modal />}
+				</Route>
+				<Route exact path="/myprofile">
+					{login && !isLoginOpen ? <Mypage /> : <Modal />}
+				</Route>
 				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
-				<Route path="/test">
+				<Route path="/log/detail/:postId">
 					<LogDetail />
 				</Route>
 				<Route path="/main/recent">
 					<RecentPage />
+				</Route>
+				<Route path="/myprofile/mypost">
+					<MyPostPage />
 				</Route>
 			</Switch>
 		</div>
