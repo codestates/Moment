@@ -18,16 +18,15 @@ const WriteLog = () => {
 		setSecret(e.currentTarget.checked);
 		console.log(secret);
 	};
-	const submitHandler = event => {
+	const submitHandler = async event => {
 		event.preventDefault();
-		console.log({ content: content, title: title, secret: secret });
-		axios
-			.post(
-				'https://api.m0ment.be/log/submit',
-				{ content: content, title: title, secret: secret },
-				{ withCredentials: true },
-			)
-			.then(res => console.log(res));
+		const res = await axios.put(
+			'https://api.m0ment.be/log/submit',
+			{ content, title, secret },
+			{ withCredentials: true },
+		);
+		console.log(res);
+		document.location.href = './main/recent';
 	};
 	return (
 		<>
