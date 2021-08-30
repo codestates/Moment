@@ -12,5 +12,6 @@ router.get('/like/:id', logController.like);
 router.get('/recent/page/:num', logController.recent);
 router.get('/myPost/:num', logController.myPost);
 router.get('/myPostDetail/:id', logController.myPostDetail);
+router.get('/userIsLike/:id', logController.userIsLike);
 
 module.exports = router;
