@@ -3,6 +3,8 @@ import axios from 'axios';
 import classes from './WriteLog.module.css';
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
 
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 const WriteLog = () => {
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
@@ -20,11 +22,7 @@ const WriteLog = () => {
 	};
 	const submitHandler = async event => {
 		event.preventDefault();
-		const res = await axios.put(
-			'https://api.m0ment.be/log/submit',
-			{ content, title, secret },
-			{ withCredentials: true },
-		);
+		const res = await axios.put(`${ENDPOINT}/log/submit`, { content, title, secret }, { withCredentials: true });
 		console.log(res);
 		document.location.href = './main/recent';
 	};
