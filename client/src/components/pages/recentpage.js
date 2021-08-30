@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PostCard from '../post-card/postcard';
+import Spinner from '../spinner/spinner';
+import { Context } from '../../Context';
 
 import './recentpage.css';
 
-import PostCard from '../post-card/postcard';
-
-import Spinner from '../spinner/spinner';
-import { Context } from '../../Context';
 export default function RecentPage() {
 	const { posts } = useContext(Context);
 	console.log(posts);

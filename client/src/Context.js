@@ -64,7 +64,7 @@ const ContextProvider = ({ children }) => {
 	useEffect(async () => {
 		const res = await axios.get('https://api.m0ment.be/log/recent/page/1');
 		const logs = res.data.data;
-		setPosts([logs]);
+		setPosts([...logs]);
 		console.log(posts);
 	}, []);
 

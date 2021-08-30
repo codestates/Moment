@@ -4,6 +4,8 @@ import axios from 'axios';
 import './ModalSignUp.css';
 import { Context } from '../../Context';
 
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 const ModalSignUp = () => {
 	const { isSignupOpen, signUpModalHandler } = useContext(Context);
 	const modalRef = useRef();
@@ -67,7 +69,7 @@ const ModalSignUp = () => {
 	};
 	const submitHandler = async event => {
 		event.preventDefault();
-		const res = await axios.put('https://api.m0ment.be/users/signup', {
+		const res = await axios.put(`${ENDPOINT}/users/signup`, {
 			email: enteredEmail,
 			password: enteredPassword,
 			nickname: enteredNickname,
