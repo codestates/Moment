@@ -6,4 +6,6 @@ module.exports = {
 	fixProfile: require('./fixMyProfile'),
 	facebook: require('./facebook'),
 	google: require('./google'),
+	myPost: require('./myPost'),
+	myPostDetail: require('./myPostDetail')
 };
