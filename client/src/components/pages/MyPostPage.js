@@ -4,7 +4,9 @@ import PostCard from '../post-card/postcard';
 import Spinner from '../spinner/spinner';
 import axios from 'axios';
 import classes from './MyPostPage.module.css';
-import { Redirect } from 'react-router-dom';
+
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 export default function MyPostPage() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [pages, setPages] = useState(1);
@@ -25,7 +27,7 @@ export default function MyPostPage() {
 		setPages(prevState => prevState + 1);
 	};
 	const getPostsHandler = async () => {
-		const res = await axios.get(`https://api.m0ment.be/log/recent/page/${pages}`);
+		const res = await axios.get(`${ENDPOINT}/log/recent/page/${pages}`);
 		if (res.data.data.length === 0) {
 			setPages(prevState => {
 				if (prevState === 1) return 1;

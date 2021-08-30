@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import './MypageDetail.css';
 
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 const MypageDetail = () => {
 	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
 	const [enteredEmail, setEnteredEmail] = useState('clover@gmail.com');
@@ -18,7 +20,7 @@ const MypageDetail = () => {
 
 	const changeUser = async () => {
 		const changeuser = await axios.patch(
-			'https://api.m0ment.be/users/fixmyprofile',
+			`${ENDPOINT}/users/fixmyprofile`,
 			{ nickname: enteredNickname, password: enteredPassword },
 			{ withCredentials: true },
 		);

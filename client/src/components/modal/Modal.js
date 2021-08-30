@@ -66,8 +66,8 @@ const Modal = () => {
 			document.location.href = '/main';
 		}
 	};
-	const FB_URL = `https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=https://api.m0ment.be/users/facebook&scope=email,public_profile`;
-	const Google_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&response_type=code&scope=openid email&redirect_uri=https://api.m0ment.be/users/google`;
+	const FB_URL = `https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=${ENDPOINT}/users/facebook&scope=email,public_profile`;
+	const Google_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&response_type=code&scope=openid email&redirect_uri=${ENDPOINT}/users/google`;
 	const facebookHandler = () => {
 		window.location.assign(FB_URL);
 	};

@@ -5,6 +5,8 @@ import { TiHeartOutline } from 'react-icons/ti';
 import classes from './LogDetail.module.css';
 import axios from 'axios';
 
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
+
 const LogDetail = () => {
 	const postId = document.location.pathname.split('/')[3];
 	const [post, setPost] = useState({});
@@ -17,7 +19,7 @@ const LogDetail = () => {
 	}, []);
 
 	const likeHandler = async () => {
-		const res = await axios.get(`https://api.m0ment.be/log/like/${postId}`, { withCredentials: true });
+		const res = await axios.get(`${ENDPOINT}/log/like/${postId}`, { withCredentials: true });
 		console.log(res);
 		if (!heartClicked) {
 			setHeartClicked(!click);
@@ -33,7 +35,7 @@ const LogDetail = () => {
 		setRandomNum(ranNum);
 	};
 	const getPostsHandler = async () => {
-		const res = await axios(`https://api.m0ment.be/log/detail/${postId}`);
+		const res = await axios(`${ENDPOINT}/log/detail/${postId}`);
 		setPost(res.data.data);
 		setNumOfLike(res.data.data.like_count);
 	};
