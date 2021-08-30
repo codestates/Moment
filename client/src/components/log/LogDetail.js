@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TiHeartOutline } from 'react-icons/ti';
@@ -8,7 +8,11 @@ const LogDetail = ({ post }) => {
 	//post 정보(title, image, author, updated__at, content, like)를 프랍으로 받아서 보여주기
 	const [heartClicked, setHeartClicked] = useState(false);
 	const [numOfLike, setNumOfLike] = useState(1);
+	const [randomNum, setRandomNum] = useState(1);
 
+	useEffect(() => {
+		getRandomPic();
+	}, []);
 	const likeHandler = () => {
 		setHeartClicked(prev => !prev);
 		setNumOfLike(prev => {
@@ -16,10 +20,15 @@ const LogDetail = ({ post }) => {
 			return prev + 1;
 		});
 	};
+	const getRandomPic = () => {
+		let ranNum = Math.floor(Math.random() * 30) * +1;
+		//1~31까지 난수생성
+		setRandomNum(ranNum);
+	};
 	return (
 		<div className={`${classes.contains} ${classes.middle}`}>
 			<div className={classes.header__container}>
-				<img src={require('../../static/images/composition-3.png').default} className="header-image"></img>
+				<img src={require(`../../assets/svg/${randomNum}.svg`).default} className="header-image"></img>
 			</div>
 			<div className={classes.userInfo__container}>
 				<div className={classes.userPicName}>
