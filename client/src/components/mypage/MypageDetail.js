@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import './MypageDetail.css';
 
@@ -12,9 +13,17 @@ const MypageDetail = () => {
 
 	const editHandler = event => {
 		event.preventDefault();
-		axios
-			.post('https://api.m0ment.be/', { email: '', nickname: '', password: '' }, { withCredentials: true })
-			.then(res => console.log(res));
+		changeUser();
+	};
+
+	const changeUser = async () => {
+		const changeuser = await axios.patch(
+			'https://api.m0ment.be/users/fixmyprofile',
+			{ nickname: enteredNickname, password: enteredPassword },
+			{ withCredentials: true },
+		);
+		// 안 되고 있음.. ㅋ E뜨흑..
+		console.log(changeuser);
 	};
 	const emailInputHandler = e => {
 		setEnteredEmail(e.target.value);
@@ -54,7 +63,7 @@ const MypageDetail = () => {
 					onChange={nickNameInputHandler}
 				></input>
 				<input
-					className="my-page-info-ipt"
+					className={passwordIsValid ? `${'my-page-info-ipt'}` : `${'my-page-info-ipt-invalid'}`}
 					type="Password"
 					value={enteredPassword}
 					placeholder="Password"
@@ -62,18 +71,22 @@ const MypageDetail = () => {
 					onBlur={validatePasswordHandler}
 				></input>
 				<input
-					className="my-page-info-ipt"
+					className={confirmPassword ? `${'my-page-info-ipt'}` : `${'my-page-info-ipt-invalid'}`}
 					type="Password"
 					placeholder="Confrim Password"
 					onChange={confirmPasswordHandler}
 				></input>
 			</div>
-			<div className="my-page-info-password-err">Please check the password.</div>
+			<div className={!confirmPassword ? `${'my-page-info-password-err'}` : `${'my-page-info-password-noerr'}`}>
+				Please check the password.
+			</div>
 			<div className="my-page-info-imgcontainer">
 				<img className="my-page-info-imgsize" src={require('../../assets/svg/20.svg').default} />
 			</div>
 			<div className="my-page-info-btn-container">
-				<button className="my-page-info-btn">Edit</button>
+				<button className="my-page-info-btn" onClick={editHandler}>
+					Edit
+				</button>
 			</div>
 		</div>
 	);

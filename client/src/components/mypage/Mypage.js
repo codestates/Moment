@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import classes from './Mypage.module.css';
 import MypageDetail from './MypageDetail';
@@ -11,14 +11,20 @@ import { ReactComponent as Plus } from '../../assets/plusIcon.svg';
 import { Link } from 'react-router-dom';
 
 const Mypage = () => {
-	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
-	// axios.get('https://api.m0ment.be/users/profile', { withCredentials: true }).then(res => {
-	// 	const { data: userInfo } = res;
-	// 	setUserInfo(userInfo);
-	// });
+	const [userInfo, setUserInfo] = useState({ email: '', nickname: '' });
+	useEffect(() => {
+		getUsersInfo();
+	}, []);
+	const getUsersInfo = async () => {
+		const user = await axios.get('https://api.m0ment.be/users/profile', { withCredentials: true });
+		const { email, nickname } = user.data.data;
+		setUserInfo({ email, nickname });
+	};
+	// const { data: userInfo } = res;
+	// setUserInfo(userInfo);
 
 	const { email, nickname } = userInfo;
-	console.log(email);
+	// console.log(email);
 	return (
 		<>
 			<div className={`${classes.card} ${classes.middle}`}>
