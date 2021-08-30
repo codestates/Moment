@@ -13,7 +13,7 @@ export default function StartPage() {
 			))} */}
 			<Logo className="startpage-logo" />
 			<div></div>
-			<h1 className="startpage-title">Remember your moment in Moments forever.</h1>
+			<h1 className="startpage-title">Remember your moment in Moment forever.</h1>
 			<a
 				href="/main"
 				className="startpage-btn
