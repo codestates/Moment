@@ -1,43 +1,40 @@
 import React, { useState } from 'react';
 import { TiHeartOutline } from 'react-icons/ti';
-
+import axios from 'axios';
 import './detail.css';
 
-export default function Detail() {
-	const [title, setTitle] = useState('Github, it`s too hard..');
-	const [content, setContent] = useState(
-		'It`s too hard for me. If there`s an error, I`m going crazy. This is really crazy...',
-	);
-	const [author, setAuthor] = useState('xinnni');
-	const [updated, setUpdated] = useState('2021.08.28');
-
+export default function Detail({ post }) {
 	const [click, setClick] = useState(false);
-	const [count, setCount] = useState(Number(1));
-	const clickHandler = () => {
-		setClick(!click);
-	};
+	const [count, setCount] = useState(post.like_count);
+	// const clickHandler = () => {
+	// 	setClick(!click);
+	// };
 
-	const countHandler = () => {
+	//전달된 post에 해당 유저가 좋아요를 눌렀는지 여부가 포함 되어 있어야 할듯.
+	const countHandler = async () => {
+		const res = await axios.get(`https://api.m0ment.be/log/like/${post.id}`, { withCredentials: true });
+		console.log(res);
 		if (!click) {
+			setClick(!click);
 			setCount(prevState => prevState + 1);
 		} else {
+			setClick(!click);
 			setCount(prevState => prevState - 1);
 		}
-		console.log(count);
 	};
 	return (
 		<div className="details-container">
 			<div className="details-inner-container">
-				<h1 className="details-header">{title}</h1>
+				<h1 className="details-header">{post.title}</h1>
 				<span className="sub details-subheader">
-					{author}
+					{post.User.author}
 					<br />
-					{updated}
+					{post.updated}
 				</span>
-				<p className="details-text">{content}</p>
+				<p className="details-text">{post.content}</p>
 				<div className="details-options">
-					<button className={click ? `recent-card-liked-click` : 'recent-card-liked'} onClick={clickHandler}>
-						<TiHeartOutline size="18" onClick={countHandler} />
+					<button className={click ? `recent-card-liked-click` : 'recent-card-liked'} onClick={countHandler}>
+						<TiHeartOutline size="18" />
 					</button>
 				</div>
 				<span className="detail-count">Like: {count}</span>
