@@ -8,9 +8,6 @@ module.exports = async (req, res) => {
 	const googleCode = await axios({
 		url: 'https://oauth2.googleapis.com/token',
 		method: 'post',
-		headers: {
-			accept: 'application/json',
-		},
 		data: {
 			code: req.query.code,
 			client_id: process.env.GOOGLE_CLIENT_ID,
@@ -20,15 +17,14 @@ module.exports = async (req, res) => {
 		},
 	});
 	const googleAccessToken = googleCode.data.access_token;
-	res.send(googleAccessToken);
-	// const googleUserInfo = await axios({
-	// 	url: 'https://www.googleapis.com/oauth2/v3/userinfo',
-	// 	method: 'get',
-	// 	params: {
-	// 		access_token: googleAccessToken,
-	// 		scope: 'https://www.googleapis.com/auth/userinfo.email',
-	// 	},
-	// });
+	const googleUserInfo = await axios({
+		url: 'https://www.googleapis.com/oauth2/v3/userinfo',
+		method: 'get',
+		params: {
+			access_token: googleAccessToken,
+			scope: 'https://www.googleapis.com/auth/userinfo.email',
+		},
+	});
 	// data structure
 	// googleUserInfo.data = {
 	// 	"sub": "109577084072413087857",
@@ -37,31 +33,30 @@ module.exports = async (req, res) => {
 	// 	"email_verified": true
 	//   }
 
-	// const searchUser = await Users.findOne({
-	// 	where: { email: googleUserInfo.data.email },
-	// });
-	// if (!searchUser) {
-	// 	await Users.create({
-	// 		// avatar: googleUserInfo.data.picture,
-	// 		email: googleUserInfo.data.email,
-	// 		nickname: googleUserInfo.data.sub,
-	// 		password: googleAccessToken,
-	// 		createdAt: new Date(),
-	// 		updatedAt: new Date(),
-	// 	});
-	// }
-	// const payload = {
-	// 	email: googleUserInfo.data.email,
-	// 	nickname: googleUserInfo.data.sub,
-	// };
-	// const accessToken = generateAccessToken(payload);
-	// const refreshToken = generateRefreshToken(payload);
-	// res.set('refreshToken', refreshToken);
-	// res.status(200)
-	// 	.cookie('accessToken', accessToken, {
-	// 		sameSite: 'none',
-	// 		secure: true,
-	// 		httpOnly: true,
-	// 	})
-	// 	.redirect('http://localhost:3000/main');
+	const searchUser = await Users.findOne({
+		where: { email: googleUserInfo.data.email },
+	});
+	if (!searchUser) {
+		await Users.create({
+			avatar: googleUserInfo.data.picture,
+			email: googleUserInfo.data.email,
+			nickname: googleUserInfo.data.sub,
+			password: googleAccessToken,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		});
+	}
+	const payload = {
+		email: googleUserInfo.data.email,
+		nickname: googleUserInfo.data.sub,
+	};
+	const accessToken = generateAccessToken(payload);
+	const refreshToken = generateRefreshToken(payload);
+	res.set('refreshToken', refreshToken)
+		.status(200)
+		.cookie('accessToken', accessToken, {
+			secure: true,
+			httpOnly: true,
+		})
+		.redirect('https://m0ment.be/');
 };
