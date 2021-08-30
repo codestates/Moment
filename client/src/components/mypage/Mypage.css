@@ -9,7 +9,7 @@
 
 .my-page-card-image-container {
 	height: 150px;
-	background: #7fbbca;
+	/* background: #7fbbca; */
 }
 
 .my-page-card-image-container img {
@@ -30,7 +30,7 @@
 }
 
 .my-page-card-info-btn {
-	margin-top: 50px;
+	margin-top: 45px;
 	transition: all 0.2s ease;
 }
 .my-page-card-info-btn:hover {
@@ -39,7 +39,7 @@
 }
 
 .my-page-card-info-welcome-container {
-	margin: 40px auto 0;
+	margin: 60px auto 0;
 }
 
 .my-page-card-info-welcome-container p {
@@ -47,8 +47,8 @@
 	border-right: 2px solid black;
 	white-space: nowrap;
 	overflow: hidden;
-	margin-left: 75px;
-	animation: typing 8s steps(36) infinite alternate;
+	margin-left: 79px;
+	animation: typing 7s steps(35) infinite alternate;
 }
 
 @keyframes typing {
@@ -57,12 +57,12 @@
 	}
 
 	100% {
-		width: 36ch;
+		width: 34.6ch;
 	}
 }
 
 .my-page-card-info-options {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 }
