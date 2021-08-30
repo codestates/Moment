@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
       where: { secret: false },
       include: [{ model: Users, attributes: ['nickname'] }],
     });
-    if (offset + 1 <= pageData) {
+    if (offset + 1 <= pageData.length) {
       res.status(200).json({ data: pageData });
     } else {
       res.status(404).json({ message: "end!!!" });
