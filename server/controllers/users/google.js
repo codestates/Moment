@@ -15,8 +15,7 @@ module.exports = async (req, res) => {
 			code: req.query.code,
 			client_id: process.env.GOOGLE_CLIENT_ID,
 			client_secret: process.env.GOOGLE_CLIENT_SECRET,
-			// redirect_uri: `${process.env.END_POINT}/`,
-			redirect_uri: `http://localhost:3000/`,
+			redirect_uri: `${process.env.END_POINT}/users/google`,
 			grant_type: 'authorization_code',
 		},
 	});
