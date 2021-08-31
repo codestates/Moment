@@ -5,11 +5,11 @@ module.exports = async (req, res) => {
 	const post_id = req.params.id;
 	const accessToken = req.cookies.accessToken;
 	if (!accessToken) {
-		res.status(400).send({ isLike: false });
+		res.status(401).send({ isLike: false });
 	} else {
 		const accessTokenData = isAuthorized(accessToken);
 		if (!accessTokenData) {
-			res.status(401).send({ isLike: false });
+			res.status(400).send({ isLike: false });
 		} else {
 			try {
 				const user = await Users.findOne({

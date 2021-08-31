@@ -6,10 +6,10 @@ module.exports = async (req, res) => {
   const num = req.params.num || 1;
   let offset = 4 * (num - 1);
   if (accessToken === undefined) {
-    res.status(400).json({ data: null });
+    res.status(401).json({ data: null });
   } else {
     const accessTokenData = isAuthorized(accessToken);
-    if (!accessTokenData) res.status(401).send({ data: null });
+    if (!accessTokenData) res.status(400).send({ data: null });
     else {
       try {
         const userInfo = await Users.findOne({
