@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TiHeartOutline } from 'react-icons/ti';
 import axios from 'axios';
 import './detail.css';
@@ -7,23 +7,67 @@ const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 export default function Detail({ post }) {
 	const [click, setClick] = useState(false);
-	const [count, setCount] = useState(post['like_count']);
-	// const clickHandler = () => {
-	//     setClick(!click);
+	const [count, setCount] = useState(post.like_count);
+	let test = 1;
+	// 중복클릭 방지
+	// 1.
+	// const func = () => {
+	// if(disabled) alert('작동중')
+	// else {
+	// 		disabled = true
+	// 		ToDo();
+	// 		disabled = false
+	//  } }
+	// 2.
+	// const func = () => {
+	// 	count--;
+	// 	if (count <= 0) 실행중;
+	// 	else ToDo();
+
+	// 	count++;
 	// };
 
-	//전달된 post에 해당 유저가 좋아요를 눌렀는지 여부가 필요...
+	useEffect(() => {
+		// console.log(post['like_count']);
+		getPostsHandler();
+		likeCheckHandler();
+	}, []);
+
 	const countHandler = async event => {
 		event.stopPropagation();
-		const res = await axios.get(`${ENDPOINT}/log/like/1`, { withCredentials: true });
-		console.log(res);
-		if (!click) {
-			setClick(!click);
-			setCount(prevState => prevState + 1);
-		} else {
-			setClick(!click);
-			setCount(prevState => prevState - 1);
+		// likeCheckHandler();
+		test--;
+		if (test <= 0) return;
+		else {
+			const res = await axios.get(`${ENDPOINT}/log/like/${post.id}`, { withCredentials: true });
+			if (res) {
+				if (!click) {
+					setClick(!click);
+					setCount(prevState => prevState + 1);
+				} else if (click) {
+					setClick(!click);
+					setCount(prevState => {
+						if (prevState >= 1) return prevState - 1;
+						else return prevState;
+					});
+				}
+			}
 		}
+		test++;
+	};
+	const likeCheckHandler = async () => {
+		// console.log(post['like_count']);
+		// setCount(post['like_count']);
+		const res = await axios.get(`${ENDPOINT}/log/userIsLike/${post.id}`, { withCredentials: true });
+		//이미 좋아요를 눌렀던 상태라면, 클릭된상태라고 저장하고, 핑크색으로 바뀌게.
+		if (res.data.userLikePost) setClick(res.data.userLikePost);
+		// console.log(res.data.userLikePost);
+	};
+
+	const getPostsHandler = async () => {
+		const res = await axios.get(`${ENDPOINT}/log/detail/${post.id}`);
+		console.log(res.data.data);
+		setCount(res.data.data.like_count);
 	};
 	return (
 		<>

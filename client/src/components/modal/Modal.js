@@ -19,7 +19,6 @@ const Modal = () => {
 	const [enteredPassword, setEnteredPassword] = useState('');
 	const [passwordIsValid, setPasswordIsValid] = useState(true);
 	const [formIsValid, setFormIsValid] = useState(false);
-
 	useEffect(() => {
 		if (emailIsValid && passwordIsValid && enteredEmail.length > 0 && enteredPassword.length >= 8)
 			setFormIsValid(true);
@@ -70,9 +69,13 @@ const Modal = () => {
 	const Google_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&response_type=code&scope=openid email&redirect_uri=${ENDPOINT}/users/google`;
 	const facebookHandler = () => {
 		window.location.assign(FB_URL);
+		//인증됐는지 여부를 체크하는게 필요...;
+		localStorage.setItem('login', true);
 	};
 	const googleHandler = () => {
 		window.location.assign(Google_URL);
+		//인증됐는지 여부를 체크하는게 필요...;
+		localStorage.setItem('login', true);
 	};
 	const closeButtonHandler = () => {
 		if (headerModalOpen) headerModalHandler();

@@ -13,6 +13,7 @@ export default function MyPostPage() {
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
+		console.log('page clicked');
 		getPostsHandler();
 	}, [pages]);
 
