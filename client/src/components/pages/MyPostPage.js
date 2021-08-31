@@ -39,6 +39,7 @@ export default function MyPostPage() {
 			});
 		}
 		setPosts([...res.data.data.rows]);
+		console.log(posts);
 	};
 
 	// if (!isLoading) return <Spinner />;

@@ -5,8 +5,7 @@ import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
-const WriteLog = ({post}) => {
-	console.log(post)
+const WriteLog = ({ post }) => {
 	const [nickname, setNickname] = useState(post.author);
 	const [title, setTitle] = useState(post.title);
 	const [content, setContent] = useState(post.content);
@@ -17,19 +16,20 @@ const WriteLog = ({post}) => {
 
 	const titleHandler = e => {
 		setTitle(e.target.value);
-		console.log(title);
 	};
 	const contentHandler = e => {
 		setContent(e.target.value);
 	};
 	const secretHandler = e => {
 		setSecret(e.currentTarget.checked);
-		console.log(secret);
 	};
 	const submitHandler = async event => {
 		event.preventDefault();
-		const res = await axios.patch(`${ENDPOINT}/log/fix/${post.id}`, { content, title, secret }, { withCredentials: true });
-		console.log(res);
+		const res = await axios.patch(
+			`${ENDPOINT}/log/fix/${post.id}`,
+			{ content, title, secret },
+			{ withCredentials: true },
+		);
 		document.location.href = '/myprofile/mypost/1';
 	};
 
