@@ -42,7 +42,11 @@ const LogDetail = () => {
 	return (
 		<div className={`${classes.contains} ${classes.middle}`}>
 			<div className={classes.header__container}>
-				<img src={require(`../../assets/svg/${randomNum}.svg`).default} className="header-image"></img>
+				<img
+					src={require(`../../assets/svg/${randomNum}.svg`).default}
+					className="header-image"
+					width="50px"
+				></img>
 			</div>
 			<div className={classes.userInfo__container}>
 				<div className={classes.userPicName}>

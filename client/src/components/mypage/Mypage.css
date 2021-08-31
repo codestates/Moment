@@ -63,6 +63,13 @@
 
 .my-page-card-info-options {
 	display: flex;
+	margin: 10px -10px 0;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
+}
+
+.my-page-card-info-options-icon {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
