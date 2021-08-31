@@ -5,6 +5,7 @@ import RecentCard from '../recent-card/recent';
 import Spinner from '../spinner/spinner';
 import './mainpage.css';
 import { Context } from '../../Context';
+import { Cookies, useCookies } from 'react-cookie';
 
 export default function MainPage() {
 	const { posts } = useContext(Context);
@@ -17,16 +18,17 @@ export default function MainPage() {
 
 	const [isLoading, setIsLoading] = useState(false);
 
-	const func = async () => {
-		const data = await axios.get('http://localhost:8080/users/profile', {
-			withCredentials: true,
-		});
-		console.log(data.data);
-	};
+	const END_POINT = process.env.REACT_APP_ENDPOINT;
+	const cookies = new Cookies();
+	const [cookie, setCookie, removeCookie] = useCookies(['accessToken']);
 
 	useEffect(() => {
-		func();
 		if (!isLoading) {
+			const url = new URL(window.location.href);
+			const oauth = url.searchParams.get('oauth');
+			if (oauth) {
+				setCookie('accessToken', oauth, { sameSite: 'none', secure: true });
+			}
 			setTimeout(() => {
 				setIsLoading(true);
 			}, 2000);
