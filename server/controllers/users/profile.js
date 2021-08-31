@@ -5,7 +5,6 @@ module.exports = async (req, res) => {
 	const accessToken = req.cookies.accessToken;
 	// const accessToken = req.headers.cookie.accesstoken;
 	// accessToken이 저게 확실한 가?
-	console.log(req.cookies);
 	if (accessToken === undefined) {
 		res.status(400).json({ data: null });
 	} else {
@@ -18,6 +17,7 @@ module.exports = async (req, res) => {
 				});
 				res.status(200).send({
 					data: {
+						avatar: userInfo.avatar,
 						email: userInfo.email,
 						nickname: userInfo.nickname,
 					},
