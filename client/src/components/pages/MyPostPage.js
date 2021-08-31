@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './MyPostPage.module.css';
-import PostCard from '../post-card/postcard';
+import PostCard from '../my-post-card/postcard';
 import Spinner from '../spinner/spinner';
 import axios from 'axios';
 import classes from './MyPostPage.module.css';
@@ -54,9 +54,6 @@ export default function MyPostPage() {
 					<button className="recent-main-btn" onClick={prevHandler}>
 						PREV
 					</button>
-
-					<div>{pages}</div>
-
 					<button className="recent-main-btn" onClick={nextHandler}>
 						NEXT
 					</button>
