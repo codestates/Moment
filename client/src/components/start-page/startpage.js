@@ -6,12 +6,19 @@ import { ReactComponent as Logo } from '../../assets/svg/13.svg';
 import Footer from '../footer/footer';
 
 export default function StartPage() {
+	const [randomNum, setRandomNum] = useState(1);
+	const getRandomPic = () => {
+		let ranNum = parseInt(Math.random() * 30) + 1;
+		setRandomNum(ranNum);
+	};
+
+	useEffect(() => {
+		getRandomPic();
+	}, []);
+
 	return (
 		<div className="startpage">
-			{/* {section.map(({ id, imageUrl }) => (
-				<div className="startpage-logo" key={id} style={{ backgroundImage: `url(${imageUrl})` }} />
-			))} */}
-			<Logo className="startpage-logo" />
+			<img className="startpage-logo" src={require(`../../assets/svg/${randomNum}.svg`).default} />
 			<div></div>
 			<h1 className="startpage-title">Remember your moment in Moment forever.</h1>
 			<a

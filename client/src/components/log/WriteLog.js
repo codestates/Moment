@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import classes from './WriteLog.module.css';
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
@@ -6,9 +6,14 @@ import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const WriteLog = () => {
+	const [nickname, setNickname] = useState('');
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 	const [secret, setSecret] = useState(false);
+	useEffect(() => {
+		getUsername();
+	}, []);
+
 	const titleHandler = e => {
 		setTitle(e.target.value);
 		console.log(title);
@@ -26,6 +31,12 @@ const WriteLog = () => {
 		console.log(res);
 		document.location.href = './main/recent';
 	};
+	const getUsername = async () => {
+		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
+		const { nickname } = user.data.data;
+		setNickname(nickname);
+	};
+
 	return (
 		<>
 			<div className={classes.contains}>
@@ -46,7 +57,7 @@ const WriteLog = () => {
 						<div className={classes.author}>
 							<div>
 								<span>author: </span>
-								<span>userNickName</span>
+								<span>{nickname}</span>
 							</div>
 						</div>
 						<div className={classes['content__container']}>
