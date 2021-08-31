@@ -40,10 +40,9 @@ const LogDetail = () => {
 		setPost(res.data.data);
 		setNumOfLike(res.data.data.like_count);
 	};
-	// const year = time.getFullYear();
-	// const month = ('0' + (time.getMonth() + 1)).slice(-2);
-	// const day = ('0' + time.getDate()).slice(-2);
-	// const fulltime = `${year}-${month}-${day}`;
+	const time = String(post.updated);
+	const idx = time.indexOf('T');
+	const t = time.slice(0, idx);
 
 	return (
 		<div className={`${classes.contains} ${classes.middle}`}>
@@ -60,7 +59,7 @@ const LogDetail = () => {
 					<span>{post.author}</span>
 				</div>
 				<div className={classes.text__container}>
-					<span>{fulltime}</span>
+					<span>{t}</span>
 				</div>
 			</div>
 			<div className={classes.content__container}>

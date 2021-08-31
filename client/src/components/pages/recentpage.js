@@ -25,7 +25,7 @@ export default function RecentPage() {
 
 	// 앞으로 가기
 	const nextHandler = () => {
-		if (posts.length === total) return;
+		if (page >= total) return;
 		setPage(prevState => prevState + 1);
 	};
 
