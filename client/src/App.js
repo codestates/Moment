@@ -12,6 +12,7 @@ import Modal from './components/modal/Modal';
 import LogDetail from './components/log/LogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
+import MyPostPage from './components/pages/MyPostPage';
 import { Context } from './Context';
 import { Cookies } from 'react-cookie';
 
@@ -32,14 +33,21 @@ function App() {
 				<Route exact path="/main">
 					<MainPage />
 				</Route>
-				<Route path="/log">{login && !isLoginOpen ? <WriteLog /> : <Modal />}</Route>
-				<Route path="/myprofile">{login && !isLoginOpen ? <Mypage /> : <Modal />}</Route>
+				<Route exact path="/log">
+					{login && !isLoginOpen ? <WriteLog /> : <Modal />}
+				</Route>
+				<Route exact path="/myprofile">
+					{login && !isLoginOpen ? <Mypage /> : <Modal />}
+				</Route>
 				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
-				<Route path="/test">
+				<Route path="/log/detail">
 					<LogDetail />
 				</Route>
 				<Route path="/main/recent">
 					<RecentPage />
+				</Route>
+				<Route path="/myprofile/mypost">
+					<MyPostPage />
 				</Route>
 			</Switch>
 		</div>

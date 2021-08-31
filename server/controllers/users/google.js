@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 			},
 		});
 		const searchUser = await Users.findOne({
-			where: { email: googleUserInfo.data.email },
+			where: { email: googleUserInfo.data.sub },
 		});
 		if (!searchUser) {
 			await Users.create({
@@ -41,20 +41,13 @@ module.exports = async (req, res) => {
 		}
 		const payload = {
 			email: googleUserInfo.data.sub,
-			nickname: googleUserInfo.data.sub,
+			nickname: googleUserInfo.data.email,
 		};
 		const accessToken = generateAccessToken(payload);
 		const refreshToken = generateRefreshToken(payload);
 		res.set('refreshToken', refreshToken)
 			.status(200)
-			.cookie('accessToken', accessToken, {
-				domain: process.env.GO_TO_HOME,
-				path: '/',
-				sameSite: 'none',
-				secure: true,
-				httpOnly: true,
-			})
-			.redirect(200, process.env.GO_TO_HOME + '/main');
+			.redirect(process.env.GO_TO_HOME + '/main?oauth=' + accessToken);
 	} catch (err) {
 		console.log(err);
 	}
