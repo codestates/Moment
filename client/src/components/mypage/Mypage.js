@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Mypage = () => {
-	const [userInfo, setUserInfo] = useState({ email: '', nickname: '', avatar: '' });
+	const [userInfo, setUserInfo] = useState({ avatar: '', email: '', nickname: '' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [randomNum, setRandomNum] = useState(1);
 	const getRandomPic = () => {
@@ -21,12 +21,9 @@ const Mypage = () => {
 		getUsersInfo();
 	}, []);
 
-	const [image, setImage] = useState(<img src={require(`../../assets/svg/${randomNum}.svg`).default} />);
-
 	const getUsersInfo = async () => {
 		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
-		console.log(user);
-		const { email, nickname, avatar } = user.data.data;
+		const { avatar, email, nickname } = user.data.data;
 		setUserInfo({ email, nickname, avatar });
 	};
 
@@ -43,7 +40,13 @@ const Mypage = () => {
 	const { email, nickname, avatar } = userInfo;
 	return (
 		<div className="my-page-card-container">
-			<div className="my-page-card-image-container">{avatar === null ? image : avatar}</div>
+			<div className="my-page-card-image-container">
+				{avatar === null ? (
+					<img src={require(`../../assets/svg/${randomNum}.svg`).default} />
+				) : (
+					<img src={avatar} />
+				)}
+			</div>
 			<div className="my-page-card-info-container">
 				<h1>{nickname}</h1>
 				<div className="my-page-card-info-container-sec">
