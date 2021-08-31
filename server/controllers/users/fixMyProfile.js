@@ -1,4 +1,4 @@
-const { isAuthorized } = require('../../lib');
+const { isAuthorized, generateAccessToken } = require('../../lib');
 const { Users } = require('../../models');
 
 module.exports = async (req, res) => {
