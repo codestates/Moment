@@ -56,7 +56,7 @@ module.exports = async (req, res) => {
 						},
 						truncate: true
 					});
-					res.status(200).json({ isLike: false });
+					res.status(202).json({ isLike: false });
 				}
 			} catch (err) {
 				console.log(err);
