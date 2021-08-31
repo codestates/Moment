@@ -10,6 +10,7 @@ import MainPage from '../src/components/main-page/mainpage';
 import PostCard from '../src/components/post-card/postcard';
 import Modal from './components/modal/Modal';
 import LogDetail from './components/log/LogDetail';
+import MyLogDetail from './components/mylog/MyLogDetail'
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 import MyPostPage from './components/pages/MyPostPage';
@@ -42,6 +43,9 @@ function App() {
 				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
 				<Route path="/log/detail">
 					<LogDetail />
+				</Route>
+				<Route path="/log/mydetail">
+					<MyLogDetail />
 				</Route>
 				<Route path="/main/recent">
 					<RecentPage />
