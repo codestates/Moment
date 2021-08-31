@@ -35,7 +35,7 @@ export default function MyPostPage() {
 				return prevState - 1;
 			});
 		}
-		setPosts([...res.data.data]);
+		setPosts([...res.data.data.rows]);
 	};
 
 	// if (!isLoading) return <Spinner />;
