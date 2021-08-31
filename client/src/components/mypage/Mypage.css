@@ -8,8 +8,8 @@
 }
 
 .my-page-card-image-container {
-	height: 150px;
-	/* background: #7fbbca; */
+	height: 200px;
+	background: #7fbbca;
 }
 
 .my-page-card-image-container img {
@@ -18,19 +18,20 @@
 	height: 150px;
 	border-radius: 50%;
 	padding: 5px;
+	margin-top: 50px;
 	transform: translate(117%, 70px);
 	border: 2px solid #2d3d8b5d;
 }
 
 .my-page-card-info-container {
 	margin-top: 80px;
-	height: 300px;
+	height: 250px;
 	background: white;
 	text-align: center;
 }
 
 .my-page-card-info-btn {
-	margin-top: 45px;
+	margin-top: 50px;
 	transition: all 0.2s ease;
 }
 .my-page-card-info-btn:hover {
@@ -39,7 +40,7 @@
 }
 
 .my-page-card-info-welcome-container {
-	margin: 60px auto 0;
+	margin: 70px auto 0;
 }
 
 .my-page-card-info-welcome-container p {
@@ -47,7 +48,7 @@
 	border-right: 2px solid black;
 	white-space: nowrap;
 	overflow: hidden;
-	margin-left: 79px;
+	margin-left: 84px;
 	animation: typing 7s steps(35) infinite alternate;
 }
 
@@ -57,19 +58,38 @@
 	}
 
 	100% {
-		width: 34.6ch;
+		width: 34.54ch;
 	}
 }
 
 .my-page-card-info-options {
 	display: flex;
-	margin: 10px -10px 0;
 	flex-direction: row;
-	justify-content: space-around;
+	text-align: center;
+	justify-content: space-between;
+	margin: 110px 30px;
 }
 
 .my-page-card-info-options-icon {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
 }
+
+.my-page-card-info-options-icon:hover button {
+	color: #7fbbca;
+}
+
+.my-page-card-info-options-icon:hover {
+	color: #7fbbca;
+	cursor: pointer;
+}
+
+/* .my-page-card-info-options-img {
+	margin-top: 5px;
+	width: 500px;
+	height: 190px;
+}
+.my-page-card-info-options-image {
+	object-fit: contain;
+	width: 100%;
+	height: 100%;
+} */

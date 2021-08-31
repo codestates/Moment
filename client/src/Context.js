@@ -86,6 +86,7 @@ const ContextProvider = ({ children }) => {
 				posts,
 				headerModalOpen,
 				headerModalHandler,
+				userInfo,
 			}}
 		>
 			{children}
