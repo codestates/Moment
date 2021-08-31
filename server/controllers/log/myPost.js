@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         const userInfo = await Users.findOne({
           where: { email: accessTokenData.email, nickname: accessTokenData.nickname },
         });
-        const pageData = await Posts.findAll({
+        const pageData = await Posts.findAndCountAll({
           offset: offset,
           limit: 4,
           order: [['createdAt', 'DESC']],
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
           where: { user_id: userInfo.id },
           include: [{ model: Users, attributes: ['nickname'] }],
         });
-        if (offset + 1 <= pageData.length) {
+        if (offset + 1 < pageData.count) {
           res.status(200).json({ data: pageData });
         } else {
           res.status(404).json({ message: "end!!!" });
