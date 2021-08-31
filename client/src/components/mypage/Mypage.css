@@ -24,15 +24,32 @@
 }
 
 .my-page-card-info-container {
-	margin-top: 80px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 80px auto;
 	height: 250px;
 	background: white;
 	text-align: center;
 }
+.my-page-card-info-container h1 {
+	justify-content: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 350px;
+	height: 250px;
+	margin-top: -5px;
+}
+
+.my-page-card-info-container-sec {
+	margin-top: -30px;
+}
 
 .my-page-card-info-btn {
 	margin-top: 50px;
-	transition: all 0.2s ease;
+	transition: all 0.4s ease;
 }
 .my-page-card-info-btn:hover {
 	transform: scale(1.2);
@@ -48,7 +65,6 @@
 	border-right: 2px solid black;
 	white-space: nowrap;
 	overflow: hidden;
-	margin-left: 84px;
 	animation: typing 7s steps(35) infinite alternate;
 }
 
@@ -68,16 +84,14 @@
 	text-align: center;
 	justify-content: space-between;
 	margin: 110px 30px;
+	transition: all 0.2s ease;
 }
 
 .my-page-card-info-options-icon {
 	display: flex;
 }
 
-.my-page-card-info-options-icon:hover button {
-	color: #7fbbca;
-}
-
+.my-page-card-info-options-icon:hover button,
 .my-page-card-info-options-icon:hover {
 	color: #7fbbca;
 	cursor: pointer;
