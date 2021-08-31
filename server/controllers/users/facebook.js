@@ -58,20 +58,14 @@ module.exports = async (req, res) => {
 		}
 		const generatePayload = {
 			email: payload.data.id,
-			nickname: payload.data.id,
+			nickname: payload.data.name,
 		};
 		const currentAccessToken = generateAccessToken(generatePayload);
 		const currentRefreshToken = generateRefreshToken(generatePayload);
-		res.set('refreshToken', currentRefreshToken)
-			.status(200)
-			.cookie('accessToken', currentAccessToken, {
-				domain: process.env.GO_TO_HOME,
-				path: '/',
-				sameSite: 'none',
-				secure: true,
-				httpOnly: true,
-			})
-			.redirect(process.env.GO_TO_HOME + '/main');
+		res.set('refreshToken', currentRefreshToken).status(200);
+		res.cookie('accessToken', currentAccessToken, { sameSite: 'none', secure: true, httpOnly: true }).redirect(
+			process.env.GO_TO_HOME + '/main',
+		);
 	} catch (err) {
 		console.log(err);
 	}

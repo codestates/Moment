@@ -9,28 +9,26 @@ import { Link } from 'react-router-dom';
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Mypage = () => {
-	const [userInfo, setUserInfo] = useState({ email: '', nickname: '' });
+	const [userInfo, setUserInfo] = useState({ email: '', nickname: '', avatar: '' });
 	const [isLoading, setIsLoading] = useState(false);
-
 	const [randomNum, setRandomNum] = useState(1);
 	const getRandomPic = () => {
 		let ranNum = parseInt(Math.random() * 31) + 1;
 		setRandomNum(ranNum);
 	};
+	useEffect(() => {
+		getRandomPic();
+		getUsersInfo();
+	}, []);
+
+	const [image, setImage] = useState(<img src={require(`../../assets/svg/${randomNum}.svg`).default} />);
 
 	const getUsersInfo = async () => {
 		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
-		const { email, nickname } = user.data.data;
-		setUserInfo({ email, nickname });
+		console.log(user);
+		const { email, nickname, avatar } = user.data.data;
+		setUserInfo({ email, nickname, avatar });
 	};
-
-	// 오어스 인증한 사람들은 아바타 값을!
-	// null인경우 -> 기본 이미지를
-
-	useEffect(() => {
-		getUsersInfo();
-		getRandomPic();
-	}, []);
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -42,15 +40,15 @@ const Mypage = () => {
 
 	if (!isLoading) return <Spinner />;
 
-	const { email, nickname } = userInfo;
+	const { email, nickname, avatar } = userInfo;
 	return (
 		<div className="my-page-card-container">
-			<div className="my-page-card-image-container">
-				<img src={require(`../../assets/svg/${randomNum}.svg`).default} alt="" height="100px" width="100px" />
-			</div>
+			<div className="my-page-card-image-container">{avatar === null ? image : avatar}</div>
 			<div className="my-page-card-info-container">
 				<h1>{nickname}</h1>
-				<h2>{email}</h2>
+				<div className="my-page-card-info-container-sec">
+					<h2>{email}</h2>
+				</div>
 				<button className="my-page-card-info-btn">
 					<Link to="/log">
 						<FiPaperclip size={30} />
