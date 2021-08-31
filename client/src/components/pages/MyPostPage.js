@@ -8,6 +8,7 @@ import classes from './MyPostPage.module.css';
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 export default function MyPostPage() {
+	const [total, setTotal] = useState(1);
 	const [isLoading, setIsLoading] = useState(false);
 	const [pages, setPages] = useState(1);
 	const [posts, setPosts] = useState([]);
@@ -24,18 +25,20 @@ export default function MyPostPage() {
 		});
 	};
 	const nextHandler = () => {
-		if (posts.length < 4) return;
+		if (pages === total) return;
 		setPages(prevState => prevState + 1);
 	};
 	const getPostsHandler = async () => {
-		const res = await axios.get(`${ENDPOINT}/log/recent/page/${pages}`);
-		if (res.data.data.length === 0) {
+		const res = await axios.get(`${ENDPOINT}/log/myPost/${pages}`, { withCredentials: true });
+		setTotal(res.data.data.count);
+
+		if (res.data.data.rows.length === 0) {
 			setPages(prevState => {
 				if (prevState === 1) return 1;
 				return prevState - 1;
 			});
 		}
-		setPosts([...res.data.data]);
+		setPosts([...res.data.data.rows]);
 	};
 
 	// if (!isLoading) return <Spinner />;

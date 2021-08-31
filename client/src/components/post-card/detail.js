@@ -36,9 +36,9 @@ export default function Detail({ post }) {
 	const countHandler = async event => {
 		event.stopPropagation();
 		// likeCheckHandler();
-		test--;
-		if (test <= 0) return;
+		if (test <= 0) test++;
 		else {
+			test--;
 			const res = await axios.get(`${ENDPOINT}/log/like/${post.id}`, { withCredentials: true });
 			if (res) {
 				if (!click) {
@@ -52,8 +52,8 @@ export default function Detail({ post }) {
 					});
 				}
 			}
+			test++;
 		}
-		test++;
 	};
 	const likeCheckHandler = async () => {
 		// console.log(post['like_count']);
