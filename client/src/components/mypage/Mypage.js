@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Mypage.css';
 import Spinner from '../spinner/spinner';
 import { FiPaperclip } from 'react-icons/fi';
 import { RiHomeHeartLine, RiBookMarkLine, RiInformationLine } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import { Context } from '../../Context';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Mypage = () => {
-	const { uInfo } = useContext(Context);
-	console.log(uInfo);
-	const [userInfo, setUserInfo] = useState({ email: uInfo.email, nickname: uInfo.nickname, avatar: uInfo.avatar });
+	const [userInfo, setUserInfo] = useState({ avatar: '', email: '', nickname: '' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [randomNum, setRandomNum] = useState(1);
 	const getRandomPic = () => {
@@ -21,17 +18,14 @@ const Mypage = () => {
 	};
 	useEffect(() => {
 		getRandomPic();
-		// getUsersInfo();
+		getUsersInfo();
 	}, []);
 
-	const [image, setImage] = useState(<img src={require(`../../assets/svg/${randomNum}.svg`).default} />);
-
-	// const getUsersInfo = async () => {
-	// 	const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
-	// 	console.log(user);
-	// 	const { email, nickname, avatar } = user.data.data;
-	// 	setUserInfo({ email, nickname, avatar });
-	// };
+	const getUsersInfo = async () => {
+		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
+		const { avatar, email, nickname } = user.data.data;
+		setUserInfo({ email, nickname, avatar });
+	};
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -46,7 +40,13 @@ const Mypage = () => {
 	const { email, nickname, avatar } = userInfo;
 	return (
 		<div className="my-page-card-container">
-			<div className="my-page-card-image-container">{avatar === undefined ? image : avatar}</div>
+			<div className="my-page-card-image-container">
+				{avatar === null ? (
+					<img src={require(`../../assets/svg/${randomNum}.svg`).default} />
+				) : (
+					<img src={avatar} />
+				)}
+			</div>
 			<div className="my-page-card-info-container">
 				<h1>{nickname}</h1>
 				<div className="my-page-card-info-container-sec">
