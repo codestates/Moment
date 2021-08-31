@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import HomePage from '../src/components/pages/homepage';
 import Header from '../src/components/header/header';
@@ -13,10 +13,14 @@ import LogDetail from './components/log/LogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 import { Context } from './Context';
-import MyPostPage from './components/pages/MyPostPage';
+import { Cookies } from 'react-cookie';
 
 function App() {
 	const { isLoginOpen, login } = useContext(Context);
+	const cookies = new Cookies();
+	useEffect(() => {
+		console.log(cookies.get('accessToken'));
+	});
 
 	return (
 		<div>
@@ -28,21 +32,14 @@ function App() {
 				<Route exact path="/main">
 					<MainPage />
 				</Route>
-				<Route exact path="/log">
-					{login && !isLoginOpen ? <WriteLog /> : <Modal />}
-				</Route>
-				<Route exact path="/myprofile">
-					{login && !isLoginOpen ? <Mypage /> : <Modal />}
-				</Route>
+				<Route path="/log">{login && !isLoginOpen ? <WriteLog /> : <Modal />}</Route>
+				<Route path="/myprofile">{login && !isLoginOpen ? <Mypage /> : <Modal />}</Route>
 				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
-				<Route path="/log/detail/:postId">
+				<Route path="/test">
 					<LogDetail />
 				</Route>
 				<Route path="/main/recent">
 					<RecentPage />
-				</Route>
-				<Route path="/myprofile/mypost">
-					<MyPostPage />
 				</Route>
 			</Switch>
 		</div>
