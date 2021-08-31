@@ -9,11 +9,12 @@ export default function Detail({ post }) {
 	const [click, setClick] = useState(false);
 	const [count, setCount] = useState(post['like_count']);
 	// const clickHandler = () => {
-	// 	setClick(!click);
+	//     setClick(!click);
 	// };
 
 	//전달된 post에 해당 유저가 좋아요를 눌렀는지 여부가 필요...
-	const countHandler = async () => {
+	const countHandler = async event => {
+		event.stopPropagation();
 		const res = await axios.get(`${ENDPOINT}/log/like/1`, { withCredentials: true });
 		console.log(res);
 		if (!click) {
