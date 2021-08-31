@@ -5,6 +5,7 @@ module.exports = async (req, res) => {
 	const accessToken = req.cookies.accessToken;
 	// const accessToken = req.headers.cookie.accesstoken;
 	// accessToken이 저게 확실한 가?
+	console.log(req.cookies.accessToken);
 	if (accessToken === undefined) {
 		res.status(400).json({ data: null });
 	} else {
@@ -15,6 +16,7 @@ module.exports = async (req, res) => {
 				const userInfo = await Users.findOne({
 					where: { email: accessTokenData.email, nickname: accessTokenData.nickname },
 				});
+				console.log(userInfo);
 				res.status(200).send({
 					data: {
 						avatar: userInfo.avatar,
