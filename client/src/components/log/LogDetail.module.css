@@ -30,9 +30,6 @@
 	justify-content: center;
 }
 .header__container img {
-	/* display: none; */
-	object-fit: cover;
-
 	width: 100%;
 	height: 100%;
 }
