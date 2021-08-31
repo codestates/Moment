@@ -17,7 +17,15 @@ export default function MainPage() {
 
 	const [isLoading, setIsLoading] = useState(false);
 
+	const func = async () => {
+		const data = await axios.get('http://localhost:8080/users/profile', {
+			withCredentials: true,
+		});
+		console.log(data.data);
+	};
+
 	useEffect(() => {
+		func();
 		if (!isLoading) {
 			setTimeout(() => {
 				setIsLoading(true);

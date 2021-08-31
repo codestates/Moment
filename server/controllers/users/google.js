@@ -48,10 +48,13 @@ module.exports = async (req, res) => {
 		res.set('refreshToken', refreshToken)
 			.status(200)
 			.cookie('accessToken', accessToken, {
+				domain: process.env.GO_TO_HOME,
+				path: '/',
+				sameSite: 'none',
 				secure: true,
 				httpOnly: true,
 			})
-			.redirect(process.env.GO_TO_HOME);
+			.redirect(200, process.env.GO_TO_HOME + '/main');
 	} catch (err) {
 		console.log(err);
 	}
