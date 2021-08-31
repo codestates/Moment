@@ -5,10 +5,10 @@ module.exports = async (req, res) => {
   const post_id = req.params.id;
   const accessToken = req.cookies.accessToken;
   if (accessToken === undefined) {
-    res.status(400).json({ data: null });
+    res.status(401).json({ data: null });
   } else {
     const accessTokenData = isAuthorized(accessToken);
-    if (!accessTokenData) res.status(401).send({ data: null });
+    if (!accessTokenData) res.status(400).send({ data: null });
     else {
       try {
         const post = await Posts.findByPk(post_id);

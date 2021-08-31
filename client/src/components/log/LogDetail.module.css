@@ -62,12 +62,13 @@
 }
 
 .content__container {
+	margin-top: 30px;
 	width: 100%;
 	height: 100%px;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
-	align-items: center;
+	align-items: left;
 	padding: 20px;
 }
 
@@ -81,11 +82,13 @@ button {
 	background-color: transparent;
 }
 .like__container {
+	margin-top: 40px;
 	width: 795px;
 	display: flex;
 	gap: 10px;
 	justify-content: flex-end;
 	align-items: center;
+	margin-left: -40px;
 }
 
 .heart {

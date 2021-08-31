@@ -5,12 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import './Modal.css';
 import { Context } from '../../Context';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID;
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const Modal = () => {
+	const history = useHistory();
 	const { loginHandler, getUserInfo, refreshTokenHandler, loginModalHandler, headerModalOpen, headerModalHandler } =
 		useContext(Context);
 	const modalRef = useRef();
@@ -59,10 +61,14 @@ const Modal = () => {
 		loginHandler();
 		if (headerModalOpen) {
 			headerModalHandler();
-			document.location.href = '/main';
+			let path = '/main';
+			history.push(path);
+			// document.location.href = '/main';
 		} else {
 			loginModalHandler();
-			document.location.href = '/main';
+			let path = '/main';
+			history.push(path);
+			// document.location.href = '/main';
 		}
 	};
 	const FB_URL = `https://www.facebook.com/v11.0/dialog/oauth?client_id=${FACEBOOK_ID}&redirect_uri=${ENDPOINT}/users/facebook&scope=email,public_profile`;

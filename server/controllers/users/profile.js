@@ -7,10 +7,10 @@ module.exports = async (req, res) => {
 	// accessToken이 저게 확실한 가?
 	console.log(req.cookies.accessToken);
 	if (accessToken === undefined) {
-		res.status(400).json({ data: null });
+		res.status(401).json({ data: null });
 	} else {
 		const accessTokenData = isAuthorized(accessToken);
-		if (!accessTokenData) res.status(401).send({ data: null });
+		if (!accessTokenData) res.status(400).send({ data: null });
 		else {
 			try {
 				const userInfo = await Users.findOne({
