@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
 			await Users.create({
 				avatar: googleUserInfo.data.picture,
 				email: googleUserInfo.data.sub,
-				nickname: googleUserInfo.data.sub,
+				nickname: googleUserInfo.data.email,
 				password: googleAccessToken,
 				createdAt: new Date(),
 				updatedAt: new Date(),
@@ -45,9 +45,10 @@ module.exports = async (req, res) => {
 		};
 		const accessToken = generateAccessToken(payload);
 		const refreshToken = generateRefreshToken(payload);
-		res.set('refreshToken', refreshToken)
-			.status(200)
-			.redirect(process.env.GO_TO_HOME + '/main?oauth=' + accessToken);
+		res.set('refreshToken', refreshToken).status(200);
+		res.cookie('accessToken', accessToken, { sameSite: 'none', secure: true, httpOnly: true }).redirect(
+			process.env.GO_TO_HOME + '/main',
+		);
 	} catch (err) {
 		console.log(err);
 	}
