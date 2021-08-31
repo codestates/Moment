@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
         const pageData = await Posts.findAll({
           offset: offset,
           limit: 4,
+          order: [['createdAt', 'DESC']],
           attributes: ['id', 'title', 'content', 'updatedAt', 'like_count', 'user_id'],
           where: { user_id: userInfo.id },
           include: [{ model: Users, attributes: ['nickname'] }],
