@@ -66,7 +66,6 @@ const ContextProvider = ({ children }) => {
 	const [posts, setPosts] = useState('');
 	useEffect(async () => {
 		const res = await axios.get(`${ENDPOINT}/log/recent/page/1`);
-		console.log(res.data.data.rows);
 		const logs = res.data.data.rows;
 		setPosts([...logs]);
 		console.log(posts);
