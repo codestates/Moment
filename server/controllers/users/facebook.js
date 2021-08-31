@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
 			await Users.create({
 				avatar: payload.data.picture.data.url,
 				email: payload.data.id,
-				nickname: payload.data.id,
+				nickname: payload.data.name,
 				password: accessToken,
 				createdAt: new Date(),
 				updatedAt: new Date(),
