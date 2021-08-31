@@ -25,7 +25,7 @@ export default function MyPostPage() {
 		});
 	};
 	const nextHandler = () => {
-		if (pages === total) return;
+		if (pages >= total) return;
 		setPages(prevState => prevState + 1);
 	};
 	const getPostsHandler = async () => {

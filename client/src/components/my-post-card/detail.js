@@ -66,7 +66,7 @@ export default function Detail({ post }) {
 
 	const getPostsHandler = async () => {
 		const res = await axios.get(`${ENDPOINT}/log/detail/${post.id}`);
-		console.log(res.data.data);
+		console.log(post.id, res);
 		setCount(res.data.data.like_count);
 	};
 	return (
