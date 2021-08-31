@@ -41,7 +41,7 @@ const LogDetail = () => {
 		setNumOfLike(res.data.data.like_count);
 	};
 	const time = String(post.updated);
-	const idx = time.indexOf('T');
+	const idx = time.indexOf("T");
 	const t = time.slice(0, idx);
 
 	return (
