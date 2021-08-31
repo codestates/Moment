@@ -11,14 +11,25 @@ const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 const Mypage = () => {
 	const [userInfo, setUserInfo] = useState({ email: '', nickname: '' });
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [randomNum, setRandomNum] = useState(1);
+	const getRandomPic = () => {
+		let ranNum = parseInt(Math.random() * 31) + 1;
+		setRandomNum(ranNum);
+	};
+
 	const getUsersInfo = async () => {
 		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
 		const { email, nickname } = user.data.data;
 		setUserInfo({ email, nickname });
 	};
 
+	// 오어스 인증한 사람들은 아바타 값을!
+	// null인경우 -> 기본 이미지를
+
 	useEffect(() => {
 		getUsersInfo();
+		getRandomPic();
 	}, []);
 
 	useEffect(() => {
@@ -35,7 +46,7 @@ const Mypage = () => {
 	return (
 		<div className="my-page-card-container">
 			<div className="my-page-card-image-container">
-				<img src={require('../../assets/svg/16.svg').default} alt="" height="100px" width="100px" />
+				<img src={require(`../../assets/svg/${randomNum}.svg`).default} alt="" height="100px" width="100px" />
 			</div>
 			<div className="my-page-card-info-container">
 				<h1>{nickname}</h1>
