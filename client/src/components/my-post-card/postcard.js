@@ -1,7 +1,7 @@
 import React from 'react';
 
 import SideImage from './sideimage';
-import Detail from './detail';
+import Detail from '../my-post-card/detail';
 
 import Profile from '../profile/profile-page-demo';
 
