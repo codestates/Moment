@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TiHeartOutline } from 'react-icons/ti';
-import classes from './LogDetail.module.css';
+import classes from './MyLogDetail.module.css';
 import axios from 'axios';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
@@ -37,13 +37,13 @@ const LogDetail = () => {
 	};
 	const getPostsHandler = async () => {
 		const res = await axios(`${ENDPOINT}/log/detail/${postId}`);
+		console.log(res);
 		setPost(res.data.data);
 		setNumOfLike(res.data.data.like_count);
 	};
-	// const year = time.getFullYear();
-	// const month = ('0' + (time.getMonth() + 1)).slice(-2);
-	// const day = ('0' + time.getDate()).slice(-2);
-	// const fulltime = `${year}-${month}-${day}`;
+	const time = post.updated;
+	console.log(time.toString());
+	// console.log(time.toDateString());
 
 	return (
 		<div className={`${classes.contains} ${classes.middle}`}>
@@ -60,7 +60,7 @@ const LogDetail = () => {
 					<span>{post.author}</span>
 				</div>
 				<div className={classes.text__container}>
-					<span>{fulltime}</span>
+					<span>{post.updated}</span>
 				</div>
 			</div>
 			<div className={classes.content__container}>
