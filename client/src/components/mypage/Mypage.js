@@ -26,7 +26,9 @@ const Mypage = () => {
 				<h1>{nickname}</h1>
 				<h2>{email}</h2>
 				<button className="my-page-card-info-btn">
-					<FiPaperclip size={30} />
+					<Link to="/log">
+						<FiPaperclip size={30} />
+					</Link>
 				</button>
 				<div className="my-page-card-info-welcome-container">
 					<p>Welcome! What do you want to write today?</p>
