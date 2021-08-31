@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useReducer } from 'react';
 import axios from 'axios';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
@@ -8,9 +8,21 @@ const Context = React.createContext({
 	loginHandler: () => {},
 	userInfo: '',
 });
+const defaultUInfo = {
+	email: '',
+	nickname: '',
+	avatar: '',
+};
+const userInfoReducer = (state, action) => {
+	if (action.type === 'GET') {
+		console.log(action.item);
+		return { email: action.item.email, nickname: action.item.nickname, avatar: action.item.avatar };
+	}
+};
 
 const ContextProvider = ({ children }) => {
 	//login, signup
+	const [uInfo, dispatchUInfo] = useReducer(userInfoReducer, defaultUInfo);
 	const [headerModalOpen, setHeaderModalOpen] = useState(false);
 	const [isLoginOpen, setIsLoginOpen] = useState(false);
 	const [isSignupOpen, setIsSignupOpen] = useState(false);
@@ -28,8 +40,9 @@ const ContextProvider = ({ children }) => {
 		setIsSignupOpen(!isSignupOpen);
 	};
 	const getUserInfo = data => {
-		setUserInfo(data);
-		console.log('userInfo at App :', data);
+		dispatchUInfo({ type: 'GET', item: data });
+		// setUserInfo(data);
+		// console.log('userInfo at App :', data);
 	};
 	const loginHandler = () => {
 		// 마이프로필에 요청, 데이터가 없으면 로그인안된거, 데이터가 있으면,
@@ -68,9 +81,8 @@ const ContextProvider = ({ children }) => {
 		const res = await axios.get(`${ENDPOINT}/log/recent/page/1`);
 		const logs = res.data.data.rows;
 		setPosts([...logs]);
-		console.log(posts);
 	}, []);
-
+	console.log(posts);
 	return (
 		<Context.Provider
 			value={{
@@ -87,6 +99,7 @@ const ContextProvider = ({ children }) => {
 				headerModalOpen,
 				headerModalHandler,
 				userInfo,
+				uInfo,
 			}}
 		>
 			{children}
