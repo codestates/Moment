@@ -1,32 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-
+import { Context } from '../../Context';
 import './MypageDetail.css';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const MypageDetail = () => {
-	const [userInfo, setUserInfo] = useState({ email: 'clover@gmail.com', nickname: 'clover' });
-	const [enteredEmail, setEnteredEmail] = useState('clover@gmail.com');
-	const [enteredNickname, setEnteredNickname] = useState('clover');
+	const { uInfo } = useContext(Context);
+	const [userInfo, setUserInfo] = useState({ email: uInfo.email, nickname: uInfo.nickname });
+	const [enteredEmail, setEnteredEmail] = useState(uInfo.email);
+	const [enteredNickname, setEnteredNickname] = useState(uInfo.nickname);
 	const [enteredPassword, setEnteredPassword] = useState('');
 	const [passwordIsValid, setPasswordIsValid] = useState(true);
 	const [confirmPassword, setConfirmPassword] = useState(true);
-
-	const editHandler = event => {
+	// useEffect(() => {
+	// 	getUsersInfo();
+	// }, []);
+	// const getUsersInfo = async () => {
+	// 	const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
+	// 	const { email, nickname } = user.data.data;
+	// 	setEnteredEmail(email);
+	// 	setEnteredNickname(nickname);
+	// };
+	const editHandler = async event => {
 		event.preventDefault();
-		changeUser();
-	};
-
-	const changeUser = async () => {
-		const changeuser = await axios.patch(
-			`${ENDPOINT}/users/fixmyprofile`,
+		console.log(1);
+		const res = await axios.patch(
+			`${ENDPOINT}/users/fixprofile`,
 			{ nickname: enteredNickname, password: enteredPassword },
 			{ withCredentials: true },
 		);
-		// 안 되고 있음.. ㅋ E뜨흑..
-		console.log(changeuser);
 	};
+
 	const emailInputHandler = e => {
 		setEnteredEmail(e.target.value);
 	};
@@ -48,7 +53,7 @@ const MypageDetail = () => {
 
 	return (
 		<div className="my-page-info-container">
-			<h2 className="my-page-info-title">Information</h2>
+			<h2 className="my-page-info-title">Information11</h2>
 			<div className="my-page-info-ipt-container">
 				<input
 					className="my-page-info-ipt"
