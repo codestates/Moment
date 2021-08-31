@@ -5,7 +5,7 @@ const { Users } = require('../../models');
 module.exports = async (req, res) => {
 	const post_id = req.params.id;
 	const accessToken = req.cookies.accessToken;
-	const { title, content } = req.body;
+	const { title, content, secret } = req.body;
 	const findPost = await Posts.findByPk(post_id);
 	if (!findPost) res.status(404).send({ isFixed: false });
 	if (!accessToken) {
@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
 						{
 							title: title ? title : origin.title,
 							content: content ? content : origin.content,
+							secret: secret ? secret : origin.secret,
 							updatedAt: new Date(),
 						},
 						{
