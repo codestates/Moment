@@ -13,7 +13,6 @@ import LogDetail from './components/log/LogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 import MyPostPage from './components/pages/MyPostPage';
-import MyLogDetail from './components/mylog/MyLogDetail';
 import { Context } from './Context';
 import { Cookies } from 'react-cookie';
 
@@ -43,9 +42,6 @@ function App() {
 				<Route path="/fixprofile">{login && !isLoginOpen ? <MypageDetail /> : <Modal />}</Route>
 				<Route path="/log/detail">
 					<LogDetail />
-				</Route>
-				<Route path="/log/mydetail">
-					<MyLogDetail />
 				</Route>
 				<Route path="/main/recent">
 					<RecentPage />
