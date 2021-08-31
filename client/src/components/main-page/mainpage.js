@@ -27,7 +27,7 @@ export default function MainPage() {
 			const url = new URL(window.location.href);
 			const oauth = url.searchParams.get('oauth');
 			if (oauth) {
-				setCookie('accessToken', oauth, { sameSite: 'none', secure: true });
+				setCookie('accessToken', oauth, { sameSite: 'none', secure: true, httpOnly: true });
 			}
 			setTimeout(() => {
 				setIsLoading(true);
