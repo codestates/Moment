@@ -30,31 +30,20 @@ module.exports = async (req, res) => {
 						user_id: user.id,
 					});
 					await Posts.increment(
-						{ like_count: 1 },
-						{
-							where: {
-								id: post.id,
-								user_id: user.id
-							}
-						}
+						'like_count',
+						{ by: 1, where: { id: post.id } }
 					);
 					res.status(200).json({ isLike: true });
 				} else {
 					await Posts.decrement(
-						{ like_count: 1 },
-						{
-							where: {
-								id: post.id,
-								user_id: user.id
-							}
-						}
+						'like_count',
+						{ by: 1, where: { id: post.id } }
 					);
 					await post_like.destroy({
 						where: {
 							post_id: post.id,
 							user_id: user.id,
-						},
-						truncate: true
+						}
 					});
 					res.status(202).json({ isLike: false });
 				}
@@ -62,6 +51,5 @@ module.exports = async (req, res) => {
 				console.log(err);
 			}
 		}
-
 	}
 };

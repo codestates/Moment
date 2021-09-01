@@ -27,8 +27,11 @@ module.exports = async (req, res) => {
 					},
 				},
 			);
-			const { originEmail, originNickname } = origin;
-			const fixAccessToken = generateAccessToken({ originEmail, originNickname });
+			const originEmail = origin.email;
+			const fixAccessToken = generateAccessToken({
+				email: originEmail,
+				nickname: nickname ? nickname : origin.nickname,
+			});
 
 			res.cookie('accessToken', fixAccessToken, {
 				sameSite: 'none',
