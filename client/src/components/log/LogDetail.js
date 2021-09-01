@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { FaUserAstronaut } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TiHeartOutline } from 'react-icons/ti';
+import { useHistory } from 'react-router-dom';
 import classes from './LogDetail.module.css';
 import axios from 'axios';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const LogDetail = () => {
+	const history = useHistory();
 	const postId = document.location.pathname.split('/')[3];
 
 	const [post, setPost] = useState({});
@@ -40,8 +41,13 @@ const LogDetail = () => {
 		setPost(res.data.data);
 		setNumOfLike(res.data.data.like_count);
 	};
+
+	const backHandler = () => {
+		history.push('/main/recent');
+	};
+
 	const time = String(post.updated);
-	const idx = time.indexOf("T");
+	const idx = time.indexOf('T');
 	const t = time.slice(0, idx);
 
 	return (
@@ -75,6 +81,11 @@ const LogDetail = () => {
 						>
 							<TiHeartOutline size={23} />
 							<div className={classes.likeNum}>{numOfLike}</div>
+						</button>
+					</div>
+					<div className={classes.btn__container}>
+						<button className={classes.btn__css} onClick={backHandler}>
+							Go Back
 						</button>
 					</div>
 				</div>
