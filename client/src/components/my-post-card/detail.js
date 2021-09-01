@@ -55,11 +55,13 @@ export default function Detail({ post }) {
 			test++;
 		}
 	};
+
 	const likeCheckHandler = async () => {
 		// console.log(post['like_count']);
 		// setCount(post['like_count']);
 		const res = await axios.get(`${ENDPOINT}/log/userIsLike/${post.id}`, { withCredentials: true });
 		//이미 좋아요를 눌렀던 상태라면, 클릭된상태라고 저장하고, 핑크색으로 바뀌게.
+		console.log(res.data.userLikePost);
 		if (res.data.userLikePost) setClick(res.data.userLikePost);
 		// console.log(res.data.userLikePost);
 	};

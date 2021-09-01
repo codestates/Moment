@@ -10,7 +10,7 @@ import MainPage from '../src/components/main-page/mainpage';
 import PostCard from '../src/components/post-card/postcard';
 import Modal from './components/modal/Modal';
 import LogDetail from './components/log/LogDetail';
-import MyLogDetail from './components/mylog/MyLogDetail'
+import MyLogDetail from './components/mylog/MyLogDetail';
 import RecentPage from '../src/components/pages/recentpage';
 import axios from 'axios';
 import MyPostPage from './components/pages/MyPostPage';

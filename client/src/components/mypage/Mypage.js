@@ -16,16 +16,16 @@ const Mypage = () => {
 		let ranNum = parseInt(Math.random() * 31) + 1;
 		setRandomNum(ranNum);
 	};
-	useEffect(() => {
-		getRandomPic();
-		getUsersInfo();
-	}, []);
-
 	const getUsersInfo = async () => {
+		console.log(1);
 		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
 		const { avatar, email, nickname } = user.data.data;
 		setUserInfo({ email, nickname, avatar });
 	};
+	useEffect(() => {
+		getRandomPic();
+		getUsersInfo();
+	}, []);
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -34,7 +34,6 @@ const Mypage = () => {
 			}, 2000);
 		}
 	}, [isLoading]);
-
 	if (!isLoading) return <Spinner />;
 
 	const { email, nickname, avatar } = userInfo;
