@@ -18,7 +18,11 @@ export default function StartPage() {
 
 	return (
 		<div className="startpage">
-			<img className="startpage-logo" src={require(`../../assets/svg/${randomNum}.svg`).default} />
+			{randomNum ? (
+				<img className="startpage-logo" src={require(`../../assets/svg/${randomNum}.svg`).default} />
+			) : (
+				<div className="startpage-logo"></div>
+			)}
 			<div></div>
 			<h1 className="startpage-title">Remember your moment in Moment forever.</h1>
 			<a
