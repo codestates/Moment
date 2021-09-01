@@ -93,12 +93,12 @@ button {
 	margin-top: 40px;
 	width: 795px;
 	display: flex;
+	flex-direction: column;
 	gap: 10px;
 	justify-content: flex-end;
-	align-items: center;
+	align-items: flex-end;
 	margin-left: -40px;
 }
-
 .heart {
 	display: flex;
 	align-items: center;
@@ -132,4 +132,36 @@ button {
 
 .likeNum {
 	font-size: 15px;
+}
+.backbtn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 5px 10px;
+	height: 30px;
+}
+.backbtn button {
+	display: inline-flex;
+	flex-direction: row;
+	margin-right: -15px;
+	justify-content: center;
+	align-items: center;
+	padding: 0.3rem;
+	background-color: white;
+	border: 3px solid #7fbbca;
+	border-radius: 20px;
+	text-align: center;
+	transition: 0.4s;
+	animation: ease-in-out;
+}
+.backbtn button:hover {
+	border: 3px solid #2d3d8b;
+	cursor: pointer;
+	/* transform: translateY(-0.3rem);
+	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.3); */
+}
+.backbtn:hover {
+	cursor: pointer;
+	transform: translateY(-0.3rem);
+	/* box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.3); */
 }
