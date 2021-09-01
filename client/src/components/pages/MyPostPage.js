@@ -4,6 +4,7 @@ import PostCard from '../my-post-card/postcard';
 import Spinner from '../spinner/spinner';
 import axios from 'axios';
 import classes from './MyPostPage.module.css';
+import { useLocation } from 'react-router-dom';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
@@ -48,7 +49,7 @@ export default function MyPostPage() {
 			<div className="recent-main-container">
 				{posts.map(post => (
 					<div className="recent-main-item" key={post.id}>
-						<PostCard key={post.id} post={post} />
+						<PostCard key={post.id} post={post} pages={pages} />
 					</div>
 				))}
 				<div className={classes.btnContainer}>
