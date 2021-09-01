@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../../Context';
 import './MypageDetail.css';
 
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const MypageDetail = () => {
+	const history = useHistory();
 	const { uInfo } = useContext(Context);
 	const [userInfo, setUserInfo] = useState({ email: uInfo.email, nickname: uInfo.nickname });
 	const [enteredEmail, setEnteredEmail] = useState(uInfo.email);
@@ -24,12 +26,13 @@ const MypageDetail = () => {
 	// };
 	const editHandler = async event => {
 		event.preventDefault();
-		console.log(1);
 		const res = await axios.patch(
 			`${ENDPOINT}/users/fixprofile`,
 			{ nickname: enteredNickname, password: enteredPassword },
 			{ withCredentials: true },
 		);
+		let path = '/myprofile';
+		history.push(path);
 	};
 
 	const emailInputHandler = e => {
