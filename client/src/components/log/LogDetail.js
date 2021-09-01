@@ -85,7 +85,7 @@ const LogDetail = () => {
 					</div>
 					<div className={classes.btn__container}>
 						<button className={classes.btn__css} onClick={backHandler}>
-							Back
+							Go Back
 						</button>
 					</div>
 				</div>

@@ -17,11 +17,7 @@
 	margin: 0;
 	color: #2d3d8b;
 	font-weight: 700;
-	width: 216px;
 	font-size: 20px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
 }
 
 .details-subheader {
