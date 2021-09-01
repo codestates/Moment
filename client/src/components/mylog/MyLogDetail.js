@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaUserAstronaut } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TiHeartOutline } from 'react-icons/ti';
+import { useHistory } from 'react-router-dom';
 import classes from './MyLogDetail.module.css';
 import axios from 'axios';
 import EditLog from '../log/EditLog';
@@ -9,6 +10,7 @@ import EditLog from '../log/EditLog';
 const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 const LogDetail = () => {
+	const history = useHistory();
 	const postId = document.location.pathname.split('/')[3];
 	const [editModeOn, setEditModeOn] = useState(false);
 	const [post, setPost] = useState({});
@@ -48,7 +50,13 @@ const LogDetail = () => {
 	};
 	const deleteHandler = async () => {
 		const res = await axios.delete(`${ENDPOINT}/log/delete/${postId}`, { withCredentials: true });
-		document.location.href = '/myprofile/mypost';
+		let path = '/myprofile/mypost';
+		history.push(path);
+		// window.location.href = '/myprofile/mypost';
+	};
+	const backHandler = () => {
+		let path = '/myprofile/mypost';
+		history.push(path);
 	};
 	const time = String(post.updated);
 	const idx = time.indexOf('T');
@@ -92,15 +100,22 @@ const LogDetail = () => {
 						<div className={classes.body__container}>
 							<p>{post.content}</p>
 							<div className={classes.like__container}>
-								<button
-									className={
-										heartClicked ? `${classes.heart__clicked} ${classes.heart}` : `${classes.heart}`
-									}
-									onClick={likeHandler}
-								>
-									<TiHeartOutline size={23} />
-									<div className={classes.likeNum}>{numOfLike}</div>
-								</button>
+								<div>
+									<button
+										className={
+											heartClicked
+												? `${classes.heart__clicked} ${classes.heart}`
+												: `${classes.heart}`
+										}
+										onClick={likeHandler}
+									>
+										<TiHeartOutline size={23} />
+										<div className={classes.likeNum}>{numOfLike}</div>
+									</button>
+								</div>
+								<div className={classes.backbtn}>
+									<button onClick={backHandler}>Back</button>
+								</div>
 							</div>
 						</div>
 					</div>
