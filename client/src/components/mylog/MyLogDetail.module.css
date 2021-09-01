@@ -96,8 +96,6 @@ button {
 	flex-direction: column;
 	gap: 10px;
 	justify-content: flex-end;
-}
-.like__container {
 	align-items: flex-end;
 	margin-left: -40px;
 }
