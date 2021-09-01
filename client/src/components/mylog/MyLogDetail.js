@@ -17,7 +17,6 @@ const LogDetail = () => {
 	const [heartClicked, setHeartClicked] = useState(false);
 	const [numOfLike, setNumOfLike] = useState(0);
 	const [randomNum, setRandomNum] = useState(1);
-	console.log(postId);
 	useEffect(() => {
 		getRandomPic();
 		getPostsHandler();
@@ -50,9 +49,9 @@ const LogDetail = () => {
 	};
 	const deleteHandler = async () => {
 		const res = await axios.delete(`${ENDPOINT}/log/delete/${postId}`, { withCredentials: true });
-		let path = '/myprofile/mypost';
+		let path = `/myprofile/mypost`;
 		history.push(path);
-		// window.location.href = '/myprofile/mypost';
+		// window.location.href = `/myprofile/mypost/${pages}`;
 	};
 	const backHandler = () => {
 		let path = '/myprofile/mypost';
