@@ -9,21 +9,26 @@ const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 const MypageDetail = () => {
 	const history = useHistory();
 	const { uInfo } = useContext(Context);
-	const [userInfo, setUserInfo] = useState({ email: uInfo.email, nickname: uInfo.nickname });
-	const [enteredEmail, setEnteredEmail] = useState(uInfo.email);
-	const [enteredNickname, setEnteredNickname] = useState(uInfo.nickname);
+	const [userInfo, setUserInfo] = useState({ email: '', nickname: '' });
+	const [enteredEmail, setEnteredEmail] = useState(userInfo.email);
+	const [enteredNickname, setEnteredNickname] = useState(userInfo.nickname);
 	const [enteredPassword, setEnteredPassword] = useState('');
 	const [passwordIsValid, setPasswordIsValid] = useState(true);
 	const [confirmPassword, setConfirmPassword] = useState(true);
-	// useEffect(() => {
-	// 	getUsersInfo();
-	// }, []);
-	// const getUsersInfo = async () => {
-	// 	const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
-	// 	const { email, nickname } = user.data.data;
-	// 	setEnteredEmail(email);
-	// 	setEnteredNickname(nickname);
-	// };
+	useEffect(() => {
+		getUsersInfo();
+	}, []);
+	const getUsersInfo = async () => {
+		console.log(1);
+		const user = await axios.get(`${ENDPOINT}/users/profile`, { withCredentials: true });
+		console.log(user);
+		const { email, nickname } = user.data.data;
+		setUserInfo({ email: email, nickname: nickname });
+		setEnteredEmail(email);
+		setEnteredNickname(nickname);
+		// setEnteredEmail(email);
+		// setEnteredNickname(nickname);
+	};
 	const editHandler = async event => {
 		event.preventDefault();
 		const res = await axios.patch(
@@ -31,8 +36,9 @@ const MypageDetail = () => {
 			{ nickname: enteredNickname, password: enteredPassword },
 			{ withCredentials: true },
 		);
-		let path = '/myprofile';
-		history.push(path);
+		// let path = '/myprofile';
+		// history.push(path);
+		window.location.href = '/myprofile';
 	};
 
 	const emailInputHandler = e => {
@@ -56,7 +62,7 @@ const MypageDetail = () => {
 
 	return (
 		<div className="my-page-info-container">
-			<h2 className="my-page-info-title">Information11</h2>
+			<h2 className="my-page-info-title">Information</h2>
 			<div className="my-page-info-ipt-container">
 				<input
 					className="my-page-info-ipt"
