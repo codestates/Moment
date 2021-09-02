@@ -32,7 +32,7 @@
 
 ![Front_JS](https://img.shields.io/badge/FRONT-JAVASCRIPT-yellow?style=for-the-badge&logo=javascript)
 
-![Front_Styled-Components](https://img.shields.io/badge/FRONT-STYLED%20COMPONENTS-yellow?style=for-the-badge&logo=styled-components)
+![Front_CSS3](https://img.shields.io/badge/FRONT-CSS3-yellow?style=for-the-badge&logo=CSS3)
 
 ### Back
 
