@@ -24,7 +24,7 @@
 
 ***
 
-# ⛳ Team Members
+# 🙌🏻 Team Members
 
 | Name     | Position | Roles     |
 | :---        |    :----:   |          :---: |
