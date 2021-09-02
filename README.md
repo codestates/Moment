@@ -37,6 +37,8 @@
 
 # 🛠 Flow Chart
 
+[Flow Chart](https://github.com/codestates/Moment/wiki/Flow-Chart)
+
 ## Front
 
 ![Flowchart (2)](https://user-images.githubusercontent.com/79839230/131773715-b1d9d297-8fea-4f4f-a34f-3abc777e0bbf.jpg)
