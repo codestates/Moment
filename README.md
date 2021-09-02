@@ -53,6 +53,8 @@
 
 [API Document](https://github.com/codestates/Moment/wiki/API-Document)
 
+***
+
 # 🎯 Stack
 
 ## Front
@@ -70,3 +72,9 @@
 ![Back_Express](https://img.shields.io/badge/BACK-EXPRESS-white?style=for-the-badge&logo=express)
 
 ![Back_Sequelize](https://img.shields.io/badge/BACK-Sequelize-skyblue?style=for-the-badge&logo=Sequelize)
+
+***
+
+# 💜 If you're more curious about Moments?
+
+[Momemt WIKI](https://github.com/codestates/Moment/wiki)
