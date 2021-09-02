@@ -77,4 +77,4 @@
 
 # 💜 If you're more curious about Moments?
 
-[Momemt WIKI](https://github.com/codestates/Moment/wiki)
+[Moment WIKI](https://github.com/codestates/Moment/wiki)
