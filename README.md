@@ -24,7 +24,7 @@
 
 ***
 
-## Team Members
+# ⛳ Team Members
 
 | Name     | Position | Roles     |
 | :---        |    :----:   |          ---: |
@@ -35,9 +35,9 @@
 
 ***
 
-## Stack
+# 🎯 Stack
 
-### Front
+## Front
 
 ![Front_React](https://img.shields.io/badge/FRONT-REACT-blue?style=for-the-badge&logo=react)
 
@@ -45,7 +45,7 @@
 
 ![Front_CSS3](https://img.shields.io/badge/FRONT-CSS3-pink?style=for-the-badge&logo=CSS3)
 
-### Back
+## Back
 
 ![Back_NodeJS](https://img.shields.io/badge/BACK-NODE.JS-green?style=for-the-badge&logo=node.js)
 
