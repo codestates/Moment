@@ -35,6 +35,22 @@
 
 ***
 
+# 🛠 Flow Chart
+
+## Front
+
+![Flowchart (1)](https://user-images.githubusercontent.com/79839230/131772662-e694f9f7-b167-444f-ab05-9a16ab6d13d7.jpg)
+
+## Back
+
+![Flowchart](https://user-images.githubusercontent.com/79839230/131772731-460e4e53-208e-4a3d-9c25-4000b13b3240.jpg)
+
+***
+
+# 📬 API
+
+[API Document](https://github.com/codestates/Moment/wiki/API-Document)
+
 # 🎯 Stack
 
 ## Front
