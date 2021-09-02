@@ -26,13 +26,12 @@
 
 ## Team Members
 
- *
- 
- *
- 
- *
- 
- *
+| Name     | Position | Roles     |
+| :---        |    :----:   |          ---: |
+| 전병희   | Back-End       | Team Leader🎖   |
+| 박상엽   | Back-End       | Team Member🏅   |
+| 이형태   | Front-End      | Team Member🏅   |
+| 양희진   | Front-End      | Team Member🏅   |
 
 ***
 
