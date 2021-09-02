@@ -32,10 +32,12 @@
 
 ![Front_JS](https://img.shields.io/badge/FRONT-JAVASCRIPT-yellow?style=for-the-badge&logo=javascript)
 
-![Front_CSS3](https://img.shields.io/badge/FRONT-CSS3-yellow?style=for-the-badge&logo=CSS3)
+![Front_CSS3](https://img.shields.io/badge/FRONT-CSS3-pink?style=for-the-badge&logo=CSS3)
 
 ### Back
 
 ![Back_NodeJS](https://img.shields.io/badge/BACK-NODE.JS-green?style=for-the-badge&logo=node.js)
 
 ![Back_Express](https://img.shields.io/badge/BACK-EXPRESS-white?style=for-the-badge&logo=express)
+
+![Back_Sequelize](https://img.shields.io/badge/BACK-Sequelize-skyblue?style=for-the-badge&logo=Sequelize)
